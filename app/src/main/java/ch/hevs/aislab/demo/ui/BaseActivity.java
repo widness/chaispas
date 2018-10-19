@@ -114,8 +114,6 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
             intent = new Intent(this, AccountsActivity.class);
         } else if (id == R.id.nav_transaction) {
             intent = new Intent(this, TransactionActivity.class);
-        } else if (id == R.id.nav_logout) {
-            logout();
         }
         if (intent != null) {
             intent.setFlags(

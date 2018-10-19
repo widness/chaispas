@@ -1,4 +1,4 @@
-package ch.hevs.aislab.demo.ui.client;
+package ch.hevs.aislab.demo.ui.student;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
@@ -189,7 +189,6 @@ public class ClientActivity extends BaseActivity {
         mClient.setEmail(email);
         mClient.setFirstName(firstName);
         mClient.setLastName(lastName);
-        mClient.setPassword(pwd);
 
         mViewModel.updateClient(mClient, new OnAsyncEventListener() {
             @Override

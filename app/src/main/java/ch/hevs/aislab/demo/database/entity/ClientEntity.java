@@ -26,8 +26,6 @@ public class ClientEntity implements Client, Comparable {
     @ColumnInfo(name = "last_name")
     private String lastName;
 
-    private String password;
-
     public ClientEntity() {
     }
 
@@ -35,14 +33,12 @@ public class ClientEntity implements Client, Comparable {
         email = client.getEmail();
         firstName = client.getFirstName();
         lastName = client.getLastName();
-        password = client.getPassword();
     }
 
     public ClientEntity(@NonNull String email, String firstName, String lastName, String password) {
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.password = password;
     }
 
     @NonNull
@@ -71,15 +67,6 @@ public class ClientEntity implements Client, Comparable {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
-    }
-
-    @Override
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     @Override

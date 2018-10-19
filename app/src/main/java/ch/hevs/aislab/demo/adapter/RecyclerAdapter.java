@@ -110,8 +110,7 @@ public class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerAdapter.Vie
                         ClientEntity oldClient = (ClientEntity) mData.get(newItemPosition);
                         return Objects.equals(newClient.getEmail(), oldClient.getEmail())
                                 && Objects.equals(newClient.getFirstName(), oldClient.getFirstName())
-                                && Objects.equals(newClient.getLastName(), oldClient.getLastName())
-                                && newClient.getPassword().equals(oldClient.getPassword());
+                                && Objects.equals(newClient.getLastName(), oldClient.getLastName());
                     }
                     return false;
                 }

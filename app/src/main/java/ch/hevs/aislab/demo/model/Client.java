@@ -4,5 +4,4 @@ public interface Client {
     String getEmail();
     String getFirstName();
     String getLastName();
-    String getPassword();
 }

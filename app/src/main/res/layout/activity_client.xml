@@ -7,7 +7,7 @@
     android:layout_marginRight="16dp"
     android:layout_marginTop="16dp"
     android:orientation="vertical"
-    tools:context="ch.hevs.aislab.demo.ui.client.ClientActivity">
+    tools:context="ch.hevs.aislab.demo.ui.student.ClientActivity">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
@@ -16,7 +16,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:orientation="vertical"
-        tools:context="ch.hevs.aislab.demo.ui.client.ClientActivity">
+        tools:context="ch.hevs.aislab.demo.ui.student.ClientActivity">
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
@@ -78,7 +78,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            tools:context="ch.hevs.aislab.demo.ui.client.ClientActivity">
+            tools:context="ch.hevs.aislab.demo.ui.student.ClientActivity">
 
             <View
                 android:layout_width="match_parent"

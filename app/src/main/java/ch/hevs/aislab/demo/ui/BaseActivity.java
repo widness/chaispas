@@ -1,7 +1,6 @@
 package ch.hevs.aislab.demo.ui;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -16,7 +15,7 @@ import android.widget.FrameLayout;
 
 import ch.hevs.aislab.demo.R;
 import ch.hevs.aislab.demo.ui.account.AccountsActivity;
-import ch.hevs.aislab.demo.ui.client.ClientActivity;
+import ch.hevs.aislab.demo.ui.student.ClientActivity;
 import ch.hevs.aislab.demo.ui.mgmt.SettingsActivity;
 import ch.hevs.aislab.demo.ui.transaction.TransactionActivity;
 

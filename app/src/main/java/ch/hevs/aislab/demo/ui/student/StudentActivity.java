@@ -21,9 +21,9 @@ import ch.hevs.aislab.demo.ui.MainActivity;
 import ch.hevs.aislab.demo.util.OnAsyncEventListener;
 import ch.hevs.aislab.demo.viewmodel.client.ClientViewModel;
 
-public class ClientActivity extends BaseActivity {
+public class StudentActivity extends BaseActivity {
 
-    private static final String TAG = "ClientActivity";
+    private static final String TAG = "StudentActivity";
 
     private static final int EDIT_CLIENT = 1;
     private static final int DELETE_CLIENT = 2;
@@ -49,7 +49,7 @@ public class ClientActivity extends BaseActivity {
         setTitle(R.string.title_activity_client);
         navigationView.setCheckedItem(position);
 
-        getLayoutInflater().inflate(R.layout.activity_client, frameLayout);
+        getLayoutInflater().inflate(R.layout.activity_student, frameLayout);
 
         initiateView();
 

@@ -111,7 +111,7 @@ public class ClientActivity extends BaseActivity {
                 mViewModel.deleteClient(mClient, new OnAsyncEventListener() {
                     @Override
                     public void onSuccess() {
-                        logout();
+                        // logout(); Old logout TODO: Delete it
                     }
 
                     @Override

@@ -17,7 +17,6 @@ import android.widget.FrameLayout;
 import ch.hevs.aislab.demo.R;
 import ch.hevs.aislab.demo.ui.account.AccountsActivity;
 import ch.hevs.aislab.demo.ui.client.ClientActivity;
-import ch.hevs.aislab.demo.ui.mgmt.LoginActivity;
 import ch.hevs.aislab.demo.ui.mgmt.SettingsActivity;
 import ch.hevs.aislab.demo.ui.transaction.TransactionActivity;
 
@@ -123,16 +122,5 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
         }
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
-    }
-
-    public void logout() {
-        SharedPreferences.Editor editor = getSharedPreferences(BaseActivity.PREFS_NAME, 0).edit();
-        editor.remove(BaseActivity.PREFS_USER);
-        editor.apply();
-
-        Intent intent = new Intent(this, LoginActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-        startActivity(intent);
     }
 }

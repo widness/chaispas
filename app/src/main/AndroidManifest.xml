@@ -31,14 +31,6 @@
                 android:value="ch.hevs.aislab.demo.ui.MainActivity" />
         </activity>
         <activity
-            android:name=".ui.mgmt.RegisterActivity"
-            android:label="@string/action_register"
-            android:parentActivityName=".ui.mgmt.LoginActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="ch.hevs.aislab.demo.ui.mgmt.LoginActivity" />
-        </activity>
-        <activity
             android:name=".ui.client.ClientActivity"
             android:label="@string/title_activity_client"
             android:parentActivityName=".ui.MainActivity"

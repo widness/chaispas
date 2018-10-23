@@ -16,6 +16,7 @@ import ch.hevs.aislab.demo.BaseApp;
 import ch.hevs.aislab.demo.database.async.account.DeleteAccount;
 import ch.hevs.aislab.demo.database.async.account.Transaction;
 import ch.hevs.aislab.demo.database.async.room.CreateRoom;
+import ch.hevs.aislab.demo.database.async.room.DeleteRoom;
 import ch.hevs.aislab.demo.database.async.room.UpdateRoom;
 import ch.hevs.aislab.demo.database.entity.AccountEntity;
 import ch.hevs.aislab.demo.database.entity.RoomEntity;
@@ -29,22 +30,21 @@ public class RoomListViewModel extends AndroidViewModel {
     private RoomRepository mRepository;
 
     // MediatorLiveData can observe other LiveData objects and react on their emissions.
-    private final MediatorLiveData<RoomEntity> mObservableRoom;
+    private final MediatorLiveData<List<RoomEntity>> mObservableRooms;
 
-    public RoomListViewModel(@NonNull Application application,
-                         final Long roomId, RoomRepository roomRepository) {
+    public RoomListViewModel(@NonNull Application application, RoomRepository roomRepository) {
         super(application);
 
         mRepository = roomRepository;
 
-        mObservableRoom = new MediatorLiveData<>();
+        mObservableRooms = new MediatorLiveData<>();
         // set by default null, until we get data from the database.
-        mObservableRoom.setValue(null);
+        mObservableRooms.setValue(null);
 
-        LiveData<RoomEntity> room = mRepository.getRoom(roomId);
+        LiveData<List<RoomEntity>> rooms = mRepository.getRooms();
 
         // observe the changes of the account entity from the database and forward them
-        mObservableRoom.addSource(room, mObservableRoom::setValue);
+        mObservableRooms.addSource(rooms, mObservableRooms::setValue);
     }
 
     /**
@@ -55,54 +55,37 @@ public class RoomListViewModel extends AndroidViewModel {
         @NonNull
         private final Application mApplication;
 
-        private final Long mRoomId;
-
         private final RoomRepository mRepository;
 
-        public Factory(@NonNull Application application, Long roomId) {
+        public Factory(@NonNull Application application) {
             mApplication = application;
-            mRoomId = roomId;
             mRepository = ((BaseApp) application).getRoomRepository();
         }
 
         @Override
         public <T extends ViewModel> T create(Class<T> modelClass) {
             //noinspection unchecked
-            return (T) new RoomViewModel(mApplication, mRoomId, mRepository);
+            return (T) new RoomListViewModel(mApplication, mRepository);
         }
     }
 
     /**
      * Expose the LiveData AccountEntity query so the UI can observe it.
      */
-    public LiveData<RoomEntity> getAccount() {
-        return mObservableRoom;
+    public LiveData<List<RoomEntity>> getRooms() {
+        return mObservableRooms;
     }
 
-    public void createRoom(RoomEntity room) {
-        new CreateRoom(getApplication(), new OnAsyncEventListener() {
+    public void deleteRoom(RoomEntity room) {
+        new DeleteRoom(getApplication(), new OnAsyncEventListener() {
             @Override
             public void onSuccess() {
-                Log.d(TAG, "createRoom: success");
+                Log.d(TAG, "deleteRoom: success");
             }
 
             @Override
             public void onFailure(Exception e) {
-                Log.d(TAG, "createRoom: failure", e);
-            }
-        }).execute(room);
-    }
-
-    public void updateRoom(RoomEntity room) {
-        new UpdateRoom(getApplication(), new OnAsyncEventListener() {
-            @Override
-            public void onSuccess() {
-                Log.d(TAG, "updateRoom: success");
-            }
-
-            @Override
-            public void onFailure(Exception e) {
-                Log.d(TAG, "updateRoom: failure", e);
+                Log.d(TAG, "deleteRoom: failure", e);
             }
         }).execute(room);
     }

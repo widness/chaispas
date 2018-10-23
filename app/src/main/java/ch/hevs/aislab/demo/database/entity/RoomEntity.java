@@ -10,14 +10,14 @@ public class RoomEntity implements Room {
     @PrimaryKey(autoGenerate = true)
     private Long id;
     private String label;
-    private int nbOfPlace;
+    private int nbOfPlaces;
 
     public RoomEntity() { }
 
     public RoomEntity(Room room) {
         id = room.getId();
         label = room.getLabel();
-        nbOfPlace = room.getNbOfPlaces();
+        nbOfPlaces = room.getNbOfPlaces();
     }
 
     @Override
@@ -36,9 +36,9 @@ public class RoomEntity implements Room {
 
     @Override
     public int getNbOfPlaces() {
-        return nbOfPlace;
+        return nbOfPlaces;
     }
     public void setNbOfPlaces(int nbOfPlace) {
-        this.nbOfPlace = nbOfPlace;
+        this.nbOfPlaces = nbOfPlace;
     }
 }

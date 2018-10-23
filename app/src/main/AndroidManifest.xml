@@ -71,12 +71,13 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.account.AccountDetailActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:parentActivityName=".ui.account.AccountsActivity">
+            android:parentActivityName=".ui.account.AccountsActivity"
+            android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="ch.hevs.aislab.demo.ui.account.AccountsActivity" />
         </activity>
+        <activity android:name=".ui.room.RoomsActivity"></activity>
     </application>
 
 </manifest>

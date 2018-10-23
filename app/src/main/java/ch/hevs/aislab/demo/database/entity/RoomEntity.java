@@ -41,4 +41,18 @@ public class RoomEntity implements Room {
     public void setNbOfPlaces(int nbOfPlace) {
         this.nbOfPlaces = nbOfPlace;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) return false;
+        if (obj == this) return true;
+        if (!(obj instanceof RoomEntity)) return false;
+        RoomEntity o = (RoomEntity) obj;
+        return o.getId().equals(this.getId());
+    }
+
+    @Override
+    public String toString() {
+        return label;
+    }
 }

@@ -5,6 +5,7 @@ import android.app.Application;
 import ch.hevs.aislab.demo.database.AppDatabase;
 import ch.hevs.aislab.demo.database.repository.AccountRepository;
 import ch.hevs.aislab.demo.database.repository.ClientRepository;
+import ch.hevs.aislab.demo.database.repository.RoomRepository;
 
 /**
  * Android Application class. Used for accessing singletons.
@@ -26,5 +27,9 @@ public class BaseApp extends Application {
 
     public ClientRepository getClientRepository() {
         return ClientRepository.getInstance(getDatabase());
+    }
+
+    public RoomRepository getRoomRepository() {
+        return RoomRepository.getInstance(getDatabase());
     }
 }

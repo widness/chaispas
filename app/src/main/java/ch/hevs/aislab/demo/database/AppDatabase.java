@@ -15,10 +15,12 @@ import java.util.concurrent.Executors;
 
 import ch.hevs.aislab.demo.database.dao.AccountDao;
 import ch.hevs.aislab.demo.database.dao.ClientDao;
+import ch.hevs.aislab.demo.database.dao.RoomDao;
 import ch.hevs.aislab.demo.database.entity.AccountEntity;
 import ch.hevs.aislab.demo.database.entity.ClientEntity;
+import ch.hevs.aislab.demo.database.entity.RoomEntity;
 
-@Database(entities = {AccountEntity.class, ClientEntity.class}, version = 1)
+@Database(entities = {AccountEntity.class, ClientEntity.class, RoomEntity.class}, version = 1)
 public abstract class AppDatabase extends RoomDatabase {
 
     private static final String TAG = "AppDatabase";
@@ -28,6 +30,8 @@ public abstract class AppDatabase extends RoomDatabase {
     private static final String DATABASE_NAME = "bank-database";
 
     public abstract AccountDao accountDao();
+
+    public abstract RoomDao roomDao();
 
     public abstract ClientDao clientDao();
 
@@ -87,15 +91,17 @@ public abstract class AppDatabase extends RoomDatabase {
                 Log.i(TAG, "Wipe database.");
                 database.clientDao().deleteAll();
                 database.accountDao().deleteAll();
+                database.roomDao().deleteAll();
 
                 // Generate the data for pre-population
                 List<ClientEntity> clients = DataGenerator.generateClients();
-                List<AccountEntity> accounts =
-                        DataGenerator.generateAccountsForClients(clients);
+                List<AccountEntity> accounts = DataGenerator.generateAccountsForClients(clients);
+                List<RoomEntity> rooms = DataGenerator.generateRooms();
 
                 Log.i(TAG, "Insert demo data.");
                 database.clientDao().insertAll(clients);
                 database.accountDao().insertAll(accounts);
+                database.roomDao().insertAll(rooms);
             });
         });
     }

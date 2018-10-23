@@ -1,7 +1,7 @@
 package ch.hevs.aislab.demo.model;
 
 public interface Room {
-    int getId();
+    Long getId();
     String getLabel();
     int getNbOfPlaces();
 }

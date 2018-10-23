@@ -48,3 +48,7 @@ En y attribuant des ordinateurs et des personnes (des élèves ou des employés)
 | int    | id          |
 | string | label       |
 | int    | NbOfPlaces  |
+
+# Démarrer l'app sur votre smartphone 
+
+Si les données ou les models ont été changé, désinstaller l'application du smatphone puis relancer la compilation

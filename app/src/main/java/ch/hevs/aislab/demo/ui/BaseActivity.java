@@ -15,6 +15,7 @@ import android.widget.FrameLayout;
 
 import ch.hevs.aislab.demo.R;
 import ch.hevs.aislab.demo.ui.account.AccountsActivity;
+import ch.hevs.aislab.demo.ui.room.RoomsActivity;
 import ch.hevs.aislab.demo.ui.student.StudentActivity;
 import ch.hevs.aislab.demo.ui.mgmt.SettingsActivity;
 import ch.hevs.aislab.demo.ui.transaction.TransactionActivity;
@@ -109,7 +110,7 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
         if (id == R.id.nav_client) {
             intent = new Intent(this, StudentActivity.class);
         } else if (id == R.id.nav_accounts) {
-            intent = new Intent(this, AccountsActivity.class);
+            intent = new Intent(this, RoomsActivity.class);
         } else if (id == R.id.nav_transaction) {
             intent = new Intent(this, TransactionActivity.class);
         }

@@ -12,6 +12,7 @@ import java.util.Objects;
 import ch.hevs.aislab.demo.R;
 import ch.hevs.aislab.demo.database.entity.AccountEntity;
 import ch.hevs.aislab.demo.database.entity.ClientEntity;
+import ch.hevs.aislab.demo.database.entity.RoomEntity;
 import ch.hevs.aislab.demo.util.RecyclerViewItemClickListener;
 
 public class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
@@ -52,10 +53,8 @@ public class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerAdapter.Vie
     @Override
     public void onBindViewHolder(RecyclerAdapter.ViewHolder holder, int position) {
         T item = mData.get(position);
-        if (item.getClass().equals(AccountEntity.class))
-            holder.mTextView.setText(((AccountEntity) item).getName());
-        if (item.getClass().equals(ClientEntity.class))
-            holder.mTextView.setText(((ClientEntity) item).getFirstName() + " " + ((ClientEntity) item).getLastName());
+        if (item.getClass().equals(RoomEntity.class))
+            holder.mTextView.setText(((RoomEntity) item).getLabel());
     }
 
     @Override
@@ -85,32 +84,20 @@ public class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerAdapter.Vie
 
                 @Override
                 public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
-                    if (mData instanceof AccountEntity) {
-                        return ((AccountEntity) mData.get(oldItemPosition)).getId().equals(((AccountEntity) data.get(newItemPosition)).getId());
-                    }
-                    if (mData instanceof ClientEntity) {
-                        return ((ClientEntity) mData.get(oldItemPosition)).getEmail().equals(
-                                ((ClientEntity) data.get(newItemPosition)).getEmail());
+                    if (mData instanceof RoomEntity) {
+                        return ((RoomEntity) mData.get(oldItemPosition)).getId().equals(((RoomEntity) data.get(newItemPosition)).getId());
                     }
                     return false;
                 }
 
                 @Override
                 public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
-                    if (mData instanceof AccountEntity) {
-                        AccountEntity newAccount = (AccountEntity) data.get(newItemPosition);
-                        AccountEntity oldAccount = (AccountEntity) mData.get(newItemPosition);
-                        return newAccount.getId().equals(oldAccount.getId())
-                                && Objects.equals(newAccount.getName(), oldAccount.getName())
-                                && Objects.equals(newAccount.getBalance(), oldAccount.getBalance())
-                                && newAccount.getOwner().equals(oldAccount.getOwner());
-                    }
-                    if (mData instanceof ClientEntity) {
-                        ClientEntity newClient = (ClientEntity) data.get(newItemPosition);
-                        ClientEntity oldClient = (ClientEntity) mData.get(newItemPosition);
-                        return Objects.equals(newClient.getEmail(), oldClient.getEmail())
-                                && Objects.equals(newClient.getFirstName(), oldClient.getFirstName())
-                                && Objects.equals(newClient.getLastName(), oldClient.getLastName());
+                    if (mData instanceof RoomEntity) {
+                        RoomEntity newRoom = (RoomEntity) data.get(newItemPosition);
+                        RoomEntity oldRoom = (RoomEntity) mData.get(newItemPosition);
+                        return newRoom.getId().equals(oldRoom.getId())
+                                && Objects.equals(newRoom.getLabel(), oldRoom.getLabel())
+                                && Objects.equals(newRoom.getNbOfPlaces(), oldRoom.getNbOfPlaces());
                     }
                     return false;
                 }

@@ -5,6 +5,7 @@ import java.util.List;
 
 import ch.hevs.aislab.demo.database.entity.AccountEntity;
 import ch.hevs.aislab.demo.database.entity.ClientEntity;
+import ch.hevs.aislab.demo.database.entity.RoomEntity;
 
 /**
  * Generates dummy data
@@ -95,5 +96,32 @@ public class DataGenerator {
         accounts.add(account8);
 
         return accounts;
+    }
+
+    public static List<RoomEntity> generateRooms() {
+        List<RoomEntity> rooms = new ArrayList<>();
+
+        RoomEntity room1 = new RoomEntity();
+        room1.setLabel("Room 100");
+        room1.setNbOfPlaces(35);
+
+        RoomEntity room2 = new RoomEntity();
+        room2.setLabel("Room 101");
+        room2.setNbOfPlaces(20);
+
+        RoomEntity room3 = new RoomEntity();
+        room3.setLabel("Room 200");
+        room3.setNbOfPlaces(15);
+
+        RoomEntity room4 = new RoomEntity();
+        room4.setLabel("Room 201");
+        room4.setNbOfPlaces(22);
+
+        rooms.add(room1);
+        rooms.add(room2);
+        rooms.add(room3);
+        rooms.add(room4);
+
+        return rooms;
     }
 }

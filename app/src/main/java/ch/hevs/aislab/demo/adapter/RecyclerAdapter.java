@@ -14,7 +14,9 @@ import java.util.Objects;
 import ch.hevs.aislab.demo.R;
 import ch.hevs.aislab.demo.database.entity.AccountEntity;
 import ch.hevs.aislab.demo.database.entity.ClientEntity;
+import ch.hevs.aislab.demo.database.entity.ComputerEntity;
 import ch.hevs.aislab.demo.database.entity.RoomEntity;
+import ch.hevs.aislab.demo.database.entity.StudentEntity;
 import ch.hevs.aislab.demo.util.RecyclerViewItemClickListener;
 
 public class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
@@ -32,7 +34,7 @@ public class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerAdapter.Vie
         View itemView;
 
         private ImageView itemImage;
-        private TextView  itemTitle;
+        private TextView itemTitle;
         private TextView itemDetail;
 
         ViewHolder(View itemView) {
@@ -63,12 +65,19 @@ public class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerAdapter.Vie
 
     @Override
     public void onBindViewHolder(RecyclerAdapter.ViewHolder holder, int position) {
-        T item  = mData.get(position);
+        T item = mData.get(position);
 
-        if( item.getClass().equals(RoomEntity.class)) {
-         holder.itemTitle.setText(((RoomEntity) item).getLabel());
+        if (item.getClass().equals(RoomEntity.class)) {
+            holder.itemTitle.setText(((RoomEntity) item).getLabel());
+            String nbOfPlaces = "Places: " + Integer.toString(((RoomEntity) item).getNbOfPlaces());
+            holder.itemDetail.setText(nbOfPlaces);
+        } else if (item.getClass().equals(StudentEntity.class)) {
+            String tempTitle = ((StudentEntity) item).getFirstname() + ((StudentEntity) item).getLastname();
+            holder.itemTitle.setText(tempTitle);
+        } else if (item.getClass().equals(ComputerEntity.class)) {
+            holder.itemTitle.setText(((ComputerEntity) item).getLabel());
+            holder.itemDetail.setText(((ComputerEntity) item).getDescription());
         }
-        // holder.itemDetail.setText(iInfo.itemDetail);
         // holder.itemImage.setImageAlpha(iInfo.itemImage); //TODO: See how bind image
     }
 
@@ -79,7 +88,7 @@ public class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerAdapter.Vie
         } else {
             return 0;
         }
-}
+    }
 
     public class ItemInfo { // TODO: Get from model
         protected String itemTitle;

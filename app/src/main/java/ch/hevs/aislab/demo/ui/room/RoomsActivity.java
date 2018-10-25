@@ -26,8 +26,6 @@ import ch.hevs.aislab.demo.R;
 import ch.hevs.aislab.demo.adapter.RecyclerAdapter;
 import ch.hevs.aislab.demo.database.entity.RoomEntity;
 import ch.hevs.aislab.demo.ui.BaseActivity;
-import ch.hevs.aislab.demo.ui.account.AccountDetailActivity;
-import ch.hevs.aislab.demo.ui.account.EditAccountActivity;
 import ch.hevs.aislab.demo.util.RecyclerViewItemClickListener;
 import ch.hevs.aislab.demo.viewmodel.room.RoomListViewModel;
 
@@ -66,12 +64,13 @@ public class RoomsActivity extends BaseActivity {
 
         mRooms = new ArrayList<>();
         mAdapter = new RecyclerAdapter<>(new RecyclerViewItemClickListener() {
+
             @Override
             public void onItemClick(View v, int position) {
                 Log.d(TAG, "clicked position:" + position);
                 Log.d(TAG, "clicked on: " + mRooms.get(position).getLabel());
 
-                Intent intent = new Intent(RoomsActivity.this, AccountDetailActivity.class);
+                Intent intent = new Intent(RoomsActivity.this, RoomDetailActivity.class);
                 intent.setFlags(
                         Intent.FLAG_ACTIVITY_NO_ANIMATION |
                                 Intent.FLAG_ACTIVITY_NO_HISTORY
@@ -92,7 +91,7 @@ public class RoomsActivity extends BaseActivity {
 
         FloatingActionButton fab = findViewById(R.id.floatingActionButton);
         fab.setOnClickListener(view -> {
-                    Intent intent = new Intent(RoomsActivity.this, EditAccountActivity.class);
+                    Intent intent = new Intent(RoomsActivity.this, EditRoomActivity.class);
                     intent.setFlags(
                             Intent.FLAG_ACTIVITY_NO_ANIMATION |
                                     Intent.FLAG_ACTIVITY_NO_HISTORY
@@ -128,6 +127,7 @@ public class RoomsActivity extends BaseActivity {
     }
 
     private void createDeleteDialog(final int position) {
+
         final RoomEntity room = mRooms.get(position);
         LayoutInflater inflater = LayoutInflater.from(this);
         final View view = inflater.inflate(R.layout.row_delete_item, null);

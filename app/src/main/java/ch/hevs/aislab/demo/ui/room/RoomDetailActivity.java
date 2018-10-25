@@ -1,4 +1,4 @@
-package ch.hevs.aislab.demo.ui.account;
+package ch.hevs.aislab.demo.ui.room;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.DialogInterface;
@@ -20,9 +20,11 @@ import java.text.NumberFormat;
 import ch.hevs.aislab.demo.R;
 import ch.hevs.aislab.demo.database.entity.AccountEntity;
 import ch.hevs.aislab.demo.ui.BaseActivity;
+import ch.hevs.aislab.demo.ui.account.AccountDetailActivity;
+import ch.hevs.aislab.demo.ui.account.EditAccountActivity;
 import ch.hevs.aislab.demo.viewmodel.account.AccountViewModel;
 
-public class AccountDetailActivity extends BaseActivity {
+public class RoomDetailActivity  extends BaseActivity {
 
     private static final String TAG = "AccountDetailActivity";
     private static final int EDIT_ACCOUNT = 1;
@@ -75,6 +77,7 @@ public class AccountDetailActivity extends BaseActivity {
     }
 
     private void initiateView() {
+        mTvBalance = findViewById(R.id.item_title);
         mDefaultFormat = NumberFormat.getCurrencyInstance();
 
         Button depositBtn = findViewById(R.id.depositButton);
@@ -106,7 +109,7 @@ public class AccountDetailActivity extends BaseActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 Double amount = Double.parseDouble(accountMovement.getText().toString());
-                Toast toast = Toast.makeText(AccountDetailActivity.this, getString(R.string.error_withdraw), Toast.LENGTH_LONG);
+                Toast toast = Toast.makeText(RoomDetailActivity.this, getString(R.string.error_withdraw), Toast.LENGTH_LONG);
 
                 if (action == R.string.action_withdraw) {
                     if (mAccount.getBalance() < amount) {

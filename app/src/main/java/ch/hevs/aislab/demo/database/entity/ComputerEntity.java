@@ -20,7 +20,7 @@ public class ComputerEntity implements Computer {
     }
 
     @Override
-    public String description() {
+    public String getDescription() {
         return null;
     }
 

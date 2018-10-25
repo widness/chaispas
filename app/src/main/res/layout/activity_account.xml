@@ -9,20 +9,20 @@
     tools:context="ch.hevs.aislab.demo.ui.account.AccountDetailActivity">
 
     <TextView
-        android:id="@+id/accBalanceTitle"
+        android:id="@+id/room"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="@string/account_balance"
+        android:text="Room"
         android:textStyle="bold"
         android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large" />
 
     <TextView
-        android:id="@+id/accBalance"
+        android:id="@+id/roomId"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="@string/balance"
+        android:text="100"
         android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
         android:textStyle="bold" />
 

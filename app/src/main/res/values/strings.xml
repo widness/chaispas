@@ -9,7 +9,7 @@
     <string name="title_activity_client">Client</string>
     <string name="title_activity_accounts">Accounts</string>
     <string name="disclaimer" translatable="false">Copyright &#169; 2017\nHES-SO Valais//Wallis Sierre</string>
-    <string name="impressum" translatable="false">644-1 Mobile &amp; Cloud Computing</string>
+    <string name="impressum" translatable="false">ChaisPas</string>
     <string name="title_activity_login">Login</string>
 
     <!-- Strings related to login -->

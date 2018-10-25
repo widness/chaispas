@@ -4,6 +4,6 @@ public interface Computer {
     int getId();
     String getLabel();
     int getType();
-    String description();
+    String getDescription();
     int getRoomId();
 }

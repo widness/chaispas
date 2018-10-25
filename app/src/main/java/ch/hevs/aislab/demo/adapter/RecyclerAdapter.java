@@ -63,8 +63,11 @@ public class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerAdapter.Vie
 
     @Override
     public void onBindViewHolder(RecyclerAdapter.ViewHolder holder, int position) {
-        T iInfo  = mData.get(position);
-        // older.itemTitle.setText(iInfo.get); // TODO: See how create new element
+        T item  = mData.get(position);
+
+        if( item.getClass().equals(RoomEntity.class)) {
+         holder.itemTitle.setText(((RoomEntity) item).getLabel());
+        }
         // holder.itemDetail.setText(iInfo.itemDetail);
         // holder.itemImage.setImageAlpha(iInfo.itemImage); //TODO: See how bind image
     }

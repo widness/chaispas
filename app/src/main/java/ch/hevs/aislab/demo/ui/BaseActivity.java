@@ -15,6 +15,7 @@ import android.widget.FrameLayout;
 
 import ch.hevs.aislab.demo.R;
 import ch.hevs.aislab.demo.ui.account.AccountsActivity;
+import ch.hevs.aislab.demo.ui.computer.ComputerActivity;
 import ch.hevs.aislab.demo.ui.room.RoomsActivity;
 import ch.hevs.aislab.demo.ui.student.StudentActivity;
 import ch.hevs.aislab.demo.ui.mgmt.SettingsActivity;
@@ -107,12 +108,13 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
 
         navigationView.setCheckedItem(id);
 
-        if (id == R.id.nav_client) {
-            intent = new Intent(this, StudentActivity.class);
-        } else if (id == R.id.nav_accounts) {
+        // Nav trigger
+        if (id == R.id.nav_rooms) {
             intent = new Intent(this, RoomsActivity.class);
-        } else if (id == R.id.nav_transaction) {
-            intent = new Intent(this, TransactionActivity.class);
+        } else if (id == R.id.nav_computers) {
+            intent = new Intent(this, ComputerActivity.class);
+        } else if (id == R.id.nav_students) {
+            intent = new Intent(this, StudentActivity.class);
         }
         if (intent != null) {
             intent.setFlags(

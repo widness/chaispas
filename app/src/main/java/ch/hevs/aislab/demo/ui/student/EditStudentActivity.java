@@ -1,4 +1,4 @@
-package ch.hevs.aislab.demo.ui.room;
+package ch.hevs.aislab.demo.ui.student;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.SharedPreferences;
@@ -12,9 +12,9 @@ import ch.hevs.aislab.demo.database.entity.AccountEntity;
 import ch.hevs.aislab.demo.ui.BaseActivity;
 import ch.hevs.aislab.demo.viewmodel.account.AccountViewModel;
 
-public class EditRoomActivity extends BaseActivity {
+public class EditStudentActivity extends BaseActivity {
 
-    private final String TAG = "EditAccountActivity";
+    private final String TAG = "EditStudentActivity";
 
     private AccountEntity mAccount;
     private String mOwner;

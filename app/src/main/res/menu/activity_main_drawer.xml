@@ -3,15 +3,15 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_accounts"
+            android:id="@+id/nav_rooms"
             android:icon="@drawable/ic_baseline_meeting_room_24px"
             android:title="Classes" />
         <item
-            android:id="@+id/nav_transaction"
+            android:id="@+id/nav_computers"
             android:icon="@drawable/ic_baseline_computer_24px"
             android:title="Computers" />
         <item
-            android:id="@+id/nav_client"
+            android:id="@+id/nav_students"
             android:icon="@drawable/ic_baseline_person_24px"
             android:title="Students" />
         <item

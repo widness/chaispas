@@ -1,12 +1,18 @@
 package ch.hevs.aislab.demo.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.app.AlertDialog;
+import android.view.View;
+import android.widget.Button;
 
 import ch.hevs.aislab.demo.R;
+import ch.hevs.aislab.demo.ui.computer.ComputerActivity;
+import ch.hevs.aislab.demo.ui.room.RoomsActivity;
+import ch.hevs.aislab.demo.ui.student.StudentActivity;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     private final String TAG = "MainActivity";
 
@@ -15,8 +21,40 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         getLayoutInflater().inflate(R.layout.activity_main, frameLayout);
 
+        Button mClickButton1 = (Button)findViewById(R.id.room_button);
+        mClickButton1.setOnClickListener(this);
+        Button mClickButton2 = (Button)findViewById(R.id.computers_button);
+        mClickButton2.setOnClickListener(this);
+        Button mClickButton3 = (Button)findViewById(R.id.students_button);
+        mClickButton3.setOnClickListener(this);
+
         setTitle(getString(R.string.app_name));
         navigationView.setCheckedItem(R.id.nav_none);
+    }
+
+    public void onClick(View v) {
+        Intent intent = null;
+
+        switch (v.getId()) {
+            case R.id.room_button: {
+                intent = new Intent(this, RoomsActivity.class);
+                break;
+            }
+            case R.id.computers_button: {
+                intent = new Intent(this, ComputerActivity.class);
+                break;
+            }
+            case R.id.students_button: {
+                intent = new Intent(this, StudentActivity.class);
+                break;
+            }
+        }
+
+        if (intent != null) {
+            intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            startActivity(intent);
+        }
+
     }
 
     @Override

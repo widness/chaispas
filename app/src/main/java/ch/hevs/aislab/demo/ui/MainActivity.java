@@ -8,9 +8,9 @@ import android.view.View;
 import android.widget.Button;
 
 import ch.hevs.aislab.demo.R;
-import ch.hevs.aislab.demo.ui.computer.ComputerActivity;
+import ch.hevs.aislab.demo.ui.computer.ComputersActivity;
 import ch.hevs.aislab.demo.ui.room.RoomsActivity;
-import ch.hevs.aislab.demo.ui.student.StudentActivity;
+import ch.hevs.aislab.demo.ui.student.StudentsActivity;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
 
@@ -41,11 +41,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 break;
             }
             case R.id.computers_button: {
-                intent = new Intent(this, ComputerActivity.class);
+                intent = new Intent(this, ComputersActivity.class);
                 break;
             }
             case R.id.students_button: {
-                intent = new Intent(this, StudentActivity.class);
+                intent = new Intent(this, StudentsActivity.class);
                 break;
             }
         }

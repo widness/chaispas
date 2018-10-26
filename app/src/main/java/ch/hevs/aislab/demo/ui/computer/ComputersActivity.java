@@ -30,7 +30,7 @@ import ch.hevs.aislab.demo.ui.room.RoomDetailActivity;
 import ch.hevs.aislab.demo.util.RecyclerViewItemClickListener;
 import ch.hevs.aislab.demo.viewmodel.room.RoomListViewModel;
 
-public class ComputerActivity extends BaseActivity {
+public class ComputersActivity extends BaseActivity {
 
     private static final String TAG = "ComputerActivity";
 
@@ -67,7 +67,7 @@ public class ComputerActivity extends BaseActivity {
                 Log.d(TAG, "clicked position:" + position);
                 Log.d(TAG, "clicked on: " + mRooms.get(position).getLabel());
 
-                Intent intent = new Intent(ComputerActivity.this, RoomDetailActivity.class);
+                Intent intent = new Intent(ComputersActivity.this, RoomDetailActivity.class);
                 intent.setFlags(
                         Intent.FLAG_ACTIVITY_NO_ANIMATION |
                                 Intent.FLAG_ACTIVITY_NO_HISTORY
@@ -88,7 +88,7 @@ public class ComputerActivity extends BaseActivity {
 
         FloatingActionButton fab = findViewById(R.id.floatingActionButton);
         fab.setOnClickListener(view -> {
-                    Intent intent = new Intent(ComputerActivity.this, EditRoomActivity.class);
+                    Intent intent = new Intent(ComputersActivity.this, EditRoomActivity.class);
                     intent.setFlags(
                             Intent.FLAG_ACTIVITY_NO_ANIMATION |
                                     Intent.FLAG_ACTIVITY_NO_HISTORY

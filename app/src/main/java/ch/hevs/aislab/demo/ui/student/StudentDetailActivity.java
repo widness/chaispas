@@ -77,12 +77,6 @@ public class StudentDetailActivity  extends BaseActivity {
     private void initiateView() {
         mTvBalance = findViewById(R.id.item_title);
         mDefaultFormat = NumberFormat.getCurrencyInstance();
-
-        Button depositBtn = findViewById(R.id.depositButton);
-        depositBtn.setOnClickListener(view -> generateDialog(R.string.action_deposit));
-
-        Button withdrawBtn = findViewById(R.id.withdrawButton);
-        withdrawBtn.setOnClickListener(view -> generateDialog(R.string.action_withdraw));
     }
 
     private void updateContent() {

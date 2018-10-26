@@ -26,13 +26,12 @@ import ch.hevs.aislab.demo.adapter.RecyclerAdapter;
 import ch.hevs.aislab.demo.database.entity.RoomEntity;
 import ch.hevs.aislab.demo.ui.BaseActivity;
 import ch.hevs.aislab.demo.ui.room.EditRoomActivity;
-import ch.hevs.aislab.demo.ui.room.RoomDetailActivity;
 import ch.hevs.aislab.demo.util.RecyclerViewItemClickListener;
 import ch.hevs.aislab.demo.viewmodel.room.RoomListViewModel;
 
 public class ComputersActivity extends BaseActivity {
 
-    private static final String TAG = "ComputerActivity";
+    private static final String TAG = "ComputersActivity";
 
     private List<RoomEntity> mRooms;
     private RecyclerAdapter<RoomEntity> mAdapter;
@@ -67,7 +66,7 @@ public class ComputersActivity extends BaseActivity {
                 Log.d(TAG, "clicked position:" + position);
                 Log.d(TAG, "clicked on: " + mRooms.get(position).getLabel());
 
-                Intent intent = new Intent(ComputersActivity.this, RoomDetailActivity.class);
+                Intent intent = new Intent(ComputersActivity.this, ComputerDetailActivity.class);
                 intent.setFlags(
                         Intent.FLAG_ACTIVITY_NO_ANIMATION |
                                 Intent.FLAG_ACTIVITY_NO_HISTORY

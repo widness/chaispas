@@ -7,7 +7,7 @@
     android:layout_marginRight="16dp"
     android:layout_marginTop="16dp"
     android:orientation="vertical"
-    tools:context="ch.hevs.aislab.demo.ui.student.StudentsActivity">
+    tools:context="ch.hevs.aislab.demo.ui.computer.ComputersActivity">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
@@ -27,7 +27,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:hint="@string/student_firstName"
+                android:hint="@string/computer_label"
                 android:inputType="textPersonName"
                 android:focusable="false"
                 android:enabled="false" />
@@ -42,7 +42,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:hint="@string/student_lastname"
+                android:hint="@string/computer_type"
                 android:inputType="textPersonName"
                 android:focusable="false"
                 android:enabled="false" />

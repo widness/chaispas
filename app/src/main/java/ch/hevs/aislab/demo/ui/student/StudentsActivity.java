@@ -32,7 +32,7 @@ import ch.hevs.aislab.demo.viewmodel.room.RoomListViewModel;
 
 public class StudentsActivity extends BaseActivity {
 
-    private static final String TAG = "StudentActivity";
+    private static final String TAG = "StudentsActivity";
 
     private List<RoomEntity> mRooms;
     private RecyclerAdapter<RoomEntity> mAdapter;
@@ -67,7 +67,7 @@ public class StudentsActivity extends BaseActivity {
                 Log.d(TAG, "clicked position:" + position);
                 Log.d(TAG, "clicked on: " + mRooms.get(position).getLabel());
 
-                Intent intent = new Intent(StudentsActivity.this, RoomDetailActivity.class);
+                Intent intent = new Intent(StudentsActivity.this, StudentDetailActivity.class);
                 intent.setFlags(
                         Intent.FLAG_ACTIVITY_NO_ANIMATION |
                                 Intent.FLAG_ACTIVITY_NO_HISTORY
@@ -88,7 +88,7 @@ public class StudentsActivity extends BaseActivity {
 
         FloatingActionButton fab = findViewById(R.id.floatingActionButton);
         fab.setOnClickListener(view -> {
-                    Intent intent = new Intent(StudentsActivity.this, EditRoomActivity.class);
+                    Intent intent = new Intent(StudentsActivity.this, EditStudentActivity.class);
                     intent.setFlags(
                             Intent.FLAG_ACTIVITY_NO_ANIMATION |
                                     Intent.FLAG_ACTIVITY_NO_HISTORY

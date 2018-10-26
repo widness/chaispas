@@ -102,19 +102,19 @@ public class DataGenerator {
         List<RoomEntity> rooms = new ArrayList<>();
 
         RoomEntity room1 = new RoomEntity();
-        room1.setLabel("Room 100");
+        room1.setLabel("100");
         room1.setNbOfPlaces(35);
 
         RoomEntity room2 = new RoomEntity();
-        room2.setLabel("Room 101");
+        room2.setLabel("101");
         room2.setNbOfPlaces(20);
 
         RoomEntity room3 = new RoomEntity();
-        room3.setLabel("Room 200");
+        room3.setLabel("200");
         room3.setNbOfPlaces(15);
 
         RoomEntity room4 = new RoomEntity();
-        room4.setLabel("Room 201");
+        room4.setLabel("201");
         room4.setNbOfPlaces(22);
 
         rooms.add(room1);

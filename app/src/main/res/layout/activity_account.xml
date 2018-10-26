@@ -37,13 +37,13 @@
         android:id="@+id/depositButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/action_deposit" />
+        android:text="Computers list" />
 
     <Button
         android:id="@+id/withdrawButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/action_withdraw" />
+        android:text="Students list" />
 
 
 </LinearLayout>

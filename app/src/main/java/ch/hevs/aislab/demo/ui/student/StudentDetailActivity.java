@@ -38,7 +38,7 @@ public class StudentDetailActivity  extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getLayoutInflater().inflate(R.layout.activity_account, frameLayout);
+        getLayoutInflater().inflate(R.layout.activity_student, frameLayout);
 
         navigationView.setCheckedItem(position);
 

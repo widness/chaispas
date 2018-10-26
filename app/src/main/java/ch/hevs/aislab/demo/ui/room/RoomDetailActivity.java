@@ -26,7 +26,7 @@ import ch.hevs.aislab.demo.viewmodel.account.AccountViewModel;
 
 public class RoomDetailActivity  extends BaseActivity {
 
-    private static final String TAG = "AccountDetailActivity";
+    private static final String TAG = "RoomDetailActivity";
     private static final int EDIT_ACCOUNT = 1;
 
     private AccountEntity mAccount;

@@ -13,11 +13,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,16 +23,11 @@ import java.util.List;
 
 import ch.hevs.aislab.demo.R;
 import ch.hevs.aislab.demo.adapter.RecyclerAdapter;
-import ch.hevs.aislab.demo.database.entity.ClientEntity;
 import ch.hevs.aislab.demo.database.entity.RoomEntity;
 import ch.hevs.aislab.demo.ui.BaseActivity;
-import ch.hevs.aislab.demo.ui.MainActivity;
 import ch.hevs.aislab.demo.ui.room.EditRoomActivity;
 import ch.hevs.aislab.demo.ui.room.RoomDetailActivity;
-import ch.hevs.aislab.demo.ui.room.RoomsActivity;
-import ch.hevs.aislab.demo.util.OnAsyncEventListener;
 import ch.hevs.aislab.demo.util.RecyclerViewItemClickListener;
-import ch.hevs.aislab.demo.viewmodel.client.ClientViewModel;
 import ch.hevs.aislab.demo.viewmodel.room.RoomListViewModel;
 
 public class StudentActivity extends BaseActivity {
@@ -49,7 +41,7 @@ public class StudentActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getLayoutInflater().inflate(R.layout.activity_rooms2, frameLayout);
+        getLayoutInflater().inflate(R.layout.activity_lists, frameLayout);
 
         setTitle("Students");
         navigationView.setCheckedItem(position);

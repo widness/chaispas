@@ -14,12 +14,10 @@ import android.view.MenuItem;
 import android.widget.FrameLayout;
 
 import ch.hevs.aislab.demo.R;
-import ch.hevs.aislab.demo.ui.account.AccountsActivity;
 import ch.hevs.aislab.demo.ui.computer.ComputerActivity;
 import ch.hevs.aislab.demo.ui.room.RoomsActivity;
 import ch.hevs.aislab.demo.ui.student.StudentActivity;
 import ch.hevs.aislab.demo.ui.mgmt.SettingsActivity;
-import ch.hevs.aislab.demo.ui.transaction.TransactionActivity;
 
 public class BaseActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 

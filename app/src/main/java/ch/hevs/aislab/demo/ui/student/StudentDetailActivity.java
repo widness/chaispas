@@ -20,8 +20,6 @@ import java.text.NumberFormat;
 import ch.hevs.aislab.demo.R;
 import ch.hevs.aislab.demo.database.entity.AccountEntity;
 import ch.hevs.aislab.demo.ui.BaseActivity;
-import ch.hevs.aislab.demo.ui.account.EditAccountActivity;
-import ch.hevs.aislab.demo.ui.room.RoomDetailActivity;
 import ch.hevs.aislab.demo.viewmodel.account.AccountViewModel;
 
 public class StudentDetailActivity  extends BaseActivity {
@@ -38,7 +36,7 @@ public class StudentDetailActivity  extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getLayoutInflater().inflate(R.layout.activity_account, frameLayout);
+        getLayoutInflater().inflate(R.layout.activity_student, frameLayout);
 
         navigationView.setCheckedItem(position);
 
@@ -69,7 +67,7 @@ public class StudentDetailActivity  extends BaseActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == EDIT_ACCOUNT) {
-            Intent intent = new Intent(this, EditAccountActivity.class);
+            Intent intent = new Intent(this, EditStudentActivity.class);
             intent.putExtra("accountId", mAccount.getId());
             startActivity(intent);
         }

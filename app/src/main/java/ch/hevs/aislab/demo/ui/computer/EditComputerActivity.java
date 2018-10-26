@@ -46,7 +46,7 @@ public class EditComputerActivity extends BaseActivity {
 
         Long accountId = getIntent().getLongExtra("accountId", 0L);
         if (accountId == 0L) {
-            setTitle(getString(R.string.title_activity_create_account));
+            setTitle(getString(R.string.account_balance));
             mToast = Toast.makeText(this, getString(R.string.account_created), Toast.LENGTH_LONG);
             mEditMode = false;
         } else {

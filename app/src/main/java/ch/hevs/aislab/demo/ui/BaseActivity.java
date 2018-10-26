@@ -14,12 +14,10 @@ import android.view.MenuItem;
 import android.widget.FrameLayout;
 
 import ch.hevs.aislab.demo.R;
-import ch.hevs.aislab.demo.ui.account.AccountsActivity;
-import ch.hevs.aislab.demo.ui.computer.ComputerActivity;
+import ch.hevs.aislab.demo.ui.computer.ComputersActivity;
 import ch.hevs.aislab.demo.ui.room.RoomsActivity;
-import ch.hevs.aislab.demo.ui.student.StudentActivity;
+import ch.hevs.aislab.demo.ui.student.StudentsActivity;
 import ch.hevs.aislab.demo.ui.mgmt.SettingsActivity;
-import ch.hevs.aislab.demo.ui.transaction.TransactionActivity;
 
 public class BaseActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -112,9 +110,9 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
         if (id == R.id.nav_rooms) {
             intent = new Intent(this, RoomsActivity.class);
         } else if (id == R.id.nav_computers) {
-            intent = new Intent(this, ComputerActivity.class);
+            intent = new Intent(this, ComputersActivity.class);
         } else if (id == R.id.nav_students) {
-            intent = new Intent(this, StudentActivity.class);
+            intent = new Intent(this, StudentsActivity.class);
         }
         if (intent != null) {
             intent.setFlags(

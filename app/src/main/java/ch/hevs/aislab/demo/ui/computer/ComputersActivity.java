@@ -1,4 +1,4 @@
-package ch.hevs.aislab.demo.ui.account;
+package ch.hevs.aislab.demo.ui.computer;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
@@ -23,32 +23,30 @@ import java.util.List;
 
 import ch.hevs.aislab.demo.R;
 import ch.hevs.aislab.demo.adapter.RecyclerAdapter;
-import ch.hevs.aislab.demo.database.entity.AccountEntity;
+import ch.hevs.aislab.demo.database.entity.RoomEntity;
 import ch.hevs.aislab.demo.ui.BaseActivity;
+import ch.hevs.aislab.demo.ui.room.EditRoomActivity;
+import ch.hevs.aislab.demo.ui.room.RoomDetailActivity;
 import ch.hevs.aislab.demo.util.RecyclerViewItemClickListener;
-import ch.hevs.aislab.demo.viewmodel.account.AccountListViewModel;
+import ch.hevs.aislab.demo.viewmodel.room.RoomListViewModel;
 
-public class AccountsActivity extends BaseActivity {
+public class ComputersActivity extends BaseActivity {
 
-    private static final String TAG = "AccountsActivity";
+    private static final String TAG = "ComputerActivity";
 
-    private List<AccountEntity> mAccounts;
-    private RecyclerAdapter<AccountEntity> mAdapter;
-    private AccountListViewModel mViewModel;
+    private List<RoomEntity> mRooms;
+    private RecyclerAdapter<RoomEntity> mAdapter;
+    private RoomListViewModel mViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getLayoutInflater().inflate(R.layout.activity_accounts, frameLayout);
+        getLayoutInflater().inflate(R.layout.activity_lists, frameLayout);
 
-        setTitle(getString(R.string.title_activity_accounts));
+        setTitle("Computers");
         navigationView.setCheckedItem(position);
 
         RecyclerView recyclerView = findViewById(R.id.accountsRecyclerView);
-
-        // use this setting to improve performance if you know that changes
-        // in content do not change the layout size of the RecyclerView
-        //mRecyclerView.setHasFixedSize(true);
 
         // use a linear layout manager
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
@@ -61,26 +59,28 @@ public class AccountsActivity extends BaseActivity {
         SharedPreferences settings = getSharedPreferences(BaseActivity.PREFS_NAME, 0);
         String user = settings.getString(BaseActivity.PREFS_USER, null);
 
-        mAccounts = new ArrayList<>();
+        mRooms = new ArrayList<>();
         mAdapter = new RecyclerAdapter<>(new RecyclerViewItemClickListener() {
+
             @Override
             public void onItemClick(View v, int position) {
                 Log.d(TAG, "clicked position:" + position);
-                Log.d(TAG, "clicked on: " + mAccounts.get(position).getName());
+                Log.d(TAG, "clicked on: " + mRooms.get(position).getLabel());
 
-                Intent intent = new Intent(AccountsActivity.this, AccountDetailActivity.class);
+                Intent intent = new Intent(ComputersActivity.this, RoomDetailActivity.class);
                 intent.setFlags(
                         Intent.FLAG_ACTIVITY_NO_ANIMATION |
-                        Intent.FLAG_ACTIVITY_NO_HISTORY
+                                Intent.FLAG_ACTIVITY_NO_HISTORY
                 );
-                intent.putExtra("accountId", mAccounts.get(position).getId());
+                intent.putExtra("roomId", mRooms.get(position).getId());
                 startActivity(intent);
             }
 
             @Override
             public void onItemLongClick(View v, int position) {
                 Log.d(TAG, "longClicked position:" + position);
-                Log.d(TAG, "longClicked on: " + mAccounts.get(position).getName());
+                Log.d(TAG, "longClicked on: " + mRooms.get(position).getLabel());
+                Log.d(TAG, "mRooms:" + mRooms.get(position));
 
                 createDeleteDialog(position);
             }
@@ -88,22 +88,22 @@ public class AccountsActivity extends BaseActivity {
 
         FloatingActionButton fab = findViewById(R.id.floatingActionButton);
         fab.setOnClickListener(view -> {
-            Intent intent = new Intent(AccountsActivity.this, EditAccountActivity.class);
-            intent.setFlags(
-                    Intent.FLAG_ACTIVITY_NO_ANIMATION |
-                    Intent.FLAG_ACTIVITY_NO_HISTORY
-            );
-            startActivity(intent);
-        }
+                    Intent intent = new Intent(ComputersActivity.this, EditRoomActivity.class);
+                    intent.setFlags(
+                            Intent.FLAG_ACTIVITY_NO_ANIMATION |
+                                    Intent.FLAG_ACTIVITY_NO_HISTORY
+                    );
+                    startActivity(intent);
+                }
         );
 
-        AccountListViewModel.Factory factory = new AccountListViewModel.Factory(
-                getApplication(), user);
-        mViewModel = ViewModelProviders.of(this, factory).get(AccountListViewModel.class);
-        mViewModel.getOwnAccounts().observe(this, accountEntities -> {
-            if (accountEntities != null) {
-                mAccounts = accountEntities;
-                mAdapter.setData(mAccounts);
+        RoomListViewModel.Factory factory = new RoomListViewModel.Factory(
+                getApplication());
+        mViewModel = ViewModelProviders.of(this, factory).get(RoomListViewModel.class);
+        mViewModel.getRooms().observe(this, roomEntities -> {
+            if (roomEntities != null) {
+                mRooms = roomEntities;
+                mAdapter.setData(mRooms);
             }
         });
 
@@ -124,7 +124,8 @@ public class AccountsActivity extends BaseActivity {
     }
 
     private void createDeleteDialog(final int position) {
-        final AccountEntity account = mAccounts.get(position);
+
+        final RoomEntity room = mRooms.get(position);
         LayoutInflater inflater = LayoutInflater.from(this);
         final View view = inflater.inflate(R.layout.row_delete_item, null);
         final AlertDialog alertDialog = new AlertDialog.Builder(this).create();
@@ -132,11 +133,11 @@ public class AccountsActivity extends BaseActivity {
         alertDialog.setCancelable(false);
 
         final TextView deleteMessage = view.findViewById(R.id.tv_delete_item);
-        deleteMessage.setText(String.format(getString(R.string.account_delete_msg), account.getName()));
+        deleteMessage.setText(String.format(getString(R.string.account_delete_msg), room.getLabel()));
 
         alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, getString(R.string.action_accept), (dialog, which) -> {
             Toast toast = Toast.makeText(this, getString(R.string.account_deleted), Toast.LENGTH_LONG);
-            mViewModel.deleteAccount(account);
+            mViewModel.deleteRoom(room);
             toast.show();
         });
 

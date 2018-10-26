@@ -40,7 +40,7 @@ public class RoomsActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getLayoutInflater().inflate(R.layout.activity_rooms2, frameLayout);
+        getLayoutInflater().inflate(R.layout.activity_lists, frameLayout);
 
         setTitle("Rooms");
         navigationView.setCheckedItem(position);

@@ -39,35 +39,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="ch.hevs.aislab.demo.ui.MainActivity" />
         </activity>
-        <activity
-            android:name=".ui.BaseActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".ui.account.AccountsActivity"
-            android:label="@string/title_activity_accounts"
-            android:parentActivityName=".ui.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="ch.hevs.aislab.demo.ui.MainActivity" />
-        </activity>
-        <activity
-            android:name=".ui.account.EditAccountActivity"
-            android:label="@string/title_activity_edit_account"
-            android:parentActivityName=".ui.account.AccountsActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="ch.hevs.aislab.demo.ui.account.AccountsActivity" />
-        </activity>
-        <activity
-            android:name=".ui.account.AccountDetailActivity"
-            android:parentActivityName=".ui.account.AccountsActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="ch.hevs.aislab.demo.ui.account.AccountsActivity" />
-        </activity>
+
         <!-- Rooms -->
         <activity
             android:name=".ui.room.RoomsActivity"
@@ -97,7 +69,7 @@
         </activity>
         <!-- Computers -->
         <activity
-            android:name=".ui.computer.ComputerActivity"
+            android:name=".ui.computer.ComputersActivity"
             android:label="@string/title_activity_accounts"
             android:parentActivityName=".ui.MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -108,23 +80,23 @@
         <activity
             android:name=".ui.computer.EditComputerActivity"
             android:label="@string/title_activity_edit_account"
-            android:parentActivityName=".ui.computer.ComputerActivity"
+            android:parentActivityName=".ui.computer.ComputersActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="ch.hevs.aislab.demo.ui.computer.ComputerActivity" />
+                android:value="ch.hevs.aislab.demo.ui.computer.ComputersActivity" />
         </activity>
         <activity
             android:name=".ui.computer.ComputerDetailActivity"
-            android:parentActivityName=".ui.computer.ComputerActivity"
+            android:parentActivityName=".ui.computer.ComputersActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="ch.hevs.aislab.demo.ui.computer.ComputerActivity" />
+                android:value="ch.hevs.aislab.demo.ui.computer.ComputersActivity" />
         </activity>
         <!-- Students -->
         <activity
-            android:name=".ui.student.StudentActivity"
+            android:name=".ui.student.StudentsActivity"
             android:label="@string/title_activity_accounts"
             android:parentActivityName=".ui.MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -135,19 +107,19 @@
         <activity
             android:name=".ui.student.EditStudentActivity"
             android:label="@string/title_activity_edit_account"
-            android:parentActivityName=".ui.student.StudentActivity"
+            android:parentActivityName=".ui.student.StudentsActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="ch.hevs.aislab.demo.ui.student.StudentActivity" />
+                android:value="ch.hevs.aislab.demo.ui.student.StudentsActivity" />
         </activity>
         <activity
             android:name=".ui.student.StudentDetailActivity"
-            android:parentActivityName=".ui.student.StudentActivity"
+            android:parentActivityName=".ui.student.StudentsActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="ch.hevs.aislab.demo.ui.student.StudentActivity" />
+                android:value="ch.hevs.aislab.demo.ui.student.StudentsActivity" />
         </activity>
 
     </application>

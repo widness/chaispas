@@ -13,11 +13,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,19 +23,14 @@ import java.util.List;
 
 import ch.hevs.aislab.demo.R;
 import ch.hevs.aislab.demo.adapter.RecyclerAdapter;
-import ch.hevs.aislab.demo.database.entity.ClientEntity;
 import ch.hevs.aislab.demo.database.entity.RoomEntity;
 import ch.hevs.aislab.demo.ui.BaseActivity;
-import ch.hevs.aislab.demo.ui.MainActivity;
 import ch.hevs.aislab.demo.ui.room.EditRoomActivity;
 import ch.hevs.aislab.demo.ui.room.RoomDetailActivity;
-import ch.hevs.aislab.demo.ui.room.RoomsActivity;
-import ch.hevs.aislab.demo.util.OnAsyncEventListener;
 import ch.hevs.aislab.demo.util.RecyclerViewItemClickListener;
-import ch.hevs.aislab.demo.viewmodel.client.ClientViewModel;
 import ch.hevs.aislab.demo.viewmodel.room.RoomListViewModel;
 
-public class StudentActivity extends BaseActivity {
+public class StudentsActivity extends BaseActivity {
 
     private static final String TAG = "StudentActivity";
 
@@ -49,7 +41,7 @@ public class StudentActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getLayoutInflater().inflate(R.layout.activity_rooms2, frameLayout);
+        getLayoutInflater().inflate(R.layout.activity_lists, frameLayout);
 
         setTitle("Students");
         navigationView.setCheckedItem(position);
@@ -75,7 +67,7 @@ public class StudentActivity extends BaseActivity {
                 Log.d(TAG, "clicked position:" + position);
                 Log.d(TAG, "clicked on: " + mRooms.get(position).getLabel());
 
-                Intent intent = new Intent(StudentActivity.this, RoomDetailActivity.class);
+                Intent intent = new Intent(StudentsActivity.this, RoomDetailActivity.class);
                 intent.setFlags(
                         Intent.FLAG_ACTIVITY_NO_ANIMATION |
                                 Intent.FLAG_ACTIVITY_NO_HISTORY
@@ -96,7 +88,7 @@ public class StudentActivity extends BaseActivity {
 
         FloatingActionButton fab = findViewById(R.id.floatingActionButton);
         fab.setOnClickListener(view -> {
-                    Intent intent = new Intent(StudentActivity.this, EditRoomActivity.class);
+                    Intent intent = new Intent(StudentsActivity.this, EditRoomActivity.class);
                     intent.setFlags(
                             Intent.FLAG_ACTIVITY_NO_ANIMATION |
                                     Intent.FLAG_ACTIVITY_NO_HISTORY

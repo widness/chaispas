@@ -20,13 +20,11 @@ import java.text.NumberFormat;
 import ch.hevs.aislab.demo.R;
 import ch.hevs.aislab.demo.database.entity.AccountEntity;
 import ch.hevs.aislab.demo.ui.BaseActivity;
-import ch.hevs.aislab.demo.ui.account.AccountDetailActivity;
-import ch.hevs.aislab.demo.ui.account.EditAccountActivity;
 import ch.hevs.aislab.demo.viewmodel.account.AccountViewModel;
 
 public class RoomDetailActivity  extends BaseActivity {
 
-    private static final String TAG = "AccountDetailActivity";
+    private static final String TAG = "RoomDetailActivity";
     private static final int EDIT_ACCOUNT = 1;
 
     private AccountEntity mAccount;
@@ -69,7 +67,7 @@ public class RoomDetailActivity  extends BaseActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == EDIT_ACCOUNT) {
-            Intent intent = new Intent(this, EditAccountActivity.class);
+            Intent intent = new Intent(this, EditRoomActivity.class);
             intent.putExtra("accountId", mAccount.getId());
             startActivity(intent);
         }

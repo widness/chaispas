@@ -77,7 +77,7 @@ public class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerAdapter.Vie
             holder.itemTitle.setText(((ComputerEntity) item).getLabel());
             holder.itemDetail.setText(((ComputerEntity) item).getDescription());
         }
-        // holder.itemImage.setImageAlpha(iIno.itemImage); //TODO: See how bind image
+        // holder.itemImage.setImageAlpha(iIno.itemImage); //TODO: Import fake image
     }
 
     @Override

@@ -1,31 +1,31 @@
-package ch.hevs.aislab.demo.database.async.account;
+package ch.hevs.aislab.demo.database.async.Student;
 
 import android.app.Application;
 import android.os.AsyncTask;
 
 import ch.hevs.aislab.demo.BaseApp;
-import ch.hevs.aislab.demo.database.entity.AccountEntity;
+import ch.hevs.aislab.demo.database.entity.StudentEntity;
 import ch.hevs.aislab.demo.util.OnAsyncEventListener;
 
-public class CreateAccount extends AsyncTask<AccountEntity, Void, Void> {
+public class CreateStudent extends AsyncTask<StudentEntity, Void, Void> {
 
-    private static final String TAG = "CreateAccount";
+    private static final String TAG = "CreateStudent";
 
     private Application mApplication;
     private OnAsyncEventListener mCallBack;
     private Exception mException;
 
-    public CreateAccount(Application application, OnAsyncEventListener callback) {
+    public CreateStudent(Application application, OnAsyncEventListener callback) {
         mApplication = application;
         mCallBack = callback;
     }
 
     @Override
-    protected Void doInBackground(AccountEntity... params) {
+    protected Void doInBackground(StudentEntity... params) {
         try {
-            for (AccountEntity account : params)
-                ((BaseApp) mApplication).getAccountRepository()
-                        .insert(account);
+            for (StudentEntity student : params)
+                ((BaseApp) mApplication).getStudentRepository()
+                        .insert(student);
         } catch (Exception e) {
             mException = e;
         }

@@ -8,21 +8,21 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import ch.hevs.aislab.demo.R;
-import ch.hevs.aislab.demo.database.entity.AccountEntity;
+import ch.hevs.aislab.demo.database.entity.RoomEntity;
 import ch.hevs.aislab.demo.ui.BaseActivity;
-import ch.hevs.aislab.demo.viewmodel.account.AccountViewModel;
+import ch.hevs.aislab.demo.viewmodel.room.RoomViewModel;
 
 public class EditRoomActivity extends BaseActivity {
 
-    private final String TAG = "EditAccountActivity";
+    private final String TAG = "EditRoomActivity";
 
-    private AccountEntity mAccount;
+    private RoomEntity mRoom;
     private String mOwner;
     private boolean mEditMode;
     private Toast mToast;
-    private EditText mEtAccountName;
+    private EditText mEtRoomName;
 
-    private AccountViewModel mViewModel;
+    private RoomViewModel mViewModel;
 
 
     @Override
@@ -35,16 +35,16 @@ public class EditRoomActivity extends BaseActivity {
         SharedPreferences settings = getSharedPreferences(BaseActivity.PREFS_NAME, 0);
         mOwner = settings.getString(BaseActivity.PREFS_USER, null);
 
-        mEtAccountName = findViewById(R.id.accountName);
-        mEtAccountName.requestFocus();
+        mEtRoomName = findViewById(R.id.accountName);
+        mEtRoomName.requestFocus();
         Button saveBtn = findViewById(R.id.createAccountButton);
         saveBtn.setOnClickListener(view -> {
-            saveChanges(mEtAccountName.getText().toString());
+            saveChanges(mEtRoomName.getText().toString());
             onBackPressed();
             mToast.show();
         });
 
-        Long accountId = getIntent().getLongExtra("accountId", 0L);
+        Long accountId = getIntent().getLongExtra("roomId", 0L);
         if (accountId == 0L) {
             setTitle(getString(R.string.account_balance));
             mToast = Toast.makeText(this, getString(R.string.account_created), Toast.LENGTH_LONG);
@@ -56,31 +56,29 @@ public class EditRoomActivity extends BaseActivity {
             mEditMode = true;
         }
 
-        AccountViewModel.Factory factory = new AccountViewModel.Factory(
+        RoomViewModel.Factory factory = new RoomViewModel.Factory(
                 getApplication(), accountId);
-        mViewModel = ViewModelProviders.of(this, factory).get(AccountViewModel.class);
+        mViewModel = ViewModelProviders.of(this, factory).get(RoomViewModel.class);
         if (mEditMode) {
-            mViewModel.getAccount().observe(this, accountEntity -> {
+            mViewModel.getRoom().observe(this, accountEntity -> {
                 if (accountEntity != null) {
-                    mAccount = accountEntity;
-                    mEtAccountName.setText(mAccount.getName());
+                    mRoom = accountEntity;
+                    mEtRoomName.setText(mRoom.getLabel());
                 }
             });
         }
     }
 
-    private void saveChanges(String accountName) {
+    private void saveChanges(String roomLabel) {
         if (mEditMode) {
-            if(!"".equals(accountName)) {
-                mAccount.setName(accountName);
-                mViewModel.updateAccount(mAccount);
+            if(!"".equals(roomLabel)) {
+                mRoom.setLabel(roomLabel);
+                mViewModel.updateRoom(mRoom);
             }
         } else {
-            AccountEntity newAccount = new AccountEntity();
-            newAccount.setOwner(mOwner);
-            newAccount.setBalance(0.0d);
-            newAccount.setName(accountName);
-            mViewModel.createAccount(newAccount);
+            RoomEntity newRoom = new RoomEntity(roomLabel, 1);
+            newRoom.setLabel(roomLabel);
+            mViewModel.createRoom(newRoom);
         }
     }
 }

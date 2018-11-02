@@ -1,4 +1,4 @@
-package ch.hevs.aislab.demo.viewmodel.room;
+package ch.hevs.aislab.demo.viewmodel.student;
 
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
@@ -12,31 +12,32 @@ import android.util.Log;
 import java.util.List;
 
 import ch.hevs.aislab.demo.BaseApp;
-import ch.hevs.aislab.demo.database.async.room.DeleteRoom;
-import ch.hevs.aislab.demo.database.entity.RoomEntity;
-import ch.hevs.aislab.demo.database.repository.RoomRepository;
+import ch.hevs.aislab.demo.database.async.Student.DeleteStudent;
+import ch.hevs.aislab.demo.database.entity.StudentEntity;
+import ch.hevs.aislab.demo.database.repository.StudentRepository;
 import ch.hevs.aislab.demo.util.OnAsyncEventListener;
-public class RoomListViewModel extends AndroidViewModel {
-    private static final String TAG = "ComputerListViewModel";
 
-    private RoomRepository mRepository;
+public class StudentListViewModel  extends AndroidViewModel {
+    private static final String TAG = "StudentListViewModel";
+
+    private StudentRepository mRepository;
 
     // MediatorLiveData can observe other LiveData objects and react on their emissions.
-    private final MediatorLiveData<List<RoomEntity>> mObservableRooms;
+    private final MediatorLiveData<List<StudentEntity>> mObservableStudents;
 
-    public RoomListViewModel(@NonNull Application application, RoomRepository roomRepository) {
+    public StudentListViewModel(@NonNull Application application, StudentRepository roomRepository) {
         super(application);
 
         mRepository = roomRepository;
 
-        mObservableRooms = new MediatorLiveData<>();
+        mObservableStudents = new MediatorLiveData<>();
         // set by default null, until we get data from the database.
-        mObservableRooms.setValue(null);
+        mObservableStudents.setValue(null);
 
-        LiveData<List<RoomEntity>> rooms = mRepository.getRooms();
+        LiveData<List<StudentEntity>> rooms = mRepository.getStudents();
 
         // observe the changes of the account entity from the database and forward them
-        mObservableRooms.addSource(rooms, mObservableRooms::setValue);
+        mObservableStudents.addSource(rooms, mObservableStudents::setValue);
     }
 
     /**
@@ -47,37 +48,37 @@ public class RoomListViewModel extends AndroidViewModel {
         @NonNull
         private final Application mApplication;
 
-        private final RoomRepository mRepository;
+        private final StudentRepository mRepository;
 
         public Factory(@NonNull Application application) {
             mApplication = application;
-            mRepository = ((BaseApp) application).getRoomRepository();
+            mRepository = ((BaseApp) application).getStudentRepository();
         }
 
         @Override
         public <T extends ViewModel> T create(Class<T> modelClass) {
             //noinspection unchecked
-            return (T) new RoomListViewModel(mApplication, mRepository);
+            return (T) new StudentListViewModel(mApplication, mRepository);
         }
     }
 
     /**
      * Expose the LiveData AccountEntity query so the UI can observe it.
      */
-    public LiveData<List<RoomEntity>> getRooms() {
-        return mObservableRooms;
+    public LiveData<List<StudentEntity>> getStudents() {
+        return mObservableStudents;
     }
 
-    public void deleteRoom(RoomEntity room) {
-        new DeleteRoom(getApplication(), new OnAsyncEventListener() {
+    public void deleteStudent(StudentEntity room) {
+        new DeleteStudent(getApplication(), new OnAsyncEventListener() {
             @Override
             public void onSuccess() {
-                Log.d(TAG, "deleteRoom: success");
+                Log.d(TAG, "deleteStudent: success");
             }
 
             @Override
             public void onFailure(Exception e) {
-                Log.d(TAG, "deleteRoom: failure", e);
+                Log.d(TAG, "deleteStudent: failure", e);
             }
         }).execute(room);
     }

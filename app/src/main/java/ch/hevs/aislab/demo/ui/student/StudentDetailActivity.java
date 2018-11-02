@@ -18,20 +18,20 @@ import android.widget.Toast;
 import java.text.NumberFormat;
 
 import ch.hevs.aislab.demo.R;
-import ch.hevs.aislab.demo.database.entity.AccountEntity;
+import ch.hevs.aislab.demo.database.entity.StudentEntity;
 import ch.hevs.aislab.demo.ui.BaseActivity;
-import ch.hevs.aislab.demo.viewmodel.account.AccountViewModel;
+import ch.hevs.aislab.demo.viewmodel.student.StudentViewModel;
 
 public class StudentDetailActivity  extends BaseActivity {
 
     private static final String TAG = "StudentDetailActivity";
     private static final int EDIT_ACCOUNT = 1;
 
-    private AccountEntity mAccount;
+    private StudentEntity mStudent;
     private TextView mTvBalance;
     private NumberFormat mDefaultFormat;
 
-    private AccountViewModel mViewModel;
+    private StudentViewModel mViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,12 +44,12 @@ public class StudentDetailActivity  extends BaseActivity {
 
         initiateView();
 
-        AccountViewModel.Factory factory = new AccountViewModel.Factory(
+        StudentViewModel.Factory factory = new StudentViewModel.Factory(
                 getApplication(), accountId);
-        mViewModel = ViewModelProviders.of(this, factory).get(AccountViewModel.class);
-        mViewModel.getAccount().observe(this, accountEntity -> {
-            if (accountEntity != null) {
-                mAccount = accountEntity;
+        mViewModel = ViewModelProviders.of(this, factory).get(StudentViewModel.class);
+        mViewModel.getStudent().observe(this, studentEntity -> {
+            if (studentEntity != null) {
+                mStudent = studentEntity;
                 updateContent();
             }
         });
@@ -68,7 +68,7 @@ public class StudentDetailActivity  extends BaseActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == EDIT_ACCOUNT) {
             Intent intent = new Intent(this, EditStudentActivity.class);
-            intent.putExtra("accountId", mAccount.getId());
+            intent.putExtra("accountId", mStudent.getId());
             startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
@@ -80,9 +80,8 @@ public class StudentDetailActivity  extends BaseActivity {
     }
 
     private void updateContent() {
-        if (mAccount != null) {
-            setTitle(mAccount.getName());
-            mTvBalance.setText(mDefaultFormat.format(mAccount.getBalance()));
+        if (mStudent != null) {
+            setTitle(mStudent.getFirstName());
             Log.i(TAG, "Activity populated.");
         }
     }
@@ -103,19 +102,20 @@ public class StudentDetailActivity  extends BaseActivity {
                 Double amount = Double.parseDouble(accountMovement.getText().toString());
                 Toast toast = Toast.makeText(StudentDetailActivity.this, getString(R.string.error_withdraw), Toast.LENGTH_LONG);
 
+                /* TODO: See for the update
                 if (action == R.string.action_withdraw) {
-                    if (mAccount.getBalance() < amount) {
+                    if (mStudent.getBalance() < amount) {
                         toast.show();
                         return;
                     }
                     Log.i(TAG, "Withdrawal: " + amount.toString());
-                    mAccount.setBalance(mAccount.getBalance() - amount);
+                    mStudent.setBalance(mStudent.getBalance() - amount);
                 }
                 if (action == R.string.action_deposit) {
                     Log.i(TAG, "Deposit: " + amount.toString());
-                    mAccount.setBalance(mAccount.getBalance() + amount);
+                    mStudent.setBalance(mStudent.getBalance() + amount);
                 }
-                mViewModel.updateAccount(mAccount);
+                mViewModel.updateAccount(mStudent); */
             }
         });
 

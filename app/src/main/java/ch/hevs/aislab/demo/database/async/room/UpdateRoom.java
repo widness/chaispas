@@ -10,7 +10,7 @@ import ch.hevs.aislab.demo.util.OnAsyncEventListener;
 
 public class UpdateRoom extends AsyncTask<RoomEntity, Void, Void> {
 
-    private static final String TAG = "UpdateRoom";
+    private static final String TAG = "UpdateStudent";
 
     private Application mApplication;
     private OnAsyncEventListener mCallBack;

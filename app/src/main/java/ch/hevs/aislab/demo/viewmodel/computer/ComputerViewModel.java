@@ -1,4 +1,4 @@
-package ch.hevs.aislab.demo.viewmodel.room;
+package ch.hevs.aislab.demo.viewmodel.computer;
 
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
@@ -10,35 +10,35 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 
 import ch.hevs.aislab.demo.BaseApp;
-import ch.hevs.aislab.demo.database.async.room.CreateRoom;
-import ch.hevs.aislab.demo.database.async.room.UpdateRoom;
-import ch.hevs.aislab.demo.database.entity.RoomEntity;
-import ch.hevs.aislab.demo.database.repository.RoomRepository;
+import ch.hevs.aislab.demo.database.async.computer.CreateComputer;
+import ch.hevs.aislab.demo.database.async.computer.UpdateComputer;
+import ch.hevs.aislab.demo.database.entity.ComputerEntity;
+import ch.hevs.aislab.demo.database.repository.ComputerRepository;
 import ch.hevs.aislab.demo.util.OnAsyncEventListener;
 
-public class RoomViewModel extends AndroidViewModel {
+public class ComputerViewModel extends AndroidViewModel {
 
     private static final String TAG = "ComputerViewModel";
 
-    private RoomRepository mRepository;
+    private ComputerRepository mRepository;
 
     // MediatorLiveData can observe other LiveData objects and react on their emissions.
-    private final MediatorLiveData<RoomEntity> mObservableRoom;
+    private final MediatorLiveData<ComputerEntity> mObservableComputer;
 
-    public RoomViewModel(@NonNull Application application,
-                            final Long roomId, RoomRepository roomRepository) {
+    public ComputerViewModel(@NonNull Application application,
+                             final Long roomId, ComputerRepository roomRepository) {
         super(application);
 
         mRepository = roomRepository;
 
-        mObservableRoom = new MediatorLiveData<>();
+        mObservableComputer = new MediatorLiveData<>();
         // set by default null, until we get data from the database.
-        mObservableRoom.setValue(null);
+        mObservableComputer.setValue(null);
 
-        LiveData<RoomEntity> room = mRepository.getRoom(roomId);
+        LiveData<ComputerEntity> room = mRepository.getComputer(roomId);
 
         // observe the changes of the account entity from the database and forward them
-        mObservableRoom.addSource(room, mObservableRoom::setValue);
+        mObservableComputer.addSource(room, mObservableComputer::setValue);
     }
 
     /**
@@ -49,54 +49,54 @@ public class RoomViewModel extends AndroidViewModel {
         @NonNull
         private final Application mApplication;
 
-        private final Long mRoomId;
+        private final Long mComputerId;
 
-        private final RoomRepository mRepository;
+        private final ComputerRepository mRepository;
 
         public Factory(@NonNull Application application, Long roomId) {
             mApplication = application;
-            mRoomId = roomId;
-            mRepository = ((BaseApp) application).getRoomRepository();
+            mComputerId = roomId;
+            mRepository = ((BaseApp) application).getComputerRepository();
         }
 
         @Override
         public <T extends ViewModel> T create(Class<T> modelClass) {
             //noinspection unchecked
-            return (T) new RoomViewModel(mApplication, mRoomId, mRepository);
+            return (T) new ComputerViewModel(mApplication, mComputerId, mRepository);
         }
     }
 
     /**
      * Expose the LiveData AccountEntity query so the UI can observe it.
      */
-    public LiveData<RoomEntity> getRoom() {
-        return mObservableRoom;
+    public LiveData<ComputerEntity> getComputer() {
+        return mObservableComputer;
     }
 
-    public void createRoom(RoomEntity room) {
-        new CreateRoom(getApplication(), new OnAsyncEventListener() {
+    public void createComputer(ComputerEntity room) {
+        new CreateComputer(getApplication(), new OnAsyncEventListener() {
             @Override
             public void onSuccess() {
-                Log.d(TAG, "createRoom: success");
+                Log.d(TAG, "createComputer: success");
             }
 
             @Override
             public void onFailure(Exception e) {
-                Log.d(TAG, "createRoom: failure", e);
+                Log.d(TAG, "createComputer: failure", e);
             }
         }).execute(room);
     }
 
-    public void updateRoom(RoomEntity room) {
-        new UpdateRoom(getApplication(), new OnAsyncEventListener() {
+    public void updateComputer(ComputerEntity room) {
+        new UpdateComputer(getApplication(), new OnAsyncEventListener() {
             @Override
             public void onSuccess() {
-                Log.d(TAG, "updateRoom: success");
+                Log.d(TAG, "updateComputer: success");
             }
 
             @Override
             public void onFailure(Exception e) {
-                Log.d(TAG, "updateRoom: failure", e);
+                Log.d(TAG, "updateComputer: failure", e);
             }
         }).execute(room);
     }

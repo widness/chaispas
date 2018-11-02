@@ -32,9 +32,6 @@ public class ComputerEntity implements Computer {
     private String description;
     private int	roomId;
 
-    public ComputerEntity() {
-    }
-
     public ComputerEntity(String label, int type, String description, int roomId) {
         this.label = label;
         this.type = type;

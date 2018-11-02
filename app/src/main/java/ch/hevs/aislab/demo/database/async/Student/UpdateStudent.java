@@ -1,31 +1,31 @@
-package ch.hevs.aislab.demo.database.async.account;
+package ch.hevs.aislab.demo.database.async.Student;
 
 import android.app.Application;
 import android.os.AsyncTask;
 
 import ch.hevs.aislab.demo.BaseApp;
-import ch.hevs.aislab.demo.database.entity.AccountEntity;
+import ch.hevs.aislab.demo.database.entity.StudentEntity;
 import ch.hevs.aislab.demo.util.OnAsyncEventListener;
 
-public class DeleteAccount extends AsyncTask<AccountEntity, Void, Void> {
+public class UpdateStudent extends AsyncTask<StudentEntity, Void, Void> {
 
-    private static final String TAG = "DeleteAccount";
+    private static final String TAG = "UpdateStudent";
 
     private Application mApplication;
     private OnAsyncEventListener mCallBack;
     private Exception mException;
 
-    public DeleteAccount(Application application, OnAsyncEventListener callback) {
+    public UpdateStudent(Application application, OnAsyncEventListener callback) {
         mApplication = application;
         mCallBack = callback;
     }
 
     @Override
-    protected Void doInBackground(AccountEntity... params) {
+    protected Void doInBackground(StudentEntity... params) {
         try {
-            for (AccountEntity account : params)
-                ((BaseApp) mApplication).getAccountRepository()
-                        .delete(account);
+            for (StudentEntity student : params)
+                ((BaseApp) mApplication).getStudentRepository()
+                        .update(student);
         } catch (Exception e) {
             mException = e;
         }

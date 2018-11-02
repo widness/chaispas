@@ -1,4 +1,4 @@
-package ch.hevs.aislab.demo.viewmodel.room;
+package ch.hevs.aislab.demo.viewmodel.student;
 
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
@@ -10,35 +10,37 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 
 import ch.hevs.aislab.demo.BaseApp;
-import ch.hevs.aislab.demo.database.async.room.CreateRoom;
-import ch.hevs.aislab.demo.database.async.room.UpdateRoom;
-import ch.hevs.aislab.demo.database.entity.RoomEntity;
+import ch.hevs.aislab.demo.database.async.Student.CreateStudent;
+import ch.hevs.aislab.demo.database.async.Student.UpdateStudent;
+import ch.hevs.aislab.demo.database.entity.StudentEntity;
 import ch.hevs.aislab.demo.database.repository.RoomRepository;
+import ch.hevs.aislab.demo.database.repository.StudentRepository;
 import ch.hevs.aislab.demo.util.OnAsyncEventListener;
+import ch.hevs.aislab.demo.viewmodel.room.RoomViewModel;
 
-public class RoomViewModel extends AndroidViewModel {
+public class StudentViewModel extends AndroidViewModel {
 
-    private static final String TAG = "ComputerViewModel";
+    private static final String TAG = "StudentViewModel";
 
-    private RoomRepository mRepository;
+    private StudentRepository mRepository;
 
     // MediatorLiveData can observe other LiveData objects and react on their emissions.
-    private final MediatorLiveData<RoomEntity> mObservableRoom;
+    private final MediatorLiveData<StudentEntity> mObservableStudent;
 
-    public RoomViewModel(@NonNull Application application,
-                            final Long roomId, RoomRepository roomRepository) {
+    public StudentViewModel(@NonNull Application application,
+                         final Long studentId, StudentRepository studentRepository) {
         super(application);
 
-        mRepository = roomRepository;
+        mRepository = studentRepository;
 
-        mObservableRoom = new MediatorLiveData<>();
+        mObservableStudent = new MediatorLiveData<>();
         // set by default null, until we get data from the database.
-        mObservableRoom.setValue(null);
+        mObservableStudent.setValue(null);
 
-        LiveData<RoomEntity> room = mRepository.getRoom(roomId);
+        LiveData<StudentEntity> student = mRepository.getStudent(studentId);
 
         // observe the changes of the account entity from the database and forward them
-        mObservableRoom.addSource(room, mObservableRoom::setValue);
+        mObservableStudent.addSource(student, mObservableStudent::setValue);
     }
 
     /**
@@ -69,35 +71,36 @@ public class RoomViewModel extends AndroidViewModel {
     /**
      * Expose the LiveData AccountEntity query so the UI can observe it.
      */
-    public LiveData<RoomEntity> getRoom() {
-        return mObservableRoom;
+    public LiveData<StudentEntity> getStudent() {
+        return mObservableStudent;
     }
 
-    public void createRoom(RoomEntity room) {
-        new CreateRoom(getApplication(), new OnAsyncEventListener() {
+    public void createStudent(StudentEntity student) {
+        new CreateStudent(getApplication(), new OnAsyncEventListener() {
             @Override
             public void onSuccess() {
-                Log.d(TAG, "createRoom: success");
+                Log.d(TAG, "createStudent: success");
             }
 
             @Override
             public void onFailure(Exception e) {
-                Log.d(TAG, "createRoom: failure", e);
+                Log.d(TAG, "createStudent: failure", e);
             }
-        }).execute(room);
+        }).execute(student);
     }
 
-    public void updateRoom(RoomEntity room) {
-        new UpdateRoom(getApplication(), new OnAsyncEventListener() {
+    public void updateStudent(StudentEntity student) {
+        new UpdateStudent(getApplication(), new OnAsyncEventListener() {
             @Override
             public void onSuccess() {
-                Log.d(TAG, "updateRoom: success");
+                Log.d(TAG, "updateStudent: success");
             }
 
             @Override
             public void onFailure(Exception e) {
-                Log.d(TAG, "updateRoom: failure", e);
+                Log.d(TAG, "updateStudent: failure", e);
             }
-        }).execute(room);
+        }).execute(student);
     }
 }
+

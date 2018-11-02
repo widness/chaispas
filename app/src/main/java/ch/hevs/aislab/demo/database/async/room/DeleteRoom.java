@@ -9,7 +9,7 @@ import ch.hevs.aislab.demo.util.OnAsyncEventListener;
 
 public class DeleteRoom extends AsyncTask<RoomEntity, Void, Void> {
 
-    private static final String TAG = "DeleteRoom";
+    private static final String TAG = "DeleteStudent";
 
     private Application mApplication;
     private OnAsyncEventListener mCallBack;

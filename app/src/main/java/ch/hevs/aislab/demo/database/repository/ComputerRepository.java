@@ -31,7 +31,7 @@ public class ComputerRepository {
         return mDatabase.computerDao().getById(computerId);
     }
 
-    public LiveData<List<ComputerEntity>> getRooms() {
+    public LiveData<List<ComputerEntity>> getComputers() {
         return mDatabase.computerDao().getAll();
     }
 

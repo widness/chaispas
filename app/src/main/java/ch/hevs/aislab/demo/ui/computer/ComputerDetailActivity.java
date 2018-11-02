@@ -17,20 +17,20 @@ import android.widget.Toast;
 import java.text.NumberFormat;
 
 import ch.hevs.aislab.demo.R;
-import ch.hevs.aislab.demo.database.entity.AccountEntity;
+import ch.hevs.aislab.demo.database.entity.ComputerEntity;
 import ch.hevs.aislab.demo.ui.BaseActivity;
-import ch.hevs.aislab.demo.viewmodel.account.AccountViewModel;
+import ch.hevs.aislab.demo.viewmodel.computer.ComputerViewModel;
 
 public class ComputerDetailActivity  extends BaseActivity {
 
     private static final String TAG = "ComputerDetailActivity";
     private static final int EDIT_ACCOUNT = 1;
 
-    private AccountEntity mAccount;
+    private ComputerEntity mComputer;
     private TextView mTvBalance;
     private NumberFormat mDefaultFormat;
 
-    private AccountViewModel mViewModel;
+    private ComputerViewModel mViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,12 +43,12 @@ public class ComputerDetailActivity  extends BaseActivity {
 
         initiateView();
 
-        AccountViewModel.Factory factory = new AccountViewModel.Factory(
+        ComputerViewModel.Factory factory = new ComputerViewModel.Factory(
                 getApplication(), accountId);
-        mViewModel = ViewModelProviders.of(this, factory).get(AccountViewModel.class);
-        mViewModel.getAccount().observe(this, accountEntity -> {
+        mViewModel = ViewModelProviders.of(this, factory).get(ComputerViewModel.class);
+        mViewModel.getComputer().observe(this, accountEntity -> {
             if (accountEntity != null) {
-                mAccount = accountEntity;
+                mComputer = accountEntity;
                 updateContent();
             }
         });
@@ -67,7 +67,7 @@ public class ComputerDetailActivity  extends BaseActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == EDIT_ACCOUNT) {
             Intent intent = new Intent(this, EditComputerActivity.class);
-            intent.putExtra("accountId", mAccount.getId());
+            intent.putExtra("accountId", mComputer.getId());
             startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
@@ -79,9 +79,8 @@ public class ComputerDetailActivity  extends BaseActivity {
     }
 
     private void updateContent() {
-        if (mAccount != null) {
-            setTitle(mAccount.getName());
-            mTvBalance.setText(mDefaultFormat.format(mAccount.getBalance()));
+        if (mComputer != null) {
+            setTitle(mComputer.getLabel());
             Log.i(TAG, "Activity populated.");
         }
     }
@@ -102,19 +101,20 @@ public class ComputerDetailActivity  extends BaseActivity {
                 Double amount = Double.parseDouble(accountMovement.getText().toString());
                 Toast toast = Toast.makeText(ComputerDetailActivity.this, getString(R.string.error_withdraw), Toast.LENGTH_LONG);
 
+                /*
                 if (action == R.string.action_withdraw) {
-                    if (mAccount.getBalance() < amount) {
+                    if (mComputer.getBalance() < amount) {
                         toast.show();
                         return;
                     }
                     Log.i(TAG, "Withdrawal: " + amount.toString());
-                    mAccount.setBalance(mAccount.getBalance() - amount);
+                    mComputer.setBalance(mComputer.getBalance() - amount);
                 }
                 if (action == R.string.action_deposit) {
                     Log.i(TAG, "Deposit: " + amount.toString());
-                    mAccount.setBalance(mAccount.getBalance() + amount);
-                }
-                mViewModel.updateAccount(mAccount);
+                    mComputer.setBalance(mComputer.getBalance() + amount);
+                } */
+                mViewModel.updateComputer(mComputer);
             }
         });
 

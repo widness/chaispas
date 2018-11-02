@@ -40,8 +40,6 @@ public abstract class AppDatabase extends RoomDatabase {
     public abstract ComputerDao computerDao();
     public abstract StudentDao studentDao();
 
-    public abstract ClientDao clientDao();
-
     private final MutableLiveData<Boolean> mIsDatabaseCreated = new MutableLiveData<>();
 
     public static AppDatabase getInstance(final Context context) {
@@ -96,18 +94,19 @@ public abstract class AppDatabase extends RoomDatabase {
         Executors.newSingleThreadExecutor().execute(() -> {
             database.runInTransaction(() -> {
                 Log.i(TAG, "Wipe database.");
-                database.clientDao().deleteAll();
-                database.accountDao().deleteAll();
                 database.roomDao().deleteAll();
                 database.computerDao().deleteAll();
+                database.studentDao().deleteAll();
 
                 // Generate the data for pre-population
                 List<RoomEntity> rooms = DataGenerator.generateRooms();
                 List<ComputerEntity> computers = DataGenerator.generateComputers();
+                List<StudentEntity> students = DataGenerator.generateStudents();
 
                 Log.i(TAG, "Insert demo data.");
                 database.roomDao().insertAll(rooms);
                 database.computerDao().insertAll(computers);
+                database.studentDao().insertAll(students);
             });
         });
     }

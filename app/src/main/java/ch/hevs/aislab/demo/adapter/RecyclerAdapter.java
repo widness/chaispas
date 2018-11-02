@@ -12,8 +12,6 @@ import java.util.List;
 import java.util.Objects;
 
 import ch.hevs.aislab.demo.R;
-import ch.hevs.aislab.demo.database.entity.AccountEntity;
-import ch.hevs.aislab.demo.database.entity.ClientEntity;
 import ch.hevs.aislab.demo.database.entity.ComputerEntity;
 import ch.hevs.aislab.demo.database.entity.RoomEntity;
 import ch.hevs.aislab.demo.database.entity.StudentEntity;
@@ -73,7 +71,7 @@ public class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerAdapter.Vie
             String nbOfPlaces = "Places: " + Integer.toString(((RoomEntity) item).getNbOfPlaces());
             holder.itemDetail.setText(nbOfPlaces);
         } else if (item.getClass().equals(StudentEntity.class)) {
-            String tempTitle = ((StudentEntity) item).getFirstname() + ((StudentEntity) item).getLastname();
+            String tempTitle = ((StudentEntity) item).getFirstName() + ((StudentEntity) item).getLastName();
             holder.itemTitle.setText(tempTitle);
         } else if (item.getClass().equals(ComputerEntity.class)) {
             holder.itemTitle.setText(((ComputerEntity) item).getLabel());

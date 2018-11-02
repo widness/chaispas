@@ -1,5 +1,6 @@
 package ch.hevs.aislab.demo.adapter;
 
+import android.graphics.BitmapFactory;
 import android.support.v7.util.DiffUtil;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,8 +13,6 @@ import java.util.List;
 import java.util.Objects;
 
 import ch.hevs.aislab.demo.R;
-import ch.hevs.aislab.demo.database.entity.AccountEntity;
-import ch.hevs.aislab.demo.database.entity.ClientEntity;
 import ch.hevs.aislab.demo.database.entity.ComputerEntity;
 import ch.hevs.aislab.demo.database.entity.RoomEntity;
 import ch.hevs.aislab.demo.database.entity.StudentEntity;
@@ -72,14 +71,15 @@ public class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerAdapter.Vie
             holder.itemTitle.setText(label);
             String nbOfPlaces = "Places: " + Integer.toString(((RoomEntity) item).getNbOfPlaces());
             holder.itemDetail.setText(nbOfPlaces);
+            holder.itemImage.setImageBitmap(BitmapFactory.decodeFile("ic_computer"));
         } else if (item.getClass().equals(StudentEntity.class)) {
-            String tempTitle = ((StudentEntity) item).getFirstname() + ((StudentEntity) item).getLastname();
+            String tempTitle = ((StudentEntity) item).getFirstName() + ((StudentEntity) item).getLastName();
             holder.itemTitle.setText(tempTitle);
         } else if (item.getClass().equals(ComputerEntity.class)) {
             holder.itemTitle.setText(((ComputerEntity) item).getLabel());
             holder.itemDetail.setText(((ComputerEntity) item).getDescription());
         }
-        // holder.itemImage.setImageAlpha(iIno.itemImage); //TODO: See how bind image
+        // holder.itemImage.setImageAlpha(iIno.itemImage); //TODO: Import fake image
     }
 
     @Override

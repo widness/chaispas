@@ -44,6 +44,7 @@
         <item>de</item>
     </string-array>
 
+    <string name="action_confirme">Yes</string>
     <string name="action_create">Create</string>
     <string name="action_update">Save Changes</string>
     <string name="action_edit">Edit</string>
@@ -82,7 +83,7 @@
     <string name="pref_about_text">This application was developed to provide a possibility to demonstrate how the newly released Android Architecture Components could be implemented in an application.</string>
     <string name="pref_title_language">Change your display language</string>
     <string name="action_reset">Reset</string>
-    <string name="logout_msg">Do you really want to logout?</string>
+    <string name="logout_msg">Do you really want to close the app?</string>
     <string name="delete_msg">Do you really want to delete your client account?</string>
     <string name="reset_msg">Do you really want to reset the database?</string>
     <string name="transaction_executed">Transaction executed</string>

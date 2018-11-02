@@ -22,6 +22,7 @@ import ch.hevs.aislab.demo.model.Computer;
                         value = {"roomId"}
                 )}
 )
+
 public class ComputerEntity implements Computer {
 
     @PrimaryKey(autoGenerate = true)

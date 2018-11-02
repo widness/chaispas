@@ -17,6 +17,7 @@ import ch.hevs.aislab.demo.database.dao.AccountDao;
 import ch.hevs.aislab.demo.database.dao.ClientDao;
 import ch.hevs.aislab.demo.database.dao.ComputerDao;
 import ch.hevs.aislab.demo.database.dao.RoomDao;
+import ch.hevs.aislab.demo.database.dao.StudentDao;
 import ch.hevs.aislab.demo.database.entity.AccountEntity;
 import ch.hevs.aislab.demo.database.entity.ClientEntity;
 import ch.hevs.aislab.demo.database.entity.ComputerEntity;
@@ -36,6 +37,7 @@ public abstract class AppDatabase extends RoomDatabase {
 
     public abstract RoomDao roomDao();
     public abstract ComputerDao computerDao();
+    public abstract StudentDao studentDao();
 
     public abstract ClientDao clientDao();
 

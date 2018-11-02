@@ -32,19 +32,19 @@ public class StudentRepository {
         return mDatabase.studentDao().getById(studentId);
     }
 
-    public LiveData<List<RoomEntity>> getStudents() {
+    public LiveData<List<StudentEntity>> getStudents() {
         return mDatabase.studentDao().getAll();
     }
 
-    public void insert(final RoomEntity room) {
-        mDatabase.studentDao().insert(room);
+    public void insert(final StudentEntity student) {
+        mDatabase.studentDao().insert(student);
     }
 
-    public void update(final RoomEntity room) {
-        mDatabase.studentDao().update(room);
+    public void update(final StudentEntity student) {
+        mDatabase.studentDao().update(student);
     }
 
-    public void delete(final RoomEntity room) {
-        mDatabase.studentDao().delete(room);
+    public void delete(final StudentEntity student) {
+        mDatabase.studentDao().delete(student);
     }
 }

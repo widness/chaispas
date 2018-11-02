@@ -23,20 +23,18 @@ import java.util.List;
 
 import ch.hevs.aislab.demo.R;
 import ch.hevs.aislab.demo.adapter.RecyclerAdapter;
-import ch.hevs.aislab.demo.database.entity.RoomEntity;
+import ch.hevs.aislab.demo.database.entity.StudentEntity;
 import ch.hevs.aislab.demo.ui.BaseActivity;
-import ch.hevs.aislab.demo.ui.room.EditRoomActivity;
-import ch.hevs.aislab.demo.ui.room.RoomDetailActivity;
 import ch.hevs.aislab.demo.util.RecyclerViewItemClickListener;
-import ch.hevs.aislab.demo.viewmodel.room.RoomListViewModel;
+import ch.hevs.aislab.demo.viewmodel.student.StudentListViewModel;
 
 public class StudentsActivity extends BaseActivity {
 
     private static final String TAG = "StudentsActivity";
 
-    private List<RoomEntity> mRooms;
-    private RecyclerAdapter<RoomEntity> mAdapter;
-    private RoomListViewModel mViewModel;
+    private List<StudentEntity> mStudents;
+    private RecyclerAdapter<StudentEntity> mAdapter;
+    private StudentListViewModel mViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,28 +57,28 @@ public class StudentsActivity extends BaseActivity {
         SharedPreferences settings = getSharedPreferences(BaseActivity.PREFS_NAME, 0);
         String user = settings.getString(BaseActivity.PREFS_USER, null);
 
-        mRooms = new ArrayList<>();
+        mStudents = new ArrayList<>();
         mAdapter = new RecyclerAdapter<>(new RecyclerViewItemClickListener() {
 
             @Override
             public void onItemClick(View v, int position) {
                 Log.d(TAG, "clicked position:" + position);
-                Log.d(TAG, "clicked on: " + mRooms.get(position).getLabel());
+                Log.d(TAG, "clicked on: " + mStudents.get(position).getFirstName());
 
                 Intent intent = new Intent(StudentsActivity.this, StudentDetailActivity.class);
                 intent.setFlags(
                         Intent.FLAG_ACTIVITY_NO_ANIMATION |
                                 Intent.FLAG_ACTIVITY_NO_HISTORY
                 );
-                intent.putExtra("roomId", mRooms.get(position).getId());
+                intent.putExtra("roomId", mStudents.get(position).getId());
                 startActivity(intent);
             }
 
             @Override
             public void onItemLongClick(View v, int position) {
                 Log.d(TAG, "longClicked position:" + position);
-                Log.d(TAG, "longClicked on: " + mRooms.get(position).getLabel());
-                Log.d(TAG, "mRooms:" + mRooms.get(position));
+                Log.d(TAG, "longClicked on: " + mStudents.get(position).getFirstName());
+                Log.d(TAG, "mStudents:" + mStudents.get(position));
 
                 createDeleteDialog(position);
             }
@@ -97,13 +95,13 @@ public class StudentsActivity extends BaseActivity {
                 }
         );
 
-        RoomListViewModel.Factory factory = new RoomListViewModel.Factory(
+        StudentListViewModel.Factory factory = new StudentListViewModel.Factory(
                 getApplication());
-        mViewModel = ViewModelProviders.of(this, factory).get(RoomListViewModel.class);
-        mViewModel.getRooms().observe(this, roomEntities -> {
+        mViewModel = ViewModelProviders.of(this, factory).get(StudentListViewModel.class);
+        mViewModel.getStudents().observe(this, roomEntities -> {
             if (roomEntities != null) {
-                mRooms = roomEntities;
-                mAdapter.setData(mRooms);
+                mStudents = roomEntities;
+                mAdapter.setData(mStudents);
             }
         });
 
@@ -125,7 +123,7 @@ public class StudentsActivity extends BaseActivity {
 
     private void createDeleteDialog(final int position) {
 
-        final RoomEntity room = mRooms.get(position);
+        final StudentEntity room = mStudents.get(position);
         LayoutInflater inflater = LayoutInflater.from(this);
         final View view = inflater.inflate(R.layout.row_delete_item, null);
         final AlertDialog alertDialog = new AlertDialog.Builder(this).create();
@@ -133,11 +131,11 @@ public class StudentsActivity extends BaseActivity {
         alertDialog.setCancelable(false);
 
         final TextView deleteMessage = view.findViewById(R.id.tv_delete_item);
-        deleteMessage.setText(String.format(getString(R.string.account_delete_msg), room.getLabel()));
+        deleteMessage.setText(String.format(getString(R.string.account_delete_msg), room.getFirstName()));
 
         alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, getString(R.string.action_accept), (dialog, which) -> {
             Toast toast = Toast.makeText(this, getString(R.string.account_deleted), Toast.LENGTH_LONG);
-            mViewModel.deleteRoom(room);
+            mViewModel.deleteStudent(room);
             toast.show();
         });
 

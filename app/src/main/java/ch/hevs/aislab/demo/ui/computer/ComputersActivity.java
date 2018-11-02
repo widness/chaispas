@@ -23,19 +23,18 @@ import java.util.List;
 
 import ch.hevs.aislab.demo.R;
 import ch.hevs.aislab.demo.adapter.RecyclerAdapter;
-import ch.hevs.aislab.demo.database.entity.RoomEntity;
+import ch.hevs.aislab.demo.database.entity.ComputerEntity;
 import ch.hevs.aislab.demo.ui.BaseActivity;
-import ch.hevs.aislab.demo.ui.room.EditRoomActivity;
 import ch.hevs.aislab.demo.util.RecyclerViewItemClickListener;
-import ch.hevs.aislab.demo.viewmodel.room.RoomListViewModel;
+import ch.hevs.aislab.demo.viewmodel.computer.ComputerListViewModel;
 
 public class ComputersActivity extends BaseActivity {
 
     private static final String TAG = "ComputersActivity";
 
-    private List<RoomEntity> mRooms;
-    private RecyclerAdapter<RoomEntity> mAdapter;
-    private RoomListViewModel mViewModel;
+    private List<ComputerEntity> mComputers;
+    private RecyclerAdapter<ComputerEntity> mAdapter;
+    private ComputerListViewModel mViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,28 +57,28 @@ public class ComputersActivity extends BaseActivity {
         SharedPreferences settings = getSharedPreferences(BaseActivity.PREFS_NAME, 0);
         String user = settings.getString(BaseActivity.PREFS_USER, null);
 
-        mRooms = new ArrayList<>();
+        mComputers = new ArrayList<>();
         mAdapter = new RecyclerAdapter<>(new RecyclerViewItemClickListener() {
 
             @Override
             public void onItemClick(View v, int position) {
                 Log.d(TAG, "clicked position:" + position);
-                Log.d(TAG, "clicked on: " + mRooms.get(position).getLabel());
+                Log.d(TAG, "clicked on: " + mComputers.get(position).getLabel());
 
                 Intent intent = new Intent(ComputersActivity.this, ComputerDetailActivity.class);
                 intent.setFlags(
                         Intent.FLAG_ACTIVITY_NO_ANIMATION |
                                 Intent.FLAG_ACTIVITY_NO_HISTORY
                 );
-                intent.putExtra("roomId", mRooms.get(position).getId());
+                intent.putExtra("roomId", mComputers.get(position).getId());
                 startActivity(intent);
             }
 
             @Override
             public void onItemLongClick(View v, int position) {
                 Log.d(TAG, "longClicked position:" + position);
-                Log.d(TAG, "longClicked on: " + mRooms.get(position).getLabel());
-                Log.d(TAG, "mRooms:" + mRooms.get(position));
+                Log.d(TAG, "longClicked on: " + mComputers.get(position).getLabel());
+                Log.d(TAG, "mComputers:" + mComputers.get(position));
 
                 createDeleteDialog(position);
             }
@@ -87,7 +86,7 @@ public class ComputersActivity extends BaseActivity {
 
         FloatingActionButton fab = findViewById(R.id.floatingActionButton);
         fab.setOnClickListener(view -> {
-                    Intent intent = new Intent(ComputersActivity.this, EditRoomActivity.class);
+                    Intent intent = new Intent(ComputersActivity.this, EditComputerActivity.class);
                     intent.setFlags(
                             Intent.FLAG_ACTIVITY_NO_ANIMATION |
                                     Intent.FLAG_ACTIVITY_NO_HISTORY
@@ -96,13 +95,13 @@ public class ComputersActivity extends BaseActivity {
                 }
         );
 
-        RoomListViewModel.Factory factory = new RoomListViewModel.Factory(
+        ComputerListViewModel.Factory factory = new ComputerListViewModel.Factory(
                 getApplication());
-        mViewModel = ViewModelProviders.of(this, factory).get(RoomListViewModel.class);
-        mViewModel.getRooms().observe(this, roomEntities -> {
+        mViewModel = ViewModelProviders.of(this, factory).get(ComputerListViewModel.class);
+        mViewModel.getComputers().observe(this, roomEntities -> {
             if (roomEntities != null) {
-                mRooms = roomEntities;
-                mAdapter.setData(mRooms);
+                mComputers = roomEntities;
+                mAdapter.setData(mComputers);
             }
         });
 
@@ -124,7 +123,7 @@ public class ComputersActivity extends BaseActivity {
 
     private void createDeleteDialog(final int position) {
 
-        final RoomEntity room = mRooms.get(position);
+        final ComputerEntity room = mComputers.get(position);
         LayoutInflater inflater = LayoutInflater.from(this);
         final View view = inflater.inflate(R.layout.row_delete_item, null);
         final AlertDialog alertDialog = new AlertDialog.Builder(this).create();
@@ -136,7 +135,7 @@ public class ComputersActivity extends BaseActivity {
 
         alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, getString(R.string.action_accept), (dialog, which) -> {
             Toast toast = Toast.makeText(this, getString(R.string.account_deleted), Toast.LENGTH_LONG);
-            mViewModel.deleteRoom(room);
+            mViewModel.deleteComputer(room);
             toast.show();
         });
 

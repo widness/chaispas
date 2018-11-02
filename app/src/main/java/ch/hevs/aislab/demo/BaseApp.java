@@ -5,6 +5,7 @@ import android.app.Application;
 import ch.hevs.aislab.demo.database.AppDatabase;
 import ch.hevs.aislab.demo.database.repository.AccountRepository;
 import ch.hevs.aislab.demo.database.repository.ClientRepository;
+import ch.hevs.aislab.demo.database.repository.ComputerRepository;
 import ch.hevs.aislab.demo.database.repository.RoomRepository;
 
 /**
@@ -32,4 +33,9 @@ public class BaseApp extends Application {
     public RoomRepository getRoomRepository() {
         return RoomRepository.getInstance(getDatabase());
     }
+
+    public ComputerRepository getComputerRepository() {
+        return ComputerRepository.getInstance(getDatabase());
+    }
+
 }

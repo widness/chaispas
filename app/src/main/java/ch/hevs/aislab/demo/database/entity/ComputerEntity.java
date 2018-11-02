@@ -14,12 +14,12 @@ import ch.hevs.aislab.demo.model.Computer;
         @ForeignKey(
                 entity = RoomEntity.class,
                 parentColumns = "id",
-                childColumns = "room_id",
+                childColumns = "roomId",
                 onDelete = ForeignKey.CASCADE
         ),
         indices = {
                 @Index(
-                        value = {"room_id"}
+                        value = {"roomId"}
                 )}
 )
 public class ComputerEntity implements Computer {
@@ -29,13 +29,7 @@ public class ComputerEntity implements Computer {
     private String label;
     private int type;
     private String description;
-    private int	room_id;
-
-    private Map<Integer, String> types_map = new HashMap<Integer, String>() {{
-        put(1, "Notebook");
-        put(2, "Desktop");
-        put(3, "All in one");
-    }};
+    private int	roomId;
 
     public ComputerEntity() {
     }
@@ -45,34 +39,67 @@ public class ComputerEntity implements Computer {
         label = computer.getLabel();
         type = computer.getType();
         description = computer.getDescription();
-        room_id = computer.getRoomId();
+        roomId = computer.getRoomId();
     }
 
     @Override
-    public long getId() {
+    public Long getId() {
         return id;
+    }
+    public void setId(Long id) {
+        this.id = id;
     }
 
     @Override
     public String getLabel() {
         return label;
     }
+    public void setLabel(String label) { this.label = label; }
+
 
     @Override
     public int getType() {
         return type;
     }
     public String getTypeString() {
+        Map<Integer, String> types_map = new HashMap<Integer, String>() {{
+            put(1, "Notebook");
+            put(2, "Desktop");
+            put(3, "All in one");
+        }};
+
         return types_map.get(type);
+    }
+    public void setType(int type) {
+        this.type = type;
     }
 
     @Override
     public String getDescription() {
         return description;
     }
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
 
     @Override
     public int getRoomId() {
-        return room_id;
+        return roomId;
+    }
+    public void setRoomId(int roomId){ this.roomId = roomId;}
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) return false;
+        if (obj == this) return true;
+        if (!(obj instanceof ComputerEntity)) return false;
+        ComputerEntity o = (ComputerEntity) obj;
+        return o.getId().equals(this.getId());
+    }
+
+    @Override
+    public String toString() {
+        return label;
     }
 }

@@ -1,7 +1,7 @@
 package ch.hevs.aislab.demo.model;
 
 public interface Computer {
-    long getId();
+    Long getId();
     String getLabel();
     int getType();
     String getTypeString();

@@ -102,14 +102,10 @@ public abstract class AppDatabase extends RoomDatabase {
                 database.computerDao().deleteAll();
 
                 // Generate the data for pre-population
-                List<ClientEntity> clients = DataGenerator.generateClients();
-                List<AccountEntity> accounts = DataGenerator.generateAccountsForClients(clients);
                 List<RoomEntity> rooms = DataGenerator.generateRooms();
                 List<ComputerEntity> computers = DataGenerator.generateComputers();
 
                 Log.i(TAG, "Insert demo data.");
-                database.clientDao().insertAll(clients);
-                database.accountDao().insertAll(accounts);
                 database.roomDao().insertAll(rooms);
                 database.computerDao().insertAll(computers);
             });

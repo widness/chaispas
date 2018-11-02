@@ -71,7 +71,7 @@ public class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerAdapter.Vie
             holder.itemTitle.setText(label);
             String nbOfPlaces = "Places: " + Integer.toString(((RoomEntity) item).getNbOfPlaces());
             holder.itemDetail.setText(nbOfPlaces);
-            holder.itemImage.setImageBitmap(BitmapFactory.decodeFile("ic_computer"));
+            holder.itemImage.setImageBitmap(BitmapFactory.decodeFile("ic_room"));
         } else if (item.getClass().equals(StudentEntity.class)) {
             String tempTitle = ((StudentEntity) item).getFirstName() + ((StudentEntity) item).getLastName();
             holder.itemTitle.setText(tempTitle);
@@ -79,7 +79,6 @@ public class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerAdapter.Vie
             holder.itemTitle.setText(((ComputerEntity) item).getLabel());
             holder.itemDetail.setText(((ComputerEntity) item).getDescription());
         }
-        // holder.itemImage.setImageAlpha(iIno.itemImage); //TODO: Import fake image
     }
 
     @Override

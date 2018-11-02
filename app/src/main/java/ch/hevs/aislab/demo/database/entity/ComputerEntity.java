@@ -35,6 +35,13 @@ public class ComputerEntity implements Computer {
     public ComputerEntity() {
     }
 
+    public ComputerEntity(String label, int type, String description, int roomId) {
+        this.label = label;
+        this.type = type;
+        this.description = description;
+        this.roomId = roomId;
+    }
+
     public ComputerEntity(Computer computer) {
         id = computer.getId();
         label = computer.getLabel();

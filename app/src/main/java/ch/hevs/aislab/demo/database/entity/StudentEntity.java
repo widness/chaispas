@@ -33,6 +33,11 @@ public class StudentEntity implements Student {
 
     public StudentEntity() { }
 
+    public StudentEntity(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
     public StudentEntity(Student student) {
         id = student.getId();
         firstName = student.getFirstName();

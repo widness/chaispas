@@ -15,12 +15,12 @@ import ch.hevs.aislab.demo.model.Student;
         @ForeignKey(
                 entity = RoomEntity.class,
                 parentColumns = "id",
-                childColumns = "student_id",
+                childColumns = "roomId",
                 onDelete = ForeignKey.CASCADE
         ),
         indices = {
                 @Index(
-                        value = {"student_id"}
+                        value = {"roomId"}
                 )}
 )
 
@@ -29,7 +29,6 @@ public class StudentEntity implements Student {
     private Long id;
     private String firstName;
     private String lastName;
-    private Date birthDay;
     private Long roomId;
 
     public StudentEntity() { }
@@ -38,35 +37,27 @@ public class StudentEntity implements Student {
         id = student.getId();
         firstName = student.getFirstName();
         lastName = student.getLastName();
-        birthDay = student.getBirthday();
         roomId = this.getRoomId();
     }
 
     // TODO: fill return
     @Override
-    public Long getId() {
-        return roomId;
-    }
+    public Long getId() { return id; }
+    public void setId(Long studentId) { this.id = studentId; }
 
     @Override
     public String getFirstName() {
         return firstName;
     }
+    public void setFirstName(String firstName) { this.firstName = firstName; }
 
     @Override
     public String getLastName() {
         return lastName;
     }
-
+    public void setLastName(String lastName) { this.lastName = lastName; }
     @Override
-    public Date getBirthday() {
-        return birthDay;
-    }
-
-    @Override
-    public Long getRoomId() {
-        return roomId;
-    }
+    public Long getRoomId() { return roomId; }
     public void setRoomId(Long roomId) {
         this.roomId = roomId;
     }

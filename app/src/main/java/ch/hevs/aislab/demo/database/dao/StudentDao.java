@@ -1,6 +1,7 @@
 package ch.hevs.aislab.demo.database.dao;
 
 import android.arch.lifecycle.LiveData;
+import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.OnConflictStrategy;
@@ -11,6 +12,7 @@ import java.util.List;
 
 import ch.hevs.aislab.demo.database.entity.StudentEntity;
 
+@Dao
 public abstract class StudentDao {
     @Query("SELECT * FROM students WHERE id = :id")
     public abstract LiveData<StudentEntity> getById(Long id);

@@ -22,9 +22,10 @@ import ch.hevs.aislab.demo.database.entity.AccountEntity;
 import ch.hevs.aislab.demo.database.entity.ClientEntity;
 import ch.hevs.aislab.demo.database.entity.ComputerEntity;
 import ch.hevs.aislab.demo.database.entity.RoomEntity;
+import ch.hevs.aislab.demo.database.entity.StudentEntity;
 import ch.hevs.aislab.demo.model.Computer;
 
-@Database(entities = {AccountEntity.class, ClientEntity.class, RoomEntity.class, ComputerEntity.class}, version = 1)
+@Database(entities = {AccountEntity.class, ClientEntity.class, RoomEntity.class, ComputerEntity.class, StudentEntity.class}, version = 1)
 public abstract class AppDatabase extends RoomDatabase {
 
     private static final String TAG = "AppDatabase";

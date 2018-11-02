@@ -6,6 +6,5 @@ public interface Student {
     Long getId();
     String getFirstName();
     String getLastName();
-    Date getBirthday();
     Long getRoomId();
 }

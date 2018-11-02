@@ -1,14 +1,27 @@
 package ch.hevs.aislab.demo.database.entity;
 
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.ForeignKey;
+import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-
-import ch.hevs.aislab.demo.model.Account;
 import ch.hevs.aislab.demo.model.Computer;
 
+@Entity(tableName = "computers",
+        foreignKeys =
+        @ForeignKey(
+                entity = RoomEntity.class,
+                parentColumns = "id",
+                childColumns = "room_id",
+                onDelete = ForeignKey.CASCADE
+        ),
+        indices = {
+                @Index(
+                        value = {"room_id"}
+                )}
+)
 public class ComputerEntity implements Computer {
 
     @PrimaryKey(autoGenerate = true)

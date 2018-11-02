@@ -5,6 +5,7 @@ import java.util.List;
 
 import ch.hevs.aislab.demo.database.entity.AccountEntity;
 import ch.hevs.aislab.demo.database.entity.ClientEntity;
+import ch.hevs.aislab.demo.database.entity.ComputerEntity;
 import ch.hevs.aislab.demo.database.entity.RoomEntity;
 
 /**
@@ -123,5 +124,26 @@ public class DataGenerator {
         rooms.add(room4);
 
         return rooms;
+    }
+
+    public static List<ComputerEntity> generateComputers() {
+        List<ComputerEntity> computers = new ArrayList<>();
+
+        ComputerEntity computer1 = new ComputerEntity();
+        computer1.setLabel("Computer de la mord");
+        computer1.setType(1);
+        computer1.setDescription("Magnifique, juste magnifique");
+        computer1.setRoomId(2);
+
+        ComputerEntity computer2 = new ComputerEntity();
+        computer2.setLabel("Pc nul");
+        computer2.setType(1);
+        computer2.setDescription("nul, juste nul");
+        computer2.setRoomId(2);
+
+        computers.add(computer1);
+        computers.add(computer2);
+
+        return computers;
     }
 }

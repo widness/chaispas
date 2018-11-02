@@ -21,6 +21,7 @@ public class EditComputerActivity extends BaseActivity {
     private boolean mEditMode;
     private Toast mToast;
     private EditText mEtComputerName;
+    private EditText mEtComputerDescription;
 
     private ComputerViewModel mViewModel;
 
@@ -28,14 +29,15 @@ public class EditComputerActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getLayoutInflater().inflate(R.layout.activity_edit_account, frameLayout);
+        getLayoutInflater().inflate(R.layout.activity_edit_room, frameLayout);
 
         navigationView.setCheckedItem(position);
 
         SharedPreferences settings = getSharedPreferences(BaseActivity.PREFS_NAME, 0);
         mOwner = settings.getString(BaseActivity.PREFS_USER, null);
 
-        mEtComputerName = findViewById(R.id.accountName);
+        mEtComputerName = findViewById(R.id.roomName);
+        mEtComputerDescription = findViewById(R.id.roomNbrOf);
         mEtComputerName.requestFocus();
         Button saveBtn = findViewById(R.id.createAccountButton);
         saveBtn.setOnClickListener(view -> {
@@ -64,6 +66,7 @@ public class EditComputerActivity extends BaseActivity {
                 if (computerEntity != null) {
                     mComputer = computerEntity;
                     mEtComputerName.setText(mComputer.getLabel());
+                    mEtComputerDescription.setText((mComputer.getDescription()));
                 }
             });
         }

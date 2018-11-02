@@ -21,6 +21,7 @@ public class EditRoomActivity extends BaseActivity {
     private boolean mEditMode;
     private Toast mToast;
     private EditText mEtRoomName;
+    private EditText mEtRoomNbOfPlace;
 
     private RoomViewModel mViewModel;
 
@@ -28,18 +29,19 @@ public class EditRoomActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getLayoutInflater().inflate(R.layout.activity_edit_account, frameLayout);
+        getLayoutInflater().inflate(R.layout.activity_edit_room, frameLayout);
 
         navigationView.setCheckedItem(position);
 
         SharedPreferences settings = getSharedPreferences(BaseActivity.PREFS_NAME, 0);
         mOwner = settings.getString(BaseActivity.PREFS_USER, null);
 
-        mEtRoomName = findViewById(R.id.accountName);
+        mEtRoomName = findViewById(R.id.roomName);
+        mEtRoomNbOfPlace = findViewById(R.id.roomNbrOf);
         mEtRoomName.requestFocus();
         Button saveBtn = findViewById(R.id.createAccountButton);
         saveBtn.setOnClickListener(view -> {
-            saveChanges(mEtRoomName.getText().toString());
+            saveChanges(mEtRoomName.getText().toString(), Integer.parseInt(mEtRoomNbOfPlace.getText().toString()));
             onBackPressed();
             mToast.show();
         });
@@ -64,20 +66,23 @@ public class EditRoomActivity extends BaseActivity {
                 if (accountEntity != null) {
                     mRoom = accountEntity;
                     mEtRoomName.setText(mRoom.getLabel());
+                    mEtRoomNbOfPlace.setText(Integer.toString(mRoom.getNbOfPlaces()));
                 }
             });
         }
     }
 
-    private void saveChanges(String roomLabel) {
+    private void saveChanges(String roomLabel, int roomNbOfPlaces) {
         if (mEditMode) {
             if(!"".equals(roomLabel)) {
                 mRoom.setLabel(roomLabel);
+                mRoom.setNbOfPlaces(roomNbOfPlaces);
                 mViewModel.updateRoom(mRoom);
             }
         } else {
             RoomEntity newRoom = new RoomEntity(roomLabel, 1);
             newRoom.setLabel(roomLabel);
+            newRoom.setNbOfPlaces(roomNbOfPlaces);
             mViewModel.createRoom(newRoom);
         }
     }

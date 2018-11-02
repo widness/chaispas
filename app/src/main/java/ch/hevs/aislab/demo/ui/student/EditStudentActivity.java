@@ -28,14 +28,14 @@ public class EditStudentActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getLayoutInflater().inflate(R.layout.activity_edit_account, frameLayout);
+        getLayoutInflater().inflate(R.layout.activity_edit_room, frameLayout);
 
         navigationView.setCheckedItem(position);
 
         SharedPreferences settings = getSharedPreferences(BaseActivity.PREFS_NAME, 0);
         mOwner = settings.getString(BaseActivity.PREFS_USER, null);
 
-        mEtStudentName = findViewById(R.id.accountName);
+        mEtStudentName = findViewById(R.id.roomName); // TODO: Change it with the student
         mEtStudentName.requestFocus();
         Button saveBtn = findViewById(R.id.createAccountButton);
         saveBtn.setOnClickListener(view -> {

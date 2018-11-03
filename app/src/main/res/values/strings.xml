@@ -12,7 +12,7 @@
     <!-- Room -->
     <string name="id">id</string>
     <string name="room_name">Roome Name</string>
-    <string name="room_nbOf">Roome Place</string>
+    <string name="room_nbOf">Number of place</string>
 
     <!-- Student -->
     <string name="student_lastname">Last Name</string>

@@ -20,28 +20,27 @@ public class EditComputerActivity extends BaseActivity {
     private String mOwner;
     private boolean mEditMode;
     private Toast mToast;
-    private EditText mEtComputerName;
+    private EditText mEtComputerLabel;
     private EditText mEtComputerDescription;
 
     private ComputerViewModel mViewModel;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getLayoutInflater().inflate(R.layout.activity_edit_room, frameLayout);
+        getLayoutInflater().inflate(R.layout.activity_edit_computer, frameLayout);
 
         navigationView.setCheckedItem(position);
 
         SharedPreferences settings = getSharedPreferences(BaseActivity.PREFS_NAME, 0);
         mOwner = settings.getString(BaseActivity.PREFS_USER, null);
 
-        mEtComputerName = findViewById(R.id.roomName);
-        mEtComputerDescription = findViewById(R.id.roomNbrOf);
-        mEtComputerName.requestFocus();
+        mEtComputerLabel = findViewById(R.id.computerLabel);
+        mEtComputerDescription = findViewById(R.id.computerDescription);
+        mEtComputerLabel.requestFocus();
         Button saveBtn = findViewById(R.id.createAccountButton);
         saveBtn.setOnClickListener(view -> {
-            saveChanges(mEtComputerName.getText().toString());
+            saveChanges(mEtComputerLabel.getText().toString());
             onBackPressed();
             mToast.show();
         });
@@ -65,7 +64,7 @@ public class EditComputerActivity extends BaseActivity {
             mViewModel.getComputer().observe(this, computerEntity -> {
                 if (computerEntity != null) {
                     mComputer = computerEntity;
-                    mEtComputerName.setText(mComputer.getLabel());
+                    mEtComputerLabel.setText(mComputer.getLabel());
                     mEtComputerDescription.setText((mComputer.getDescription()));
                 }
             });

@@ -20,7 +20,8 @@ public class EditStudentActivity extends BaseActivity {
     private String mOwner;
     private boolean mEditMode;
     private Toast mToast;
-    private EditText mEtStudentName;
+    private EditText mEtStudentFirstName;
+    private EditText mEtStudentLastName;
 
     private StudentViewModel mViewModel;
 
@@ -28,18 +29,19 @@ public class EditStudentActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getLayoutInflater().inflate(R.layout.activity_edit_room, frameLayout);
+        getLayoutInflater().inflate(R.layout.activity_edit_student, frameLayout);
 
         navigationView.setCheckedItem(position);
 
         SharedPreferences settings = getSharedPreferences(BaseActivity.PREFS_NAME, 0);
         mOwner = settings.getString(BaseActivity.PREFS_USER, null);
 
-        mEtStudentName = findViewById(R.id.roomName); // TODO: Change it with the student
-        mEtStudentName.requestFocus();
+        mEtStudentFirstName = findViewById(R.id.studentFirstName);
+        mEtStudentLastName = findViewById(R.id.studentLastName);
+        mEtStudentFirstName.requestFocus();
         Button saveBtn = findViewById(R.id.createAccountButton);
         saveBtn.setOnClickListener(view -> {
-            saveChanges(mEtStudentName.getText().toString());
+            saveChanges(mEtStudentFirstName.getText().toString());
             onBackPressed();
             mToast.show();
         });
@@ -63,7 +65,8 @@ public class EditStudentActivity extends BaseActivity {
             mViewModel.getStudent().observe(this, accountEntity -> {
                 if (accountEntity != null) {
                     mStudent = accountEntity;
-                    mEtStudentName.setText(mStudent.getFirstName());
+                    mEtStudentFirstName.setText(mStudent.getFirstName());
+                    mEtStudentLastName.setText(mStudent.getLastName());
                 }
             });
         }

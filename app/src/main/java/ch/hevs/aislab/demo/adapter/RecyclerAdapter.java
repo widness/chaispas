@@ -33,13 +33,11 @@ public class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerAdapter.Vie
         // each data item is just a string in this case
         View itemView;
 
-        private ImageView itemImage;
         private TextView itemTitle;
         private TextView itemDetail;
 
         ViewHolder(View itemView) {
             super(itemView);
-            itemImage = itemView.findViewById(R.id.item_image);
             itemTitle = itemView.findViewById(R.id.item_title);
             itemDetail = itemView.findViewById(R.id.item_detail);
         }
@@ -72,11 +70,9 @@ public class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerAdapter.Vie
             holder.itemTitle.setText(label);
             String nbOfPlaces = "Places: " + Integer.toString(((RoomEntity) item).getNbOfPlaces());
             holder.itemDetail.setText(nbOfPlaces);
-            // TODO : not working
-            holder.itemImage.setImageBitmap(BitmapFactory.decodeFile("android.resource://mipmap/ic_room/ic_room.png"));
         } else if (item.getClass().equals(StudentEntity.class)) {
-            String tempTitle = ((StudentEntity) item).getFirstName() + ((StudentEntity) item).getLastName();
-            holder.itemTitle.setText(tempTitle);
+            holder.itemTitle.setText(((StudentEntity) item).getLastName());
+            holder.itemDetail.setText(((StudentEntity) item).getFirstName());
         } else if (item.getClass().equals(ComputerEntity.class)) {
             holder.itemTitle.setText(((ComputerEntity) item).getLabel());
             holder.itemDetail.setText(((ComputerEntity) item).getDescription());

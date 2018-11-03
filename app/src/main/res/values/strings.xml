@@ -9,20 +9,19 @@
     <string name="computers">Computers</string>
     <string name="students">Students</string>
 
-    <!-- Class -->
+    <!-- Room -->
     <string name="id">id</string>
+    <string name="room_name">Roome Name</string>
+    <string name="room_nbOf">Roome Place</string>
 
     <!-- Student -->
     <string name="student_lastname">Last Name</string>
     <string name="student_firstName">First Name</string>
-    <string name="student_birthday">Birthday</string>
 
     <!-- Computer -->
     <string name="computer_label">Computer label</string>
     <string name="computer_type">Computer type</string>
     <string name="computer_description">Computer description</string>
-    <string name="prompt_computer_label">Computer Label</string>
-    <string name="prompt_computer_nbrOf">Amount of places</string>
 
     <!-- Settings -->
     <string name="title_activity_settings">Settings</string>

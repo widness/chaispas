@@ -7,18 +7,18 @@
     android:layout_marginTop="16dp"
     android:layout_marginRight="16dp"
     android:orientation="vertical"
-    tools:context="ch.hevs.aislab.demo.ui.room.EditRoomActivity">
+    tools:context="ch.hevs.aislab.demo.ui.student.EditStudentActivity">
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <EditText
-            android:id="@+id/roomName"
+            android:id="@+id/studentFirstName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="@string/room_name"
+            android:hint="@string/student_firstName"
             android:inputType="textPersonName" />
     </android.support.design.widget.TextInputLayout>
 
@@ -28,12 +28,12 @@
         android:layout_height="wrap_content">
 
         <EditText
-            android:id="@+id/roomNbrOf"
+            android:id="@+id/studentLastName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="@string/room_nbOf"
-            android:inputType="number" />
+            android:hint="@string/student_lastname"
+            android:inputType="textPersonName" />
     </android.support.design.widget.TextInputLayout>
 
     <Button

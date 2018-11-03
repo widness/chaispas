@@ -7,32 +7,44 @@
     android:layout_marginTop="16dp"
     android:layout_marginRight="16dp"
     android:orientation="vertical"
-    tools:context="ch.hevs.aislab.demo.ui.room.EditRoomActivity">
+    tools:context="ch.hevs.aislab.demo.ui.computer.EditComputerActivity">
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <EditText
-            android:id="@+id/roomName"
+            android:id="@+id/computerLabel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="@string/room_name"
+            android:hint="@string/computer_label"
             android:inputType="textPersonName" />
     </android.support.design.widget.TextInputLayout>
 
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/computerType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/computer_type"
+            android:inputType="number" />
+    </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <EditText
-            android:id="@+id/roomNbrOf"
+            android:id="@+id/computerDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="@string/room_nbOf"
+            android:hint="@string/computer_description"
             android:inputType="number" />
     </android.support.design.widget.TextInputLayout>
 

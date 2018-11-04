@@ -14,13 +14,16 @@ import java.util.List;
 import java.util.concurrent.Executors;
 
 import ch.hevs.aislab.demo.database.dao.AccountDao;
-import ch.hevs.aislab.demo.database.dao.ClientDao;
+import ch.hevs.aislab.demo.database.dao.ComputerDao;
 import ch.hevs.aislab.demo.database.dao.RoomDao;
+import ch.hevs.aislab.demo.database.dao.StudentDao;
 import ch.hevs.aislab.demo.database.entity.AccountEntity;
 import ch.hevs.aislab.demo.database.entity.ClientEntity;
+import ch.hevs.aislab.demo.database.entity.ComputerEntity;
 import ch.hevs.aislab.demo.database.entity.RoomEntity;
+import ch.hevs.aislab.demo.database.entity.StudentEntity;
 
-@Database(entities = {AccountEntity.class, ClientEntity.class, RoomEntity.class}, version = 1)
+@Database(entities = {AccountEntity.class, ClientEntity.class, RoomEntity.class, ComputerEntity.class, StudentEntity.class}, version = 1)
 public abstract class AppDatabase extends RoomDatabase {
 
     private static final String TAG = "AppDatabase";
@@ -32,8 +35,8 @@ public abstract class AppDatabase extends RoomDatabase {
     public abstract AccountDao accountDao();
 
     public abstract RoomDao roomDao();
-
-    public abstract ClientDao clientDao();
+    public abstract ComputerDao computerDao();
+    public abstract StudentDao studentDao();
 
     private final MutableLiveData<Boolean> mIsDatabaseCreated = new MutableLiveData<>();
 
@@ -89,19 +92,19 @@ public abstract class AppDatabase extends RoomDatabase {
         Executors.newSingleThreadExecutor().execute(() -> {
             database.runInTransaction(() -> {
                 Log.i(TAG, "Wipe database.");
-                database.clientDao().deleteAll();
-                database.accountDao().deleteAll();
                 database.roomDao().deleteAll();
+                database.computerDao().deleteAll();
+                database.studentDao().deleteAll();
 
                 // Generate the data for pre-population
-                List<ClientEntity> clients = DataGenerator.generateClients();
-                List<AccountEntity> accounts = DataGenerator.generateAccountsForClients(clients);
                 List<RoomEntity> rooms = DataGenerator.generateRooms();
+                List<ComputerEntity> computers = DataGenerator.generateComputers();
+                List<StudentEntity> students = DataGenerator.generateStudents();
 
                 Log.i(TAG, "Insert demo data.");
-                database.clientDao().insertAll(clients);
-                database.accountDao().insertAll(accounts);
                 database.roomDao().insertAll(rooms);
+                database.computerDao().insertAll(computers);
+                database.studentDao().insertAll(students);
             });
         });
     }

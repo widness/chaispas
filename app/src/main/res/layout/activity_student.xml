@@ -7,7 +7,7 @@
     android:layout_marginRight="16dp"
     android:layout_marginTop="16dp"
     android:orientation="vertical"
-    tools:context="ch.hevs.aislab.demo.ui.student.StudentActivity">
+    tools:context="ch.hevs.aislab.demo.ui.student.StudentsActivity">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
@@ -18,50 +18,38 @@
         android:orientation="vertical"
         tools:context="ch.hevs.aislab.demo.ui.student.StudentActivity">
 
-        <android.support.design.widget.TextInputLayout
+        <TextView
+            android:id="@+id/studentFirstName"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="empty"
+            android:textStyle="bold"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large" />
 
-            <EditText
-                android:id="@+id/firstName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="@string/client_firstName"
-                android:inputType="textPersonName"
-                android:focusable="false"
-                android:enabled="false" />
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
+        <TextView
+            android:id="@+id/studentLastName"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <EditText
-                android:id="@+id/lastName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="@string/client_name"
-                android:inputType="textPersonName"
-                android:focusable="false"
-                android:enabled="false" />
-        </android.support.design.widget.TextInputLayout>
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="empty"
+            android:textStyle="bold"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large" />
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:tools="http://schemas.android.com/tools"
             android:id="@+id/clientPasswordLayout"
-            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
+            android:visibility="gone"
             tools:context="ch.hevs.aislab.demo.ui.student.StudentActivity">
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginBottom="12dp"
                 android:layout_marginTop="12dp"
+                android:layout_marginBottom="12dp"
                 android:background="@android:color/darker_gray" />
         </LinearLayout>
     </LinearLayout>

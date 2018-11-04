@@ -12,7 +12,10 @@ public class RoomEntity implements Room {
     private String label;
     private int nbOfPlaces;
 
-    public RoomEntity() { }
+    public RoomEntity(String label, int nbOfPlaces) {
+        this.label = label;
+        this.nbOfPlaces = nbOfPlaces;
+    }
 
     public RoomEntity(Room room) {
         id = room.getId();

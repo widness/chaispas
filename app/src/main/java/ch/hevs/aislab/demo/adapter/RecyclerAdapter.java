@@ -1,5 +1,7 @@
 package ch.hevs.aislab.demo.adapter;
 
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.support.v7.util.DiffUtil;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,8 +14,6 @@ import java.util.List;
 import java.util.Objects;
 
 import ch.hevs.aislab.demo.R;
-import ch.hevs.aislab.demo.database.entity.AccountEntity;
-import ch.hevs.aislab.demo.database.entity.ClientEntity;
 import ch.hevs.aislab.demo.database.entity.ComputerEntity;
 import ch.hevs.aislab.demo.database.entity.RoomEntity;
 import ch.hevs.aislab.demo.database.entity.StudentEntity;
@@ -33,13 +33,11 @@ public class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerAdapter.Vie
         // each data item is just a string in this case
         View itemView;
 
-        private ImageView itemImage;
         private TextView itemTitle;
         private TextView itemDetail;
 
         ViewHolder(View itemView) {
             super(itemView);
-            itemImage = itemView.findViewById(R.id.item_image);
             itemTitle = itemView.findViewById(R.id.item_title);
             itemDetail = itemView.findViewById(R.id.item_detail);
         }
@@ -73,13 +71,12 @@ public class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerAdapter.Vie
             String nbOfPlaces = "Places: " + Integer.toString(((RoomEntity) item).getNbOfPlaces());
             holder.itemDetail.setText(nbOfPlaces);
         } else if (item.getClass().equals(StudentEntity.class)) {
-            String tempTitle = ((StudentEntity) item).getFirstname() + ((StudentEntity) item).getLastname();
-            holder.itemTitle.setText(tempTitle);
+            holder.itemTitle.setText(((StudentEntity) item).getLastName());
+            holder.itemDetail.setText(((StudentEntity) item).getFirstName());
         } else if (item.getClass().equals(ComputerEntity.class)) {
             holder.itemTitle.setText(((ComputerEntity) item).getLabel());
             holder.itemDetail.setText(((ComputerEntity) item).getDescription());
         }
-        // holder.itemImage.setImageAlpha(iIno.itemImage); //TODO: See how bind image
     }
 
     @Override

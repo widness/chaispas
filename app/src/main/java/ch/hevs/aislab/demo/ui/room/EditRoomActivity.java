@@ -8,79 +8,78 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import ch.hevs.aislab.demo.R;
-import ch.hevs.aislab.demo.database.entity.AccountEntity;
+import ch.hevs.aislab.demo.database.entity.RoomEntity;
 import ch.hevs.aislab.demo.ui.BaseActivity;
-import ch.hevs.aislab.demo.viewmodel.account.AccountViewModel;
+import ch.hevs.aislab.demo.viewmodel.room.RoomViewModel;
 
 public class EditRoomActivity extends BaseActivity {
 
-    private final String TAG = "EditAccountActivity";
+    private final String TAG = "EditRoomActivity";
 
-    private AccountEntity mAccount;
-    private String mOwner;
+    private RoomEntity mRoom;
     private boolean mEditMode;
     private Toast mToast;
-    private EditText mEtAccountName;
+    private EditText mEtRoomName;
+    private EditText mEtRoomNbOfPlace;
 
-    private AccountViewModel mViewModel;
+    private RoomViewModel mViewModel;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getLayoutInflater().inflate(R.layout.activity_edit_account, frameLayout);
+        getLayoutInflater().inflate(R.layout.activity_edit_room, frameLayout);
 
         navigationView.setCheckedItem(position);
 
-        SharedPreferences settings = getSharedPreferences(BaseActivity.PREFS_NAME, 0);
-        mOwner = settings.getString(BaseActivity.PREFS_USER, null);
-
-        mEtAccountName = findViewById(R.id.accountName);
-        mEtAccountName.requestFocus();
-        Button saveBtn = findViewById(R.id.createAccountButton);
+        mEtRoomName = findViewById(R.id.roomName);
+        mEtRoomNbOfPlace = findViewById(R.id.roomNbrOf);
+        mEtRoomName.requestFocus();
+        Button saveBtn = findViewById(R.id.saveChangeButton);
         saveBtn.setOnClickListener(view -> {
-            saveChanges(mEtAccountName.getText().toString());
+            saveChanges(mEtRoomName.getText().toString(), Integer.parseInt(mEtRoomNbOfPlace.getText().toString()));
             onBackPressed();
             mToast.show();
         });
 
-        Long accountId = getIntent().getLongExtra("accountId", 0L);
+        Long accountId = getIntent().getLongExtra("roomId", 0L);
         if (accountId == 0L) {
             setTitle(getString(R.string.account_balance));
             mToast = Toast.makeText(this, getString(R.string.account_created), Toast.LENGTH_LONG);
             mEditMode = false;
         } else {
-            setTitle(getString(R.string.title_activity_edit_account));
+            setTitle(getString(R.string.edit_room));
             saveBtn.setText(R.string.action_update);
             mToast = Toast.makeText(this, getString(R.string.account_edited), Toast.LENGTH_LONG);
             mEditMode = true;
         }
 
-        AccountViewModel.Factory factory = new AccountViewModel.Factory(
+        RoomViewModel.Factory factory = new RoomViewModel.Factory(
                 getApplication(), accountId);
-        mViewModel = ViewModelProviders.of(this, factory).get(AccountViewModel.class);
+        mViewModel = ViewModelProviders.of(this, factory).get(RoomViewModel.class);
         if (mEditMode) {
-            mViewModel.getAccount().observe(this, accountEntity -> {
+            mViewModel.getRoom().observe(this, accountEntity -> {
                 if (accountEntity != null) {
-                    mAccount = accountEntity;
-                    mEtAccountName.setText(mAccount.getName());
+                    mRoom = accountEntity;
+                    mEtRoomName.setText(mRoom.getLabel());
+                    mEtRoomNbOfPlace.setText(Integer.toString(mRoom.getNbOfPlaces()));
                 }
             });
         }
     }
 
-    private void saveChanges(String accountName) {
+    private void saveChanges(String roomLabel, int roomNbOfPlaces) {
         if (mEditMode) {
-            if(!"".equals(accountName)) {
-                mAccount.setName(accountName);
-                mViewModel.updateAccount(mAccount);
+            if(!"".equals(roomLabel)) {
+                mRoom.setLabel(roomLabel);
+                mRoom.setNbOfPlaces(roomNbOfPlaces);
+                mViewModel.updateRoom(mRoom);
             }
         } else {
-            AccountEntity newAccount = new AccountEntity();
-            newAccount.setOwner(mOwner);
-            newAccount.setBalance(0.0d);
-            newAccount.setName(accountName);
-            mViewModel.createAccount(newAccount);
+            RoomEntity newRoom = new RoomEntity(roomLabel, 1);
+            newRoom.setLabel(roomLabel);
+            newRoom.setNbOfPlaces(roomNbOfPlaces);
+            mViewModel.createRoom(newRoom);
         }
     }
 }

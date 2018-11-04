@@ -18,38 +18,39 @@ import android.widget.Toast;
 import java.text.NumberFormat;
 
 import ch.hevs.aislab.demo.R;
-import ch.hevs.aislab.demo.database.entity.AccountEntity;
+import ch.hevs.aislab.demo.database.entity.RoomEntity;
 import ch.hevs.aislab.demo.ui.BaseActivity;
-import ch.hevs.aislab.demo.viewmodel.account.AccountViewModel;
+import ch.hevs.aislab.demo.viewmodel.room.RoomViewModel;
 
 public class RoomDetailActivity  extends BaseActivity {
 
     private static final String TAG = "RoomDetailActivity";
     private static final int EDIT_ACCOUNT = 1;
 
-    private AccountEntity mAccount;
-    private TextView mTvBalance;
-    private NumberFormat mDefaultFormat;
+    private TextView roomLabel;
 
-    private AccountViewModel mViewModel;
+    private RoomEntity mRoom;
+    private RoomViewModel mViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getLayoutInflater().inflate(R.layout.activity_account, frameLayout);
+        getLayoutInflater().inflate(R.layout.activity_room, frameLayout);
 
         navigationView.setCheckedItem(position);
 
-        Long accountId = getIntent().getLongExtra("accountId", 0L);
+        Long roomId = getIntent().getLongExtra("roomId", 0L);
 
         initiateView();
 
-        AccountViewModel.Factory factory = new AccountViewModel.Factory(
-                getApplication(), accountId);
-        mViewModel = ViewModelProviders.of(this, factory).get(AccountViewModel.class);
-        mViewModel.getAccount().observe(this, accountEntity -> {
-            if (accountEntity != null) {
-                mAccount = accountEntity;
+        roomLabel = findViewById(R.id.roomId);
+
+        RoomViewModel.Factory factory = new RoomViewModel.Factory(
+                getApplication(), roomId);
+        mViewModel = ViewModelProviders.of(this, factory).get(RoomViewModel.class);
+        mViewModel.getRoom().observe(this, roomEntity -> {
+            if (roomEntity != null) {
+                mRoom = roomEntity;
                 updateContent();
             }
         });
@@ -68,16 +69,13 @@ public class RoomDetailActivity  extends BaseActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == EDIT_ACCOUNT) {
             Intent intent = new Intent(this, EditRoomActivity.class);
-            intent.putExtra("accountId", mAccount.getId());
+            intent.putExtra("roomId", mRoom.getId());
             startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
     }
 
     private void initiateView() {
-        mTvBalance = findViewById(R.id.item_title);
-        mDefaultFormat = NumberFormat.getCurrencyInstance();
-
         Button depositBtn = findViewById(R.id.depositButton);
         depositBtn.setOnClickListener(view -> generateDialog(R.string.action_deposit));
 
@@ -86,14 +84,15 @@ public class RoomDetailActivity  extends BaseActivity {
     }
 
     private void updateContent() {
-        if (mAccount != null) {
-            setTitle(mAccount.getName());
-            mTvBalance.setText(mDefaultFormat.format(mAccount.getBalance()));
+        if (mRoom != null) {
+            setTitle(mRoom.getLabel());
             Log.i(TAG, "Activity populated.");
+            roomLabel.setText(mRoom.getLabel());
         }
     }
 
     private void generateDialog(final int action) {
+        // TODO: Link to the Computer or student list
         LayoutInflater inflater = LayoutInflater.from(this);
         final View view = inflater.inflate(R.layout.account_actions, null);
         final AlertDialog alertDialog = new AlertDialog.Builder(this).create();
@@ -101,27 +100,15 @@ public class RoomDetailActivity  extends BaseActivity {
         alertDialog.setCancelable(false);
 
 
-        final EditText accountMovement = view.findViewById(R.id.account_movement);
+        final EditText roomMovement = view.findViewById(R.id.account_movement);
 
         alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, getString(R.string.action_accept), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Double amount = Double.parseDouble(accountMovement.getText().toString());
+                Double amount = Double.parseDouble(roomMovement.getText().toString());
                 Toast toast = Toast.makeText(RoomDetailActivity.this, getString(R.string.error_withdraw), Toast.LENGTH_LONG);
 
-                if (action == R.string.action_withdraw) {
-                    if (mAccount.getBalance() < amount) {
-                        toast.show();
-                        return;
-                    }
-                    Log.i(TAG, "Withdrawal: " + amount.toString());
-                    mAccount.setBalance(mAccount.getBalance() - amount);
-                }
-                if (action == R.string.action_deposit) {
-                    Log.i(TAG, "Deposit: " + amount.toString());
-                    mAccount.setBalance(mAccount.getBalance() + amount);
-                }
-                mViewModel.updateAccount(mAccount);
+                mViewModel.updateRoom(mRoom);
             }
         });
 

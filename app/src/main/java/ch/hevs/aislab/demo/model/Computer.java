@@ -1,9 +1,10 @@
 package ch.hevs.aislab.demo.model;
 
 public interface Computer {
-    int getId();
+    Long getId();
     String getLabel();
     int getType();
+    String getTypeString();
     String getDescription();
     int getRoomId();
 }

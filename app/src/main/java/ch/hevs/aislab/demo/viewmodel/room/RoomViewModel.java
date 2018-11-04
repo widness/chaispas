@@ -69,7 +69,7 @@ public class RoomViewModel extends AndroidViewModel {
     /**
      * Expose the LiveData AccountEntity query so the UI can observe it.
      */
-    public LiveData<RoomEntity> getAccount() {
+    public LiveData<RoomEntity> getRoom() {
         return mObservableRoom;
     }
 

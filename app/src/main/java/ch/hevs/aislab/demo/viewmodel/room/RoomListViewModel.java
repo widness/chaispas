@@ -8,24 +8,16 @@ import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProvider;
 import android.support.annotation.NonNull;
 import android.util.Log;
-import android.util.Pair;
 
 import java.util.List;
 
 import ch.hevs.aislab.demo.BaseApp;
-import ch.hevs.aislab.demo.database.async.account.DeleteAccount;
-import ch.hevs.aislab.demo.database.async.account.Transaction;
-import ch.hevs.aislab.demo.database.async.room.CreateRoom;
 import ch.hevs.aislab.demo.database.async.room.DeleteRoom;
-import ch.hevs.aislab.demo.database.async.room.UpdateRoom;
-import ch.hevs.aislab.demo.database.entity.AccountEntity;
 import ch.hevs.aislab.demo.database.entity.RoomEntity;
 import ch.hevs.aislab.demo.database.repository.RoomRepository;
 import ch.hevs.aislab.demo.util.OnAsyncEventListener;
-import ch.hevs.aislab.demo.viewmodel.account.AccountListViewModel;
-
 public class RoomListViewModel extends AndroidViewModel {
-    private static final String TAG = "RoomListViewModel";
+    private static final String TAG = "ComputerListViewModel";
 
     private RoomRepository mRepository;
 

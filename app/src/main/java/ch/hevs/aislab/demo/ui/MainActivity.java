@@ -73,7 +73,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         final AlertDialog alertDialog = new AlertDialog.Builder(this).create();
         alertDialog.setCancelable(false);
         alertDialog.setMessage(getString(R.string.logout_msg));
-        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "notUsed", (dialog, which) -> alertDialog.dismiss()); // TODO: Not a dismiss
+        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "yes", (dialog, which) -> {
+            finish();
+            System.exit(0);
+        }); // TODO: Not a dismiss
         alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, getString(R.string.action_cancel), (dialog, which) -> alertDialog.dismiss());
         alertDialog.show();
     }

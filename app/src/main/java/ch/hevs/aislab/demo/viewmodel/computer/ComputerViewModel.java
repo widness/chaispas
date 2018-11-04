@@ -26,16 +26,16 @@ public class ComputerViewModel extends AndroidViewModel {
     private final MediatorLiveData<ComputerEntity> mObservableComputer;
 
     public ComputerViewModel(@NonNull Application application,
-                             final Long roomId, ComputerRepository roomRepository) {
+                             final Long computerId, ComputerRepository computerRepository) {
         super(application);
 
-        mRepository = roomRepository;
+        mRepository = computerRepository;
 
         mObservableComputer = new MediatorLiveData<>();
         // set by default null, until we get data from the database.
         mObservableComputer.setValue(null);
 
-        LiveData<ComputerEntity> room = mRepository.getComputer(roomId);
+        LiveData<ComputerEntity> room = mRepository.getComputer(computerId);
 
         // observe the changes of the account entity from the database and forward them
         mObservableComputer.addSource(room, mObservableComputer::setValue);
@@ -53,9 +53,9 @@ public class ComputerViewModel extends AndroidViewModel {
 
         private final ComputerRepository mRepository;
 
-        public Factory(@NonNull Application application, Long roomId) {
+        public Factory(@NonNull Application application, Long computerId) {
             mApplication = application;
-            mComputerId = roomId;
+            mComputerId = computerId;
             mRepository = ((BaseApp) application).getComputerRepository();
         }
 
@@ -73,7 +73,7 @@ public class ComputerViewModel extends AndroidViewModel {
         return mObservableComputer;
     }
 
-    public void createComputer(ComputerEntity room) {
+    public void createComputer(ComputerEntity computer) {
         new CreateComputer(getApplication(), new OnAsyncEventListener() {
             @Override
             public void onSuccess() {
@@ -84,10 +84,10 @@ public class ComputerViewModel extends AndroidViewModel {
             public void onFailure(Exception e) {
                 Log.d(TAG, "createComputer: failure", e);
             }
-        }).execute(room);
+        }).execute(computer);
     }
 
-    public void updateComputer(ComputerEntity room) {
+    public void updateComputer(ComputerEntity computer) {
         new UpdateComputer(getApplication(), new OnAsyncEventListener() {
             @Override
             public void onSuccess() {
@@ -98,6 +98,6 @@ public class ComputerViewModel extends AndroidViewModel {
             public void onFailure(Exception e) {
                 Log.d(TAG, "updateComputer: failure", e);
             }
-        }).execute(room);
+        }).execute(computer);
     }
 }

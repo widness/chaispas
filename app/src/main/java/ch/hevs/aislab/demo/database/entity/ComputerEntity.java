@@ -75,6 +75,7 @@ public class ComputerEntity implements Computer {
 
         return types_map.get(type);
     }
+
     public void setType(int type) {
         this.type = type;
     }

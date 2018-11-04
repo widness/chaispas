@@ -54,8 +54,6 @@ public class StudentsActivity extends BaseActivity {
                 LinearLayoutManager.VERTICAL);
         recyclerView.addItemDecoration(dividerItemDecoration);
 
-        SharedPreferences settings = getSharedPreferences(BaseActivity.PREFS_NAME, 0);
-        String user = settings.getString(BaseActivity.PREFS_USER, null);
 
         mStudents = new ArrayList<>();
         mAdapter = new RecyclerAdapter<>(new RecyclerViewItemClickListener() {
@@ -70,7 +68,7 @@ public class StudentsActivity extends BaseActivity {
                         Intent.FLAG_ACTIVITY_NO_ANIMATION |
                                 Intent.FLAG_ACTIVITY_NO_HISTORY
                 );
-                intent.putExtra("roomId", mStudents.get(position).getId());
+                intent.putExtra("id", mStudents.get(position).getId());
                 startActivity(intent);
             }
 

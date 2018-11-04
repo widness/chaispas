@@ -41,7 +41,7 @@ public class EditStudentActivity extends BaseActivity {
         mEtStudentFirstName.requestFocus();
         Button saveBtn = findViewById(R.id.createAccountButton);
         saveBtn.setOnClickListener(view -> {
-            saveChanges(mEtStudentFirstName.getText().toString());
+            saveChanges(mEtStudentFirstName.getText().toString(), mEtStudentLastName.getText().toString());
             onBackPressed();
             mToast.show();
         });
@@ -72,14 +72,17 @@ public class EditStudentActivity extends BaseActivity {
         }
     }
 
-    private void saveChanges(String accountName) {
+    private void saveChanges(String studentFirstName, String studentLastName) {
         if (mEditMode) {
-            if(!"".equals(accountName)) {
-                mStudent.setFirstName(accountName);
+            if(!"".equals(studentFirstName)) {
+                mStudent.setFirstName(studentFirstName);
+                if(!"".equals(studentLastName)) {
+                    mStudent.setLastName(studentLastName);
+                }
                 mViewModel.updateStudent(mStudent);
             }
         } else {
-            StudentEntity newStudent = new StudentEntity(accountName, "default");
+            StudentEntity newStudent = new StudentEntity(studentLastName, studentLastName);
             mViewModel.createStudent(newStudent);
         }
     }

@@ -18,7 +18,7 @@ import ch.hevs.aislab.demo.util.OnAsyncEventListener;
 
 public class RoomViewModel extends AndroidViewModel {
 
-    private static final String TAG = "ComputerViewModel";
+    private static final String TAG = "RoomViewModel";
 
     private RoomRepository mRepository;
 

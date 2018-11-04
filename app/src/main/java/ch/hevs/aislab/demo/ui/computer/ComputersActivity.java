@@ -70,7 +70,7 @@ public class ComputersActivity extends BaseActivity {
                         Intent.FLAG_ACTIVITY_NO_ANIMATION |
                                 Intent.FLAG_ACTIVITY_NO_HISTORY
                 );
-                intent.putExtra("roomId", mComputers.get(position).getId());
+                intent.putExtra("computerId", mComputers.get(position).getId());
                 startActivity(intent);
             }
 

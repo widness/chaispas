@@ -1,20 +1,12 @@
 package ch.hevs.aislab.demo.ui.computer;
 
 import android.arch.lifecycle.ViewModelProviders;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import java.text.NumberFormat;
 
 import ch.hevs.aislab.demo.R;
 import ch.hevs.aislab.demo.database.entity.ComputerEntity;
@@ -27,9 +19,9 @@ public class ComputerDetailActivity  extends BaseActivity {
     private static final int EDIT_ACCOUNT = 1;
 
     private ComputerEntity mComputer;
-    private TextView mTvBalance;
-    private NumberFormat mDefaultFormat;
-
+    private TextView computerLabel;
+    private TextView computerDescription;
+    private TextView computerType;
     private ComputerViewModel mViewModel;
 
     @Override
@@ -43,12 +35,16 @@ public class ComputerDetailActivity  extends BaseActivity {
 
         initiateView();
 
+        computerLabel = findViewById(R.id.computerLabel);
+        computerDescription = findViewById(R.id.computerDescription);
+        computerType = findViewById(R.id.computerType);
+
         ComputerViewModel.Factory factory = new ComputerViewModel.Factory(
                 getApplication(), computerId);
         mViewModel = ViewModelProviders.of(this, factory).get(ComputerViewModel.class);
-        mViewModel.getComputer().observe(this, accountEntity -> {
-            if (accountEntity != null) {
-                mComputer = accountEntity;
+        mViewModel.getComputer().observe(this, computerEntity -> {
+            if (computerEntity != null) {
+                mComputer = computerEntity;
                 updateContent();
             }
         });
@@ -67,60 +63,25 @@ public class ComputerDetailActivity  extends BaseActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == EDIT_ACCOUNT) {
             Intent intent = new Intent(this, EditComputerActivity.class);
-            intent.putExtra("computerId", mComputer.getId());
+            intent.putExtra("id", mComputer.getId());
             startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
     }
 
     private void initiateView() {
-        mTvBalance = findViewById(R.id.item_title);
-        mDefaultFormat = NumberFormat.getCurrencyInstance();
+        /* computerLabel = findViewById(R.id.computerLabel);
+        computerDescription = findViewById(R.id.computerDescription);
+        computerType = findViewById(R.id.computerType); */
     }
 
     private void updateContent() {
         if (mComputer != null) {
             setTitle(mComputer.getLabel());
             Log.i(TAG, "Activity populated.");
+            computerLabel.setText(mComputer.getLabel());
+            computerDescription.setText(mComputer.getDescription());
+            computerType.setText(mComputer.getTypeString());
         }
-    }
-
-    private void generateDialog(final int action) {
-        LayoutInflater inflater = LayoutInflater.from(this);
-        final View view = inflater.inflate(R.layout.account_actions, null);
-        final AlertDialog alertDialog = new AlertDialog.Builder(this).create();
-        alertDialog.setTitle(getString(action));
-        alertDialog.setCancelable(false);
-
-
-        final EditText accountMovement = view.findViewById(R.id.account_movement);
-
-        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, getString(R.string.action_accept), new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                Double amount = Double.parseDouble(accountMovement.getText().toString());
-                Toast toast = Toast.makeText(ComputerDetailActivity.this, getString(R.string.error_withdraw), Toast.LENGTH_LONG);
-
-                /*
-                if (action == R.string.action_withdraw) {
-                    if (mComputer.getBalance() < amount) {
-                        toast.show();
-                        return;
-                    }
-                    Log.i(TAG, "Withdrawal: " + amount.toString());
-                    mComputer.setBalance(mComputer.getBalance() - amount);
-                }
-                if (action == R.string.action_deposit) {
-                    Log.i(TAG, "Deposit: " + amount.toString());
-                    mComputer.setBalance(mComputer.getBalance() + amount);
-                } */
-                mViewModel.updateComputer(mComputer);
-            }
-        });
-
-        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, getString(R.string.action_cancel),
-                (dialog, which) -> alertDialog.dismiss());
-        alertDialog.setView(view);
-        alertDialog.show();
     }
 }

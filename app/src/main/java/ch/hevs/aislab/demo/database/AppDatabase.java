@@ -14,7 +14,6 @@ import java.util.List;
 import java.util.concurrent.Executors;
 
 import ch.hevs.aislab.demo.database.dao.AccountDao;
-import ch.hevs.aislab.demo.database.dao.ClientDao;
 import ch.hevs.aislab.demo.database.dao.ComputerDao;
 import ch.hevs.aislab.demo.database.dao.RoomDao;
 import ch.hevs.aislab.demo.database.dao.StudentDao;
@@ -23,7 +22,6 @@ import ch.hevs.aislab.demo.database.entity.ClientEntity;
 import ch.hevs.aislab.demo.database.entity.ComputerEntity;
 import ch.hevs.aislab.demo.database.entity.RoomEntity;
 import ch.hevs.aislab.demo.database.entity.StudentEntity;
-import ch.hevs.aislab.demo.model.Computer;
 
 @Database(entities = {AccountEntity.class, ClientEntity.class, RoomEntity.class, ComputerEntity.class, StudentEntity.class}, version = 1)
 public abstract class AppDatabase extends RoomDatabase {

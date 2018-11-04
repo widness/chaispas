@@ -51,20 +51,20 @@ public class StudentViewModel extends AndroidViewModel {
         @NonNull
         private final Application mApplication;
 
-        private final Long mRoomId;
+        private final Long mStudentId;
 
-        private final RoomRepository mRepository;
+        private final StudentRepository mRepository;
 
-        public Factory(@NonNull Application application, Long roomId) {
+        public Factory(@NonNull Application application, Long studentId) {
             mApplication = application;
-            mRoomId = roomId;
-            mRepository = ((BaseApp) application).getRoomRepository();
+            mStudentId = studentId;
+            mRepository = ((BaseApp) application).getStudentRepository();
         }
 
         @Override
         public <T extends ViewModel> T create(Class<T> modelClass) {
             //noinspection unchecked
-            return (T) new RoomViewModel(mApplication, mRoomId, mRepository);
+            return (T) new StudentViewModel(mApplication, mStudentId, mRepository);
         }
     }
 

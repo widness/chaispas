@@ -27,11 +27,9 @@ public class RoomDetailActivity  extends BaseActivity {
     private static final String TAG = "RoomDetailActivity";
     private static final int EDIT_ACCOUNT = 1;
 
-    private RoomEntity mRoom;
-    private TextView mTvBalance;
-    private NumberFormat mDefaultFormat;
     private TextView roomLabel;
 
+    private RoomEntity mRoom;
     private RoomViewModel mViewModel;
 
     @Override
@@ -78,9 +76,6 @@ public class RoomDetailActivity  extends BaseActivity {
     }
 
     private void initiateView() {
-        mTvBalance = findViewById(R.id.item_title);
-        mDefaultFormat = NumberFormat.getCurrencyInstance();
-
         Button depositBtn = findViewById(R.id.depositButton);
         depositBtn.setOnClickListener(view -> generateDialog(R.string.action_deposit));
 
@@ -97,6 +92,7 @@ public class RoomDetailActivity  extends BaseActivity {
     }
 
     private void generateDialog(final int action) {
+        // TODO: Link to the Computer or student list
         LayoutInflater inflater = LayoutInflater.from(this);
         final View view = inflater.inflate(R.layout.account_actions, null);
         final AlertDialog alertDialog = new AlertDialog.Builder(this).create();

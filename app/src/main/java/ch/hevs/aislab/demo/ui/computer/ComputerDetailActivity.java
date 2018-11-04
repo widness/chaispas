@@ -35,16 +35,16 @@ public class ComputerDetailActivity  extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getLayoutInflater().inflate(R.layout.activity_account, frameLayout);
+        getLayoutInflater().inflate(R.layout.activity_computer, frameLayout);
 
         navigationView.setCheckedItem(position);
 
-        Long accountId = getIntent().getLongExtra("accountId", 0L);
+        Long computerId = getIntent().getLongExtra("computerId", 0L);
 
         initiateView();
 
         ComputerViewModel.Factory factory = new ComputerViewModel.Factory(
-                getApplication(), accountId);
+                getApplication(), computerId);
         mViewModel = ViewModelProviders.of(this, factory).get(ComputerViewModel.class);
         mViewModel.getComputer().observe(this, accountEntity -> {
             if (accountEntity != null) {
@@ -67,7 +67,7 @@ public class ComputerDetailActivity  extends BaseActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == EDIT_ACCOUNT) {
             Intent intent = new Intent(this, EditComputerActivity.class);
-            intent.putExtra("accountId", mComputer.getId());
+            intent.putExtra("computerId", mComputer.getId());
             startActivity(intent);
         }
         return super.onOptionsItemSelected(item);

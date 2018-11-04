@@ -56,7 +56,6 @@ public class RoomsActivity extends BaseActivity {
         recyclerView.addItemDecoration(dividerItemDecoration);
 
         SharedPreferences settings = getSharedPreferences(BaseActivity.PREFS_NAME, 0);
-        String user = settings.getString(BaseActivity.PREFS_USER, null);
 
         mRooms = new ArrayList<>();
         mAdapter = new RecyclerAdapter<>(new RecyclerViewItemClickListener() {

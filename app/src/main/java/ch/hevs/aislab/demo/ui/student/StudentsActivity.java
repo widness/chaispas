@@ -123,7 +123,7 @@ public class StudentsActivity extends BaseActivity {
 
     private void createDeleteDialog(final int position) {
 
-        final StudentEntity room = mStudents.get(position);
+        final StudentEntity student = mStudents.get(position);
         LayoutInflater inflater = LayoutInflater.from(this);
         final View view = inflater.inflate(R.layout.row_delete_item, null);
         final AlertDialog alertDialog = new AlertDialog.Builder(this).create();
@@ -131,11 +131,11 @@ public class StudentsActivity extends BaseActivity {
         alertDialog.setCancelable(false);
 
         final TextView deleteMessage = view.findViewById(R.id.tv_delete_item);
-        deleteMessage.setText(String.format(getString(R.string.account_delete_msg), room.getFirstName()));
+        deleteMessage.setText(String.format(getString(R.string.account_delete_msg), student.getFirstName()));
 
         alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, getString(R.string.action_accept), (dialog, which) -> {
             Toast toast = Toast.makeText(this, getString(R.string.account_deleted), Toast.LENGTH_LONG);
-            mViewModel.deleteStudent(room);
+            mViewModel.deleteStudent(student);
             toast.show();
         });
 

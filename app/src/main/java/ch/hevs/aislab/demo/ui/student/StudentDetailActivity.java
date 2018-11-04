@@ -28,9 +28,6 @@ public class StudentDetailActivity  extends BaseActivity {
     private static final int EDIT_ACCOUNT = 1;
 
     private StudentEntity mStudent;
-    private TextView mTvBalance;
-    private NumberFormat mDefaultFormat;
-
     private StudentViewModel mViewModel;
 
     @Override
@@ -40,12 +37,12 @@ public class StudentDetailActivity  extends BaseActivity {
 
         navigationView.setCheckedItem(position);
 
-        Long accountId = getIntent().getLongExtra("accountId", 0L);
+        Long studentId = getIntent().getLongExtra("studentId", 0L);
 
         initiateView();
 
         StudentViewModel.Factory factory = new StudentViewModel.Factory(
-                getApplication(), accountId);
+                getApplication(), studentId);
         mViewModel = ViewModelProviders.of(this, factory).get(StudentViewModel.class);
         mViewModel.getStudent().observe(this, studentEntity -> {
             if (studentEntity != null) {
@@ -68,15 +65,13 @@ public class StudentDetailActivity  extends BaseActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == EDIT_ACCOUNT) {
             Intent intent = new Intent(this, EditStudentActivity.class);
-            intent.putExtra("accountId", mStudent.getId());
+            intent.putExtra("studentId", mStudent.getId());
             startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
     }
 
     private void initiateView() {
-        mTvBalance = findViewById(R.id.item_title);
-        mDefaultFormat = NumberFormat.getCurrencyInstance();
     }
 
     private void updateContent() {

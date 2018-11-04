@@ -17,7 +17,6 @@ public class EditRoomActivity extends BaseActivity {
     private final String TAG = "EditRoomActivity";
 
     private RoomEntity mRoom;
-    private String mOwner;
     private boolean mEditMode;
     private Toast mToast;
     private EditText mEtRoomName;
@@ -33,13 +32,10 @@ public class EditRoomActivity extends BaseActivity {
 
         navigationView.setCheckedItem(position);
 
-        SharedPreferences settings = getSharedPreferences(BaseActivity.PREFS_NAME, 0);
-        mOwner = settings.getString(BaseActivity.PREFS_USER, null);
-
         mEtRoomName = findViewById(R.id.roomName);
         mEtRoomNbOfPlace = findViewById(R.id.roomNbrOf);
         mEtRoomName.requestFocus();
-        Button saveBtn = findViewById(R.id.createAccountButton);
+        Button saveBtn = findViewById(R.id.saveChangeButton);
         saveBtn.setOnClickListener(view -> {
             saveChanges(mEtRoomName.getText().toString(), Integer.parseInt(mEtRoomNbOfPlace.getText().toString()));
             onBackPressed();
@@ -52,7 +48,7 @@ public class EditRoomActivity extends BaseActivity {
             mToast = Toast.makeText(this, getString(R.string.account_created), Toast.LENGTH_LONG);
             mEditMode = false;
         } else {
-            setTitle(getString(R.string.title_activity_edit_account));
+            setTitle(getString(R.string.edit_room));
             saveBtn.setText(R.string.action_update);
             mToast = Toast.makeText(this, getString(R.string.account_edited), Toast.LENGTH_LONG);
             mEditMode = true;

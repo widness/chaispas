@@ -30,6 +30,7 @@ public class RoomDetailActivity  extends BaseActivity {
     private RoomEntity mRoom;
     private TextView mTvBalance;
     private NumberFormat mDefaultFormat;
+    private TextView roomLabel;
 
     private RoomViewModel mViewModel;
 
@@ -43,6 +44,8 @@ public class RoomDetailActivity  extends BaseActivity {
         Long roomId = getIntent().getLongExtra("roomId", 0L);
 
         initiateView();
+
+        roomLabel = findViewById(R.id.roomId);
 
         RoomViewModel.Factory factory = new RoomViewModel.Factory(
                 getApplication(), roomId);
@@ -89,6 +92,7 @@ public class RoomDetailActivity  extends BaseActivity {
         if (mRoom != null) {
             setTitle(mRoom.getLabel());
             Log.i(TAG, "Activity populated.");
+            roomLabel.setText(mRoom.getLabel());
         }
     }
 
@@ -108,19 +112,6 @@ public class RoomDetailActivity  extends BaseActivity {
                 Double amount = Double.parseDouble(roomMovement.getText().toString());
                 Toast toast = Toast.makeText(RoomDetailActivity.this, getString(R.string.error_withdraw), Toast.LENGTH_LONG);
 
-                /*
-                if (action == R.string.action_withdraw) {
-                    if (mRoom.getBalance() < amount) {
-                        toast.show();
-                        return;
-                    }
-                    Log.i(TAG, "Withdrawal: " + amount.toString());
-                    mRoom.setBalance(mRoom.getBalance() - amount);
-                }
-                if (action == R.string.action_deposit) {
-                    Log.i(TAG, "Deposit: " + amount.toString());
-                    mRoom.setBalance(mRoom.getBalance() + amount);
-                } */
                 mViewModel.updateRoom(mRoom);
             }
         });

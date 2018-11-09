@@ -10,20 +10,27 @@
         android:id="@+id/room_button"
         android:layout_width="190dp"
         android:layout_height="80dp"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="40dp"
+        android:background="@color/colorPrimaryDark"
         android:text="Room"
+        android:textColor="@color/colorLight"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
 
     <Button
         android:id="@+id/computers_button"
         android:layout_width="190dp"
         android:layout_height="80dp"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@color/colorPrimaryDark"
         android:text="Computers"
+        android:textColor="@color/colorLight"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/students_button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/room_button" />
 
@@ -31,11 +38,54 @@
         android:id="@+id/students_button"
         android:layout_width="190dp"
         android:layout_height="80dp"
-        android:layout_marginTop="64dp"
+        android:layout_marginBottom="80dp"
+        android:background="@color/colorPrimaryDark"
         android:text="Students"
+        android:textColor="@color/colorLight"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="84dp"
+        android:background="@color/colorPrimaryDark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/computers_button" />
+        tools:layout_editor_absoluteY="0dp">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="45dp"
+            android:layout_marginTop="14dp"
+            android:layout_marginEnd="47dp"
+            android:layout_marginBottom="23dp"
+            android:text="@string/app_name"
+            android:textAlignment="center"
+            android:textColor="@color/colorLight"
+            android:textSize="35sp" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="69dp"
+            android:layout_marginBottom="18dp"
+            android:text="@string/app_company"
+            android:textColor="@color/colorLight"
+            android:textStyle="italic" />
+
+    </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>

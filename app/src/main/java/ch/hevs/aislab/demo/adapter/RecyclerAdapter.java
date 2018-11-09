@@ -1,7 +1,9 @@
 package ch.hevs.aislab.demo.adapter;
 
+import android.content.Context;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.util.DiffUtil;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -21,6 +23,7 @@ import ch.hevs.aislab.demo.util.RecyclerViewItemClickListener;
 
 public class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
 
+    private Context context;
     private List<T> mData;
     // private List<T> mData;
     private RecyclerViewItemClickListener mListener;
@@ -35,16 +38,19 @@ public class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerAdapter.Vie
 
         private TextView itemTitle;
         private TextView itemDetail;
+        private ImageView itemImage;
 
         ViewHolder(View itemView) {
             super(itemView);
             itemTitle = itemView.findViewById(R.id.item_title);
             itemDetail = itemView.findViewById(R.id.item_detail);
+            itemImage = itemView.findViewById(R.id.item_image);
         }
     }
 
-    public RecyclerAdapter(RecyclerViewItemClickListener listener) {
+    public RecyclerAdapter(RecyclerViewItemClickListener listener, Context context) {
         mListener = listener;
+        this.context = context;
     }
 
     @Override
@@ -70,12 +76,15 @@ public class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerAdapter.Vie
             holder.itemTitle.setText(label);
             String nbOfPlaces = "Places: " + Integer.toString(((RoomEntity) item).getNbOfPlaces());
             holder.itemDetail.setText(nbOfPlaces);
+            holder.itemImage.setImageDrawable(context.getDrawable(R.drawable.ic_room));
         } else if (item.getClass().equals(StudentEntity.class)) {
             holder.itemTitle.setText(((StudentEntity) item).getLastName());
             holder.itemDetail.setText(((StudentEntity) item).getFirstName());
+            holder.itemImage.setImageDrawable(context.getDrawable(R.drawable.ic_student_round));
         } else if (item.getClass().equals(ComputerEntity.class)) {
             holder.itemTitle.setText(((ComputerEntity) item).getLabel());
             holder.itemDetail.setText(((ComputerEntity) item).getDescription());
+            holder.itemImage.setImageDrawable(context.getDrawable(R.drawable.ic_computer_round));
         }
     }
 

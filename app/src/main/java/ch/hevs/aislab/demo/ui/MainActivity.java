@@ -28,7 +28,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         Button mClickButton3 = (Button)findViewById(R.id.students_button);
         mClickButton3.setOnClickListener(this);
 
-        setTitle(getString(R.string.app_name));
+        setTitle(getString(R.string.home));
         navigationView.setCheckedItem(R.id.nav_none);
     }
 
@@ -60,7 +60,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     @Override
     protected void onResume() {
         super.onResume();
-        setTitle(getString(R.string.app_name));
+        setTitle(getString(R.string.home));
         navigationView.setCheckedItem(R.id.nav_none);
     }
 

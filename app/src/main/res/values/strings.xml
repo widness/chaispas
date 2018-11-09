@@ -27,6 +27,9 @@
     <string name="edit_computer">Edit Computer</string>
 
     <string name="computer_card_title">Details</string>
+    <string name="computer_card_type">Type</string>
+    <string name="computer_card_description">Description</string>
+    <string name="computer_card_view_room_button">View room</string>
 
     <!-- Settings -->
     <string name="title_activity_settings">Settings</string>

@@ -52,7 +52,7 @@
                         android:layout_weight=".60"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="Type"
+                        android:text="@string/computer_card_title"
                         android:textAppearance="@android:style/TextAppearance.DeviceDefault"
                         android:textColor="@color/colorLabel" />
 
@@ -62,7 +62,6 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="empty"
                         android:textAppearance="@android:style/TextAppearance.DeviceDefault"
                         android:textStyle="bold" />
                 </LinearLayout>
@@ -81,7 +80,7 @@
                         android:id="@+id/computerDescriptionLabel"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Description"
+                        android:text="@string/computer_card_description"
                         android:textAppearance="@android:style/TextAppearance.DeviceDefault"
                         android:textColor="@color/colorLabel" />
 
@@ -89,7 +88,6 @@
                         android:id="@+id/computerDescription"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="empty"
                         android:textAppearance="@android:style/TextAppearance.DeviceDefault"
                         android:textStyle="bold" />
                 </LinearLayout>
@@ -103,7 +101,7 @@
         android:id="@+id/viewRoomButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="View room" />
+        android:text="@string/computer_card_view_room_button" />
 
 
 </LinearLayout>

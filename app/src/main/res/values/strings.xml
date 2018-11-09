@@ -1,7 +1,8 @@
 <resources>
 
     <!-- App -->
-    <string name="app_name">ChaisPas AppNCO</string>
+    <string name="app_name">ChaisPas</string>
+    <string name="app_company">AppNCO</string>
     <string name="home">Home</string>
     <string name="impressum" translatable="false">ChaisPas</string>
 

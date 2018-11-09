@@ -24,6 +24,8 @@
     <string name="computer_description">Computer description</string>
     <string name="edit_computer">Edit Computer</string>
 
+    <string name="computer_card_title">Details</string>
+
     <!-- Settings -->
     <string name="title_activity_settings">Settings</string>
     <string name="action_settings">Settings</string>

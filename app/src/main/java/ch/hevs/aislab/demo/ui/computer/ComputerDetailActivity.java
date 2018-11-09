@@ -6,12 +6,16 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.TextView;
 
 import ch.hevs.aislab.demo.R;
 import ch.hevs.aislab.demo.database.entity.ComputerEntity;
 import ch.hevs.aislab.demo.ui.BaseActivity;
+import ch.hevs.aislab.demo.ui.room.RoomDetailActivity;
+import ch.hevs.aislab.demo.ui.room.RoomsActivity;
 import ch.hevs.aislab.demo.viewmodel.computer.ComputerViewModel;
+import ch.hevs.aislab.demo.viewmodel.room.RoomViewModel;
 
 public class ComputerDetailActivity  extends BaseActivity {
 
@@ -19,7 +23,7 @@ public class ComputerDetailActivity  extends BaseActivity {
     private static final int EDIT_ACCOUNT = 1;
 
     private ComputerEntity mComputer;
-    private TextView computerLabel;
+    //private TextView computerLabel;
     private TextView computerDescription;
     private TextView computerType;
     private ComputerViewModel mViewModel;
@@ -35,18 +39,24 @@ public class ComputerDetailActivity  extends BaseActivity {
 
         initiateView();
 
-        computerLabel = findViewById(R.id.computerLabel);
+        //computerLabel = findViewById(R.id.computerLabel);
         computerDescription = findViewById(R.id.computerDescription);
         computerType = findViewById(R.id.computerType);
 
-        ComputerViewModel.Factory factory = new ComputerViewModel.Factory(
-                getApplication(), computerId);
+        ComputerViewModel.Factory factory = new ComputerViewModel.Factory(getApplication(), computerId);
         mViewModel = ViewModelProviders.of(this, factory).get(ComputerViewModel.class);
         mViewModel.getComputer().observe(this, computerEntity -> {
             if (computerEntity != null) {
                 mComputer = computerEntity;
                 updateContent();
             }
+        });
+
+        Button viewRoomBtn = findViewById(R.id.viewRoomButton);
+        viewRoomBtn.setOnClickListener(view -> {
+            Intent intent = new Intent(this, RoomDetailActivity.class);
+            intent.putExtra("computerId", mComputer.getId());
+            startActivity(intent);
         });
     }
 
@@ -79,7 +89,7 @@ public class ComputerDetailActivity  extends BaseActivity {
         if (mComputer != null) {
             setTitle(mComputer.getLabel());
             Log.i(TAG, "Activity populated.");
-            computerLabel.setText(mComputer.getLabel());
+            //computerLabel.setText(mComputer.getLabel());
             computerDescription.setText(mComputer.getDescription());
             computerType.setText(mComputer.getTypeString());
         }

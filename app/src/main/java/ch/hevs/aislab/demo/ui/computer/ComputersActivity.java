@@ -82,7 +82,7 @@ public class ComputersActivity extends BaseActivity {
 
                 createDeleteDialog(position);
             }
-        });
+        }, this);
 
         FloatingActionButton fab = findViewById(R.id.floatingActionButton);
         fab.setOnClickListener(view -> {

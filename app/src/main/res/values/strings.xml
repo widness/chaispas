@@ -2,6 +2,7 @@
 
     <!-- App -->
     <string name="app_name">ChaisPas AppNCO</string>
+    <string name="home">Home</string>
     <string name="impressum" translatable="false">ChaisPas</string>
 
     <!-- Room -->

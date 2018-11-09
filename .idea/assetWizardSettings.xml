@@ -19,8 +19,8 @@
                                   <option name="values">
                                     <map>
                                       <entry key="backgroundLayerName" value="ic_launcher_background" />
-                                      <entry key="foregroundImage" value="C:\Users\Widness\Downloads\room_1.png" />
-                                      <entry key="foregroundLayerName" value="ic__foreground" />
+                                      <entry key="foregroundImage" value="C:\Users\Widness\Downloads\header.jpg" />
+                                      <entry key="foregroundLayerName" value="ic__header" />
                                       <entry key="outputName" value="ic_room" />
                                     </map>
                                   </option>
@@ -35,6 +35,11 @@
                 </map>
               </option>
             </PersistentState>
+          </value>
+        </entry>
+        <entry key="vectorWizard">
+          <value>
+            <PersistentState />
           </value>
         </entry>
       </map>

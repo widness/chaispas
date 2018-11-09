@@ -15,6 +15,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import junit.framework.Test;
+
 import java.text.NumberFormat;
 
 import ch.hevs.aislab.demo.R;
@@ -28,6 +30,9 @@ public class RoomDetailActivity  extends BaseActivity {
     private static final int EDIT_ACCOUNT = 1;
 
     private TextView roomLabel;
+    private TextView roomNbPlaces;
+    private TextView roomStudent;
+    private TextView roomComputer;
 
     private RoomEntity mRoom;
     private RoomViewModel mViewModel;
@@ -44,6 +49,9 @@ public class RoomDetailActivity  extends BaseActivity {
         initiateView();
 
         roomLabel = findViewById(R.id.roomId);
+        roomNbPlaces = findViewById(R.id.roomNbPlaces);
+        roomStudent = findViewById(R.id.roomStudent);
+        roomComputer = findViewById(R.id.roomComputer);
 
         RoomViewModel.Factory factory = new RoomViewModel.Factory(
                 getApplication(), roomId);
@@ -88,6 +96,9 @@ public class RoomDetailActivity  extends BaseActivity {
             setTitle(mRoom.getLabel());
             Log.i(TAG, "Activity populated.");
             roomLabel.setText(mRoom.getLabel());
+            roomNbPlaces.setText(String.valueOf(mRoom.getNbOfPlaces()));
+            roomStudent.setText(String.valueOf(mRoom.getNbStudents()));
+            roomComputer.setText(String.valueOf(mRoom.getNbComputers()));
         }
     }
 

@@ -20,6 +20,12 @@ public abstract class RoomDao {
     @Query("SELECT * FROM rooms")
     public abstract LiveData<List<RoomEntity>> getAll();
 
+    @Query("SELECT count(*) FROM students WHERE roomId = :id")
+    public abstract LiveData<Long> getNbStudents(Long id);
+
+    @Query("SELECT count(*) FROM computers WHERE roomId = :id")
+    public abstract LiveData<Long> getNbComputers(Long id);
+
     @Insert
     public abstract long insert(RoomEntity room);
 

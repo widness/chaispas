@@ -13,6 +13,15 @@
     <string name="room_nbOf">Number of place</string>
     <string name="edit_room">Edit Room</string>
 
+    <string name="room_card_title">Details</string>
+    <string name="room_card_id">Name</string>
+    <string name="room_card_nb_place">Total places</string>
+    <string name="room_card_student">Number of students</string>
+    <string name="room_card_computer">Number of computers</string>
+    <string name="room_card_view_computer_button">View computers</string>
+    <string name="room_card_view_student_button">View students</string>
+
+
     <!-- Student -->
     <string name="students">Students</string>
     <string name="student_lastname">Last Name</string>

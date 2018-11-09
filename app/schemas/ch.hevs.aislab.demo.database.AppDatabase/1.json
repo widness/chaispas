@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "b779c0184bb7386226276adc0aa072d4",
+    "identityHash": "f2084ca9aa64c3fdfed1865a13ed35c6",
     "entities": [
       {
         "tableName": "accounts",
@@ -97,7 +97,7 @@
       },
       {
         "tableName": "rooms",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `label` TEXT, `nbOfPlaces` INTEGER NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `label` TEXT, `nbOfPlaces` INTEGER NOT NULL, `nbComputers` INTEGER)",
         "fields": [
           {
             "fieldPath": "id",
@@ -116,6 +116,12 @@
             "columnName": "nbOfPlaces",
             "affinity": "INTEGER",
             "notNull": true
+          },
+          {
+            "fieldPath": "nbComputers",
+            "columnName": "nbComputers",
+            "affinity": "INTEGER",
+            "notNull": false
           }
         ],
         "primaryKey": {
@@ -129,7 +135,7 @@
       },
       {
         "tableName": "computers",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `label` TEXT, `type` INTEGER NOT NULL, `description` TEXT, `roomId` INTEGER NOT NULL, FOREIGN KEY(`roomId`) REFERENCES `rooms`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `label` TEXT, `type` INTEGER NOT NULL, `description` TEXT, `roomId` INTEGER, FOREIGN KEY(`roomId`) REFERENCES `rooms`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
         "fields": [
           {
             "fieldPath": "id",
@@ -159,7 +165,7 @@
             "fieldPath": "roomId",
             "columnName": "roomId",
             "affinity": "INTEGER",
-            "notNull": true
+            "notNull": false
           }
         ],
         "primaryKey": {
@@ -254,7 +260,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"b779c0184bb7386226276adc0aa072d4\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"f2084ca9aa64c3fdfed1865a13ed35c6\")"
     ]
   }
 }

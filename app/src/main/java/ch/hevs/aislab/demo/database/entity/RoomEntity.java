@@ -1,9 +1,13 @@
 package ch.hevs.aislab.demo.database.entity;
 
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 
+import java.util.List;
+
 import ch.hevs.aislab.demo.model.Room;
+import ch.hevs.aislab.demo.model.Student;
 
 @Entity(tableName = "rooms")
 public class RoomEntity implements Room {
@@ -11,6 +15,11 @@ public class RoomEntity implements Room {
     private Long id;
     private String label;
     private int nbOfPlaces;
+
+
+    @Ignore
+    private Long nbStudents;
+    private Long nbComputers;
 
     public RoomEntity(String label, int nbOfPlaces) {
         this.label = label;
@@ -43,6 +52,20 @@ public class RoomEntity implements Room {
     }
     public void setNbOfPlaces(int nbOfPlace) {
         this.nbOfPlaces = nbOfPlace;
+    }
+
+    public Long getNbStudents() {
+        return nbStudents;
+    }
+    public void setNbStudents(Long nbStudents) {
+        this.nbStudents = nbStudents;
+    }
+
+    public Long getNbComputers() {
+        return nbComputers;
+    }
+    public void setNbComputers(Long nbComputers) {
+        this.nbComputers = nbComputers;
     }
 
     @Override

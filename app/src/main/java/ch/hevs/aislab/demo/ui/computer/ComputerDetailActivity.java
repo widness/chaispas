@@ -55,7 +55,7 @@ public class ComputerDetailActivity  extends BaseActivity {
         Button viewRoomBtn = findViewById(R.id.viewRoomButton);
         viewRoomBtn.setOnClickListener(view -> {
             Intent intent = new Intent(this, RoomDetailActivity.class);
-            intent.putExtra("computerId", mComputer.getId());
+            intent.putExtra("roomId", mComputer.getRoomId());
             startActivity(intent);
         });
     }

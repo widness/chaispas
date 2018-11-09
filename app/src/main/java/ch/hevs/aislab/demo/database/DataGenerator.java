@@ -52,8 +52,8 @@ public class DataGenerator {
     public static List<StudentEntity> generateStudents() {
         List<StudentEntity> students = new ArrayList<>();
 
-        StudentEntity student1 = new StudentEntity("Joan", "Doe");
-        StudentEntity student2 = new StudentEntity("Joan le second", "Doe");
+        StudentEntity student1 = new StudentEntity("Joan", "Doe", 1);
+        StudentEntity student2 = new StudentEntity("Joan le second", "Doe", 1);
 
         students.add(student1);
         students.add(student2);

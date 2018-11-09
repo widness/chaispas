@@ -21,8 +21,11 @@
         android:id="@+id/room_button"
         android:layout_width="190dp"
         android:layout_height="80dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="60dp"
+        android:background="@color/colorPrimaryDark"
         android:text="Room"
+        android:textColor="@color/colorLight"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2" />
@@ -31,10 +34,14 @@
         android:id="@+id/computers_button"
         android:layout_width="190dp"
         android:layout_height="80dp"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@color/colorPrimaryDark"
         android:text="Computers"
+        android:textColor="@color/colorLight"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/students_button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/room_button" />
 
@@ -42,11 +49,13 @@
         android:id="@+id/students_button"
         android:layout_width="190dp"
         android:layout_height="80dp"
-        android:layout_marginTop="64dp"
+        android:layout_marginBottom="80dp"
+        android:background="@color/colorPrimaryDark"
         android:text="Students"
+        android:textColor="@color/colorLight"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/computers_button" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

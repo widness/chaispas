@@ -19,6 +19,11 @@
     <string name="student_firstName">First Name</string>
     <string name="edit_student">Edit Student</string>
 
+    <string name="student_card_title">Details</string>
+    <string name="student_card_firstname">First name</string>
+    <string name="student_card_lastname">Last name</string>
+    <string name="student_card_view_room_button">View room</string>
+
     <!-- Computer -->
     <string name="computers">Computers</string>
     <string name="computer_label">Computer label</string>

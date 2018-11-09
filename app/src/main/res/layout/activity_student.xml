@@ -9,48 +9,100 @@
     android:orientation="vertical"
     tools:context="ch.hevs.aislab.demo.ui.student.StudentsActivity">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+    <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/card_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:orientation="vertical"
-        tools:context="ch.hevs.aislab.demo.ui.student.StudentActivity">
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        card_view:cardCornerRadius="4dp">
 
-        <TextView
-            android:id="@+id/studentFirstName"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="empty"
-            android:textStyle="bold"
-            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large" />
+            android:layout_margin="5dp"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/studentLastName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="empty"
-            android:textStyle="bold"
-            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large" />
-
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:tools="http://schemas.android.com/tools"
-            android:id="@+id/clientPasswordLayout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:visibility="gone"
-            tools:context="ch.hevs.aislab.demo.ui.student.StudentActivity">
-
-            <View
+            <TextView
+                android:id="@+id/info_text"
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginBottom="12dp"
-                android:background="@android:color/darker_gray" />
+                android:layout_height="wrap_content"
+                android:text="@string/student_card_title"
+                android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_marginTop="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="4dp"
+                    android:elevation="4dp"
+                    tools:context="ch.hevs.aislab.demo.ui.computer.ComputerDetailActivity">
+
+                    <TextView
+                        android:id="@+id/studentFirstNameLabel"
+                        android:layout_weight=".60"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/student_card_firstname"
+                        android:textAppearance="@android:style/TextAppearance.DeviceDefault"
+                        android:textColor="@color/colorLabel" />
+
+                    <TextView
+                        android:id="@+id/studentFirstName"
+                        android:layout_weight=".40"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:textAppearance="@android:style/TextAppearance.DeviceDefault"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="4dp"
+                    android:elevation="4dp"
+                    tools:context="ch.hevs.aislab.demo.ui.computer.ComputerDetailActivity">
+
+                    <TextView
+                        android:id="@+id/studentLastNameLabel"
+                        android:layout_weight=".60"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/student_card_lastname"
+                        android:textAppearance="@android:style/TextAppearance.DeviceDefault"
+                        android:textColor="@color/colorLabel" />
+
+                    <TextView
+                        android:id="@+id/studentLastName"
+                        android:layout_weight=".40"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:textAppearance="@android:style/TextAppearance.DeviceDefault"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </LinearLayout>
+
         </LinearLayout>
-    </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+    <Button
+        android:id="@+id/viewRoomButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/student_card_view_room_button" />
+
 </LinearLayout>

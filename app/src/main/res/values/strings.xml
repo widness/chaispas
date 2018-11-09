@@ -13,11 +13,25 @@
     <string name="room_nbOf">Number of place</string>
     <string name="edit_room">Edit Room</string>
 
+    <string name="room_card_title">Details</string>
+    <string name="room_card_id">Name</string>
+    <string name="room_card_nb_place">Total places</string>
+    <string name="room_card_student">Number of students</string>
+    <string name="room_card_computer">Number of computers</string>
+    <string name="room_card_view_computer_button">View computers</string>
+    <string name="room_card_view_student_button">View students</string>
+
+
     <!-- Student -->
     <string name="students">Students</string>
     <string name="student_lastname">Last Name</string>
     <string name="student_firstName">First Name</string>
     <string name="edit_student">Edit Student</string>
+
+    <string name="student_card_title">Details</string>
+    <string name="student_card_firstname">First name</string>
+    <string name="student_card_lastname">Last name</string>
+    <string name="student_card_view_room_button">View room</string>
 
     <!-- Computer -->
     <string name="computers">Computers</string>
@@ -27,6 +41,9 @@
     <string name="edit_computer">Edit Computer</string>
 
     <string name="computer_card_title">Details</string>
+    <string name="computer_card_type">Type</string>
+    <string name="computer_card_description">Description</string>
+    <string name="computer_card_view_room_button">View room</string>
 
     <!-- Settings -->
     <string name="title_activity_settings">Settings</string>

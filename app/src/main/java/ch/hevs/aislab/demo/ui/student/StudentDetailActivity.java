@@ -6,11 +6,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.TextView;
 
 import ch.hevs.aislab.demo.R;
 import ch.hevs.aislab.demo.database.entity.StudentEntity;
 import ch.hevs.aislab.demo.ui.BaseActivity;
+import ch.hevs.aislab.demo.ui.room.RoomDetailActivity;
 import ch.hevs.aislab.demo.viewmodel.student.StudentViewModel;
 
 public class StudentDetailActivity  extends BaseActivity {
@@ -46,6 +48,13 @@ public class StudentDetailActivity  extends BaseActivity {
                 mStudent = studentEntity;
                 updateContent();
             }
+        });
+
+        Button viewRoomBtn = findViewById(R.id.viewRoomButton);
+        viewRoomBtn.setOnClickListener(view -> {
+            Intent intent = new Intent(this, RoomDetailActivity.class);
+            intent.putExtra("roomId", mStudent.getRoomId());
+            startActivity(intent);
         });
     }
 

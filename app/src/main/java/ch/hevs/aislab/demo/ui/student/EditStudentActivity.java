@@ -82,7 +82,7 @@ public class EditStudentActivity extends BaseActivity {
                 mViewModel.updateStudent(mStudent);
             }
         } else {
-            StudentEntity newStudent = new StudentEntity(studentLastName, studentLastName);
+            StudentEntity newStudent = new StudentEntity(studentLastName, studentLastName, 1);
             mViewModel.createStudent(newStudent);
         }
     }

@@ -6,5 +6,5 @@ public interface Computer {
     int getType();
     String getTypeString();
     String getDescription();
-    int getRoomId();
+    Long getRoomId();
 }

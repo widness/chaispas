@@ -6,6 +6,7 @@ import java.util.List;
 
 import ch.hevs.aislab.demo.database.AppDatabase;
 import ch.hevs.aislab.demo.database.entity.RoomEntity;
+import ch.hevs.aislab.demo.model.Room;
 
 public class RoomRepository {
     private static RoomRepository sInstance;
@@ -34,6 +35,10 @@ public class RoomRepository {
     public LiveData<List<RoomEntity>> getRooms() {
         return mDatabase.roomDao().getAll();
     }
+
+    public LiveData<Long> getNbStudents(final Long roomId){ return mDatabase.roomDao().getNbStudents(roomId);}
+
+    public LiveData<Long> getNbComputers(final Long roomId){ return mDatabase.roomDao().getNbComputers(roomId);}
 
     public void insert(final RoomEntity room) {
         mDatabase.roomDao().insert(room);

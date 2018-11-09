@@ -30,9 +30,9 @@ public class ComputerEntity implements Computer {
     private String label;
     private int type;
     private String description;
-    private int	roomId;
+    private Long roomId;
 
-    public ComputerEntity(String label, int type, String description, int roomId) {
+    public ComputerEntity(String label, int type, String description, long roomId) {
         this.label = label;
         this.type = type;
         this.description = description;
@@ -90,10 +90,10 @@ public class ComputerEntity implements Computer {
 
 
     @Override
-    public int getRoomId() {
+    public Long getRoomId() {
         return roomId;
     }
-    public void setRoomId(int roomId){ this.roomId = roomId;}
+    public void setRoomId(Long roomId){ this.roomId = roomId;}
 
     @Override
     public boolean equals(Object obj) {

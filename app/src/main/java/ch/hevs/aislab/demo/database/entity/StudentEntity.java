@@ -31,9 +31,10 @@ public class StudentEntity implements Student {
     private String lastName;
     private Long roomId;
 
-    public StudentEntity(String firstName, String lastName) {
+    public StudentEntity(String firstName, String lastName, long roomId) {
         this.firstName = firstName;
         this.lastName = lastName;
+        this.roomId = roomId;
     }
 
     public StudentEntity(Student student) {

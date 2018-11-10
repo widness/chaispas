@@ -1,0 +1,77 @@
+<resources>
+
+  <!-- App -->
+  <string name="app_name">ChaisPas</string>
+  <string name="app_company">AppNCO</string>
+  <string name="home">Home</string>
+  <string name="impressum" translatable="false">ChaisPas</string>
+
+  <!-- Room -->
+  <string name="rooms">Classes</string>
+  <string name="id">id</string>
+  <string name="room_name">Nom de la classe</string>
+  <string name="room_nbOf">Nombre de place</string>
+  <string name="edit_room">Editer la classe</string>
+
+  <string name="room_card_title">Détails</string>
+  <string name="room_card_id">Nom</string>
+  <string name="room_card_nb_place">Places totale</string>
+  <string name="room_card_student">Nombre d\'étudient</string>
+  <string name="room_card_computer">Nombre d\'ordinateur</string>
+  <string name="room_card_view_computer_button">Voir les ordinateurs</string>
+  <string name="room_card_view_student_button">Voir les étudients</string>
+
+
+  <!-- Student -->
+  <string name="students">Etudients</string>
+  <string name="student_lastname">Prénom</string>
+  <string name="student_firstName">Nom</string>
+  <string name="edit_student">Editer l\'étudient</string>
+
+  <string name="student_card_title">Détails</string>
+  <string name="student_card_firstname">Prénom</string>
+  <string name="student_card_lastname">Nom</string>
+  <string name="student_card_view_room_button">Voir la classe</string>
+
+  <!-- Computer -->
+  <string name="computers">Ordinateur</string>
+  <string name="computer_label">Label de l\'ordinateur</string>
+  <string name="computer_type">Type de l\'ordinateur</string>
+  <string name="computer_description">Description de l\'ordinateur</string>
+  <string name="edit_computer">Editer l\'ordinateur</string>
+
+  <string name="computer_card_title">Détails</string>
+  <string name="computer_card_type">Type</string>
+  <string name="computer_card_description">Description</string>
+  <string name="computer_card_view_room_button">Voir la classe</string>
+
+  <!-- Settings -->
+  <string name="title_activity_settings">Settings</string>
+  <string name="action_settings">Settings</string>
+  <string name="pref_header_about">About</string>
+
+  <!-- Other -->
+  <string name="action_confirme">Yes</string>
+  <string name="action_create">Create</string>
+  <string name="action_update">Save Changes</string>
+  <string name="action_edit">Edit</string>
+  <string name="action_delete">Delete</string>
+  <string name="toggle_admin" translatable="false">Admin</string>
+  <string name="account_balance">Account Balance</string>
+  <string name="action_deposit">Deposit</string>
+  <string name="action_withdraw">Withdraw</string>
+  <string name="action_transaction">Execute</string>
+  <string name="action_accept">Execute</string>
+  <string name="transaction_from">From</string>
+  <string name="transaction_to">To</string>
+  <string name="transaction_acc">Account</string>
+  <string name="action_initialize_gae">Initialize Google Datastore</string>
+  <string name="action_cancel">Cancel</string>
+  <string name="client_delete_msg">Do you really want to delete the client %1$s? All accounts of this client will be deleted as well.</string>
+  <string name="pref_header_language">Language</string>
+  <string name="pref_about_text">This application was maid by Ken Jäggi and Raphaël Balet for the Module 634-1: Design patterns.</string>
+  <string name="pref_title_language">Change your display language</string>
+  <string name="logout_msg">Do you really want to close the app?</string>
+  <string name="delete_msg">Do you really want to delete your client account?</string>
+
+</resources>

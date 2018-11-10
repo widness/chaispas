@@ -30,15 +30,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="ch.hevs.aislab.demo.ui.MainActivity" />
         </activity>
-        <activity
-            android:name=".ui.transaction.TransactionActivity"
-            android:label="@string/title_activity_transaction"
-            android:parentActivityName=".ui.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="ch.hevs.aislab.demo.ui.MainActivity" />
-        </activity>
 
         <!-- Rooms -->
         <activity

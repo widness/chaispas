@@ -4,7 +4,6 @@ import android.app.Application;
 import android.os.AsyncTask;
 
 import ch.hevs.aislab.demo.BaseApp;
-import ch.hevs.aislab.demo.database.entity.AccountEntity;
 import ch.hevs.aislab.demo.database.entity.RoomEntity;
 import ch.hevs.aislab.demo.util.OnAsyncEventListener;
 

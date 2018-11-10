@@ -3,12 +3,9 @@ package ch.hevs.aislab.demo.database;
 import java.util.ArrayList;
 import java.util.List;
 
-import ch.hevs.aislab.demo.database.entity.AccountEntity;
-import ch.hevs.aislab.demo.database.entity.ClientEntity;
 import ch.hevs.aislab.demo.database.entity.ComputerEntity;
 import ch.hevs.aislab.demo.database.entity.RoomEntity;
 import ch.hevs.aislab.demo.database.entity.StudentEntity;
-import ch.hevs.aislab.demo.model.Student;
 
 /**
  * Generates dummy data

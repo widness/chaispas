@@ -44,6 +44,13 @@ public class ComputersActivity extends BaseActivity {
         setTitle("Computers");
         navigationView.setCheckedItem(position);
 
+        Long roomId = getIntent().getLongExtra("roomId", 0L);
+        String roomLabel = getIntent().getStringExtra("roomLabel");
+
+        if(roomId != 0){
+            setTitle("Computers for room " + roomLabel);
+        }
+
         RecyclerView recyclerView = findViewById(R.id.accountsRecyclerView);
 
         // use a linear layout manager
@@ -87,16 +94,12 @@ public class ComputersActivity extends BaseActivity {
         FloatingActionButton fab = findViewById(R.id.floatingActionButton);
         fab.setOnClickListener(view -> {
                     Intent intent = new Intent(ComputersActivity.this, EditComputerActivity.class);
-                    intent.setFlags(
-                            Intent.FLAG_ACTIVITY_NO_ANIMATION |
-                                    Intent.FLAG_ACTIVITY_NO_HISTORY
-                    );
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION | Intent.FLAG_ACTIVITY_NO_HISTORY);
                     startActivity(intent);
                 }
         );
 
-        ComputerListViewModel.Factory factory = new ComputerListViewModel.Factory(
-                getApplication());
+        ComputerListViewModel.Factory factory = new ComputerListViewModel.Factory(getApplication(), roomId);
         mViewModel = ViewModelProviders.of(this, factory).get(ComputerListViewModel.class);
         mViewModel.getComputers().observe(this, roomEntities -> {
             if (roomEntities != null) {

@@ -157,7 +157,7 @@
     </android.support.v7.widget.CardView>
 
     <Button
-        android:id="@+id/depositButton"
+        android:id="@+id/computersButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/room_card_view_computer_button" />

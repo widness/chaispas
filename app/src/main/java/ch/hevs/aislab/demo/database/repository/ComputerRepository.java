@@ -35,6 +35,9 @@ public class ComputerRepository {
         return mDatabase.computerDao().getAll();
     }
 
+    public LiveData<List<ComputerEntity>> getComputersForARoom(final Long roomId) { return mDatabase.computerDao().getAllForARoom(roomId); }
+
+
     public void insert(final ComputerEntity computer) {
         mDatabase.computerDao().insert(computer);
     }

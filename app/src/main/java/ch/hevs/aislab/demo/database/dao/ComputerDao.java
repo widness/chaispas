@@ -20,6 +20,9 @@ public abstract class ComputerDao {
     @Query("SELECT * FROM computers")
     public abstract LiveData<List<ComputerEntity>> getAll();
 
+    @Query("SELECT * FROM computers WHERE roomId = :id")
+    public abstract LiveData<List<ComputerEntity>> getAllForARoom(Long id);
+
     @Insert
     public abstract long insert(ComputerEntity computer);
 

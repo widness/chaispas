@@ -14,6 +14,7 @@ import java.util.List;
 import ch.hevs.aislab.demo.BaseApp;
 import ch.hevs.aislab.demo.database.async.computer.DeleteComputer;
 import ch.hevs.aislab.demo.database.entity.ComputerEntity;
+import ch.hevs.aislab.demo.database.entity.StudentEntity;
 import ch.hevs.aislab.demo.database.repository.ComputerRepository;
 import ch.hevs.aislab.demo.util.OnAsyncEventListener;
 
@@ -25,19 +26,25 @@ public class ComputerListViewModel extends AndroidViewModel {
     // MediatorLiveData can observe other LiveData objects and react on their emissions.
     private final MediatorLiveData<List<ComputerEntity>> mObservableComputers;
 
-    public ComputerListViewModel(@NonNull Application application, ComputerRepository computeurRepository) {
+    public ComputerListViewModel(@NonNull Application application, final Long roomId, ComputerRepository computerRepository) {
         super(application);
 
-        mRepository = computeurRepository;
+        mRepository = computerRepository;
 
         mObservableComputers = new MediatorLiveData<>();
         // set by default null, until we get data from the database.
         mObservableComputers.setValue(null);
 
-        LiveData<List<ComputerEntity>> computeurs = mRepository.getComputers();
+        LiveData<List<ComputerEntity>> computers;
+
+        if(roomId == 0) {
+            computers = mRepository.getComputers();
+        }else {
+            computers = mRepository.getComputersForARoom(roomId);
+        }
 
         // observe the changes of the account entity from the database and forward them
-        mObservableComputers.addSource(computeurs, mObservableComputers::setValue);
+        mObservableComputers.addSource(computers, mObservableComputers::setValue);
     }
 
     /**
@@ -48,17 +55,20 @@ public class ComputerListViewModel extends AndroidViewModel {
         @NonNull
         private final Application mApplication;
 
+        private final Long mRoomId;
+
         private final ComputerRepository mRepository;
 
-        public Factory(@NonNull Application application) {
+        public Factory(@NonNull Application application, Long roomId) {
             mApplication = application;
+            mRoomId = roomId;
             mRepository = ((BaseApp) application).getComputerRepository();
         }
 
         @Override
         public <T extends ViewModel> T create(Class<T> modelClass) {
             //noinspection unchecked
-            return (T) new ComputerListViewModel(mApplication, mRepository);
+            return (T) new ComputerListViewModel(mApplication, mRoomId, mRepository);
         }
     }
 
@@ -69,7 +79,7 @@ public class ComputerListViewModel extends AndroidViewModel {
         return mObservableComputers;
     }
 
-    public void deleteComputer(ComputerEntity computeur) {
+    public void deleteComputer(ComputerEntity computer) {
         new DeleteComputer(getApplication(), new OnAsyncEventListener() {
             @Override
             public void onSuccess() {
@@ -80,6 +90,6 @@ public class ComputerListViewModel extends AndroidViewModel {
             public void onFailure(Exception e) {
                 Log.d(TAG, "deleteComputer: failure", e);
             }
-        }).execute(computeur);
+        }).execute(computer);
     }
 }

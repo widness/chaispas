@@ -36,6 +36,8 @@ public class StudentRepository {
         return mDatabase.studentDao().getAll();
     }
 
+    public LiveData<List<StudentEntity>> getStudentsForARoom(final Long roomId) { return mDatabase.studentDao().getAllForARoom(roomId); }
+
     public void insert(final StudentEntity student) {
         mDatabase.studentDao().insert(student);
     }

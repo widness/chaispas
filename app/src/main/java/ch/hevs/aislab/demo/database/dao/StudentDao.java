@@ -20,8 +20,8 @@ public abstract class StudentDao {
     @Query("SELECT * FROM students")
     public abstract LiveData<List<StudentEntity>> getAll();
 
-    // @Query("SELECT count(*) FROM students WHERE roomId = :id")
-    // public abstract int getNbStudentForRoom(Long id);
+    @Query("SELECT * FROM students WHERE roomId = :id")
+    public abstract LiveData<List<StudentEntity>> getAllForARoom(Long id);
 
     @Insert
     public abstract long insert(StudentEntity student);

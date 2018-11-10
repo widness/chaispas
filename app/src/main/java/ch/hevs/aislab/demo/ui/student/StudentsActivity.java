@@ -44,6 +44,13 @@ public class StudentsActivity extends BaseActivity {
         setTitle("Students");
         navigationView.setCheckedItem(position);
 
+        Long roomId = getIntent().getLongExtra("roomId", 0L);
+        String roomLabel = getIntent().getStringExtra("roomLabel");
+
+        if(roomId != 0){
+            setTitle("Students for room " + roomLabel);
+        }
+        
         RecyclerView recyclerView = findViewById(R.id.accountsRecyclerView);
 
         // use a linear layout manager
@@ -94,15 +101,14 @@ public class StudentsActivity extends BaseActivity {
         );
 
         StudentListViewModel.Factory factory = new StudentListViewModel.Factory(
-                getApplication());
+                getApplication(), roomId);
         mViewModel = ViewModelProviders.of(this, factory).get(StudentListViewModel.class);
-        mViewModel.getStudents().observe(this, roomEntities -> {
-            if (roomEntities != null) {
-                mStudents = roomEntities;
+        mViewModel.getStudents().observe(this, studentEntities -> {
+            if (studentEntities != null) {
+                mStudents = studentEntities;
                 mAdapter.setData(mStudents);
             }
         });
-
         recyclerView.setAdapter(mAdapter);
     }
 

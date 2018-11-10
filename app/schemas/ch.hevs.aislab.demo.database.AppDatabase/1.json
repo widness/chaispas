@@ -2,40 +2,8 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "a8db6004f822dcef5e86df06649183db",
+    "identityHash": "1eed465e077bec01751a4b68be64150d",
     "entities": [
-      {
-        "tableName": "clients",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`email` TEXT NOT NULL, `first_name` TEXT, `last_name` TEXT, PRIMARY KEY(`email`))",
-        "fields": [
-          {
-            "fieldPath": "email",
-            "columnName": "email",
-            "affinity": "TEXT",
-            "notNull": true
-          },
-          {
-            "fieldPath": "firstName",
-            "columnName": "first_name",
-            "affinity": "TEXT",
-            "notNull": false
-          },
-          {
-            "fieldPath": "lastName",
-            "columnName": "last_name",
-            "affinity": "TEXT",
-            "notNull": false
-          }
-        ],
-        "primaryKey": {
-          "columnNames": [
-            "email"
-          ],
-          "autoGenerate": false
-        },
-        "indices": [],
-        "foreignKeys": []
-      },
       {
         "tableName": "rooms",
         "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `label` TEXT, `nbOfPlaces` INTEGER NOT NULL, `nbComputers` INTEGER)",
@@ -201,7 +169,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"a8db6004f822dcef5e86df06649183db\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"1eed465e077bec01751a4b68be64150d\")"
     ]
   }
 }

@@ -16,12 +16,11 @@ import java.util.concurrent.Executors;
 import ch.hevs.aislab.demo.database.dao.ComputerDao;
 import ch.hevs.aislab.demo.database.dao.RoomDao;
 import ch.hevs.aislab.demo.database.dao.StudentDao;
-import ch.hevs.aislab.demo.database.entity.ClientEntity;
 import ch.hevs.aislab.demo.database.entity.ComputerEntity;
 import ch.hevs.aislab.demo.database.entity.RoomEntity;
 import ch.hevs.aislab.demo.database.entity.StudentEntity;
 
-@Database(entities = {ClientEntity.class, RoomEntity.class, ComputerEntity.class, StudentEntity.class}, version = 1)
+@Database(entities = {RoomEntity.class, ComputerEntity.class, StudentEntity.class}, version = 1)
 public abstract class AppDatabase extends RoomDatabase {
 
     private static final String TAG = "AppDatabase";

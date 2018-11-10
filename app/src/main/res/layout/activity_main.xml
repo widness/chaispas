@@ -6,46 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".ui.MainActivity">
 
-    <Button
-        android:id="@+id/room_button"
-        android:layout_width="190dp"
-        android:layout_height="80dp"
-        android:layout_marginTop="40dp"
-        android:background="@color/colorPrimaryDark"
-        android:text="Room"
-        android:textColor="@color/colorLight"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
-
-    <Button
-        android:id="@+id/computers_button"
-        android:layout_width="190dp"
-        android:layout_height="80dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:background="@color/colorPrimaryDark"
-        android:text="Computers"
-        android:textColor="@color/colorLight"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/students_button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/room_button" />
-
-    <Button
-        android:id="@+id/students_button"
-        android:layout_width="190dp"
-        android:layout_height="80dp"
-        android:layout_marginBottom="80dp"
-        android:background="@color/colorPrimaryDark"
-        android:text="Students"
-        android:textColor="@color/colorLight"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
     <RelativeLayout
         android:id="@+id/relativeLayout"
@@ -87,5 +47,46 @@
             android:textStyle="italic" />
 
     </RelativeLayout>
+
+    <Button
+        android:id="@+id/room_button"
+        android:layout_width="190dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="40dp"
+        android:background="@color/colorPrimaryDark"
+        android:text="@string/rooms"
+        android:textColor="@color/colorLight"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
+
+    <Button
+        android:id="@+id/computers_button"
+        android:layout_width="190dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@color/colorPrimaryDark"
+        android:text="@string/computers"
+        android:textColor="@color/colorLight"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/students_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/room_button" />
+
+    <Button
+        android:id="@+id/students_button"
+        android:layout_width="190dp"
+        android:layout_height="80dp"
+        android:layout_marginBottom="80dp"
+        android:background="@color/colorPrimaryDark"
+        android:text="@string/students"
+        android:textColor="@color/colorLight"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

@@ -1,6 +1,9 @@
 package ch.hevs.aislab.demo.ui;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -13,11 +16,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
+import java.util.Locale;
+
 import ch.hevs.aislab.demo.R;
 import ch.hevs.aislab.demo.ui.computer.ComputersActivity;
 import ch.hevs.aislab.demo.ui.room.RoomsActivity;
 import ch.hevs.aislab.demo.ui.student.StudentsActivity;
-import ch.hevs.aislab.demo.ui.mgmt.SettingsActivity;
 
 public class BaseActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -85,8 +89,7 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         if (item.getItemId() == R.id.action_settings) {
-            Intent intent = new Intent(this, SettingsActivity.class);
-            startActivity(intent);
+            changeLanguage();
         }
 
         return super.onOptionsItemSelected(item);
@@ -122,5 +125,44 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
         }
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+
+    // Language
+    private void changeLanguage() {
+        String [] languages  = {"Francais", "English"};
+
+        AlertDialog.Builder mBuilder = new AlertDialog.Builder(this);
+        mBuilder.setSingleChoiceItems(languages, -1, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int i) {
+                switch(i){
+                    case 0:
+                        setLanguage("fr");
+                        reload();
+                        break;
+                    case 1:
+                        setLanguage("en");
+                        reload();
+                        break;
+                }
+            }
+        });
+
+        AlertDialog mDialog = mBuilder.create();
+        mDialog.show();
+    }
+
+    private void reload() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
+    private void setLanguage(String language) {
+        Locale myLocale = new Locale(language);//Set Selected Locale
+        Locale.setDefault(myLocale);//set new locale as default
+        Configuration config = new Configuration();//get Configuration
+        config.locale = myLocale;//set config locale as selected locale
+        getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
     }
 }

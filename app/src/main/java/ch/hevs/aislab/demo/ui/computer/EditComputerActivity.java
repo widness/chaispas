@@ -3,20 +3,30 @@ package ch.hevs.aislab.demo.ui.computer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import ch.hevs.aislab.demo.R;
 import ch.hevs.aislab.demo.database.entity.ComputerEntity;
 import ch.hevs.aislab.demo.ui.BaseActivity;
 import ch.hevs.aislab.demo.viewmodel.computer.ComputerViewModel;
 
-public class EditComputerActivity extends BaseActivity {
+public class EditComputerActivity extends BaseActivity implements AdapterView.OnItemSelectedListener{
 
     private final String TAG = "EditComputerActivity";
 
     private ComputerEntity mComputer;
+    private int computerType;
+
     private String mOwner;
     private boolean mEditMode;
     private Toast mToast;
@@ -47,18 +57,17 @@ public class EditComputerActivity extends BaseActivity {
 
         Long computerId = getIntent().getLongExtra("computerId", 0L);
         if (computerId == 0L) {
-            setTitle(getString(R.string.account_balance));
-            mToast = Toast.makeText(this, getString(R.string.account_created), Toast.LENGTH_LONG);
+            setTitle("Add computer");
+            mToast = Toast.makeText(this, "Computer added", Toast.LENGTH_LONG);
             mEditMode = false;
         } else {
-            setTitle(getString(R.string.title_activity_edit_account));
+            setTitle("Edit computer");
             saveBtn.setText(R.string.action_update);
-            mToast = Toast.makeText(this, getString(R.string.account_edited), Toast.LENGTH_LONG);
+            mToast = Toast.makeText(this, "Computer edited", Toast.LENGTH_LONG);
             mEditMode = true;
         }
 
-        ComputerViewModel.Factory factory = new ComputerViewModel.Factory(
-                getApplication(), computerId);
+        ComputerViewModel.Factory factory = new ComputerViewModel.Factory(getApplication(), computerId);
         mViewModel = ViewModelProviders.of(this, factory).get(ComputerViewModel.class);
         if (mEditMode) {
             mViewModel.getComputer().observe(this, computerEntity -> {
@@ -69,6 +78,31 @@ public class EditComputerActivity extends BaseActivity {
                 }
             });
         }
+
+        // Computer types Spinner element
+        Spinner spinner = (Spinner) findViewById(R.id.computer_types_spinner);
+        spinner.setOnItemSelectedListener(this);
+        String[] myResArray = getResources().getStringArray(R.array.computer_types);
+        List<String> computer_types = Arrays.asList(myResArray);
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, computer_types);
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(dataAdapter);
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+        computerType = position;
+
+        // On selecting a spinner item
+        String item = parent.getItemAtPosition(position).toString();
+
+        // Showing selected spinner item
+        Toast toast = Toast.makeText(this, String.valueOf(position), Toast.LENGTH_LONG);
+        toast.show();
+    }
+    public void onNothingSelected(AdapterView<?> arg0) {
+        // TODO Auto-generated method stub
     }
 
     private void saveChanges(String computerLabel) {

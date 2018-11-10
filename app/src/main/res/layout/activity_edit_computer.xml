@@ -24,15 +24,16 @@
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
 
-        <EditText
-            android:id="@+id/computerType"
-            android:layout_width="match_parent"
+        <Spinner
+            android:id="@+id/computer_types_spinner"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
             android:hint="@string/computer_type"
-            android:inputType="number" />
+            android:textAppearance="@android:style/TextAppearance.Widget.EditText" />
+
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout

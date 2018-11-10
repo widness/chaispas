@@ -12,6 +12,8 @@
   <string name="room_name">Nom de la classe</string>
   <string name="room_nbOf">Nombre de place</string>
   <string name="edit_room">Editer la classe</string>
+  <string name="create_room">Classe Crée</string>
+  <string name="delete_room">Classe supprimé</string>
 
   <string name="room_card_title">Détails</string>
   <string name="room_card_id">Nom</string>
@@ -27,6 +29,8 @@
   <string name="student_lastname">Prénom</string>
   <string name="student_firstName">Nom</string>
   <string name="edit_student">Editer l\'étudient</string>
+  <string name="create_student">Etudient Crée</string>
+  <string name="delete_student">Etudient supprimé</string>
 
   <string name="student_card_title">Détails</string>
   <string name="student_card_firstname">Prénom</string>
@@ -39,6 +43,8 @@
   <string name="computer_type">Type de l\'ordinateur</string>
   <string name="computer_description">Description de l\'ordinateur</string>
   <string name="edit_computer">Editer l\'ordinateur</string>
+  <string name="create_computer">Ordinateur Crée</string>
+  <string name="delete_computer">Ordinateur supprimé</string>
 
   <string name="computer_card_title">Détails</string>
   <string name="computer_card_type">Type</string>

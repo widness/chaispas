@@ -1,17 +1,19 @@
 <resources>
 
-  <!-- App -->
-  <string name="app_name">ChaisPas</string>
-  <string name="app_company">AppNCO</string>
-  <string name="home">Home</string>
-  <string name="impressum" translatable="false">ChaisPas</string>
+    <!-- App -->
+    <string name="app_name">ChaisPas</string>
+    <string name="app_company">AppNCO</string>
+    <string name="home">Home</string>
+    <string name="impressum" translatable="false">ChaisPas</string>
 
-  <!-- Room -->
-  <string name="rooms">Rooms</string>
-  <string name="id">id</string>
-  <string name="room_name">Roome Name</string>
-  <string name="room_nbOf">Number of place</string>
-  <string name="edit_room">Edit Room</string>
+    <!-- Room -->
+    <string name="rooms">Rooms</string>
+    <string name="id">id</string>
+    <string name="room_name">Roome Name</string>
+    <string name="room_nbOf">Number of place</string>
+    <string name="edit_room">Edit Room</string>
+    <string name="create_room">Room created</string>
+    <string name="delete_room">Room deleted</string>
 
     <string name="room_card_title">Details</string>
     <string name="room_card_id">Name</string>
@@ -27,6 +29,8 @@
     <string name="student_lastname">Last Name</string>
     <string name="student_firstName">First Name</string>
     <string name="edit_student">Edit Student</string>
+    <string name="create_student">Student created</string>
+    <string name="delete_student">Student Deleted</string>
 
     <string name="student_card_title">Details</string>
     <string name="student_card_firstname">First name</string>
@@ -39,6 +43,8 @@
     <string name="computer_type">Computer type</string>
     <string name="computer_description">Computer description</string>
     <string name="edit_computer">Edit Computer</string>
+    <string name="create_computer">Computer created</string>
+    <string name="delete_computer">Computer deleted</string>
 
     <string name="computer_card_title">Details</string>
     <string name="computer_card_type">Type</string>
@@ -50,7 +56,7 @@
     <string name="action_settings">Settings</string>
     <string name="pref_header_about">About</string>
 
-  <!-- Other -->
+    <!-- Other -->
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 

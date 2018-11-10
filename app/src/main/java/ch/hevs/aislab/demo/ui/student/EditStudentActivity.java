@@ -48,11 +48,11 @@ public class EditStudentActivity extends BaseActivity {
 
         Long accountId = getIntent().getLongExtra("accountId", 0L);
         if (accountId == 0L) {
-            setTitle(getString(R.string.account_balance));
-            mToast = Toast.makeText(this, getString(R.string.account_created), Toast.LENGTH_LONG);
+            setTitle(getString(R.string.students));
+            mToast = Toast.makeText(this, getString(R.string.create_student), Toast.LENGTH_LONG);
             mEditMode = false;
         } else {
-            setTitle(getString(R.string.title_activity_edit_account));
+            setTitle(getString(R.string.edit_student));
             saveBtn.setText(R.string.action_update);
             mToast = Toast.makeText(this, getString(R.string.account_edited), Toast.LENGTH_LONG);
             mEditMode = true;

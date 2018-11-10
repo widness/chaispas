@@ -44,13 +44,13 @@ public class EditRoomActivity extends BaseActivity {
 
         Long accountId = getIntent().getLongExtra("roomId", 0L);
         if (accountId == 0L) {
-            setTitle(getString(R.string.account_balance));
-            mToast = Toast.makeText(this, getString(R.string.account_created), Toast.LENGTH_LONG);
+            setTitle(getString(R.string.rooms));
+            mToast = Toast.makeText(this, getString(R.string.create_room), Toast.LENGTH_LONG);
             mEditMode = false;
         } else {
             setTitle(getString(R.string.edit_room));
             saveBtn.setText(R.string.action_update);
-            mToast = Toast.makeText(this, getString(R.string.account_edited), Toast.LENGTH_LONG);
+            mToast = Toast.makeText(this, getString(R.string.edit_room), Toast.LENGTH_LONG);
             mEditMode = true;
         }
 

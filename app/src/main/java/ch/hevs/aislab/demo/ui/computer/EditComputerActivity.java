@@ -17,14 +17,17 @@ import java.util.List;
 
 import ch.hevs.aislab.demo.R;
 import ch.hevs.aislab.demo.database.entity.ComputerEntity;
+import ch.hevs.aislab.demo.database.entity.RoomEntity;
 import ch.hevs.aislab.demo.ui.BaseActivity;
 import ch.hevs.aislab.demo.viewmodel.computer.ComputerViewModel;
+import ch.hevs.aislab.demo.viewmodel.room.RoomListViewModel;
 
 public class EditComputerActivity extends BaseActivity implements AdapterView.OnItemSelectedListener{
 
     private final String TAG = "EditComputerActivity";
 
     private ComputerEntity mComputer;
+    private List<RoomEntity> mRooms;
     private int computerType;
 
     private String mOwner;
@@ -34,6 +37,22 @@ public class EditComputerActivity extends BaseActivity implements AdapterView.On
     private EditText mEtComputerDescription;
 
     private ComputerViewModel mViewModel;
+    private RoomListViewModel mRoomViewModel;
+
+    private static class StringWithTag {
+        public String string;
+        public Long tag;
+
+        public StringWithTag(String string, long tag) {
+            this.string = string;
+            this.tag = tag;
+        }
+
+        @Override
+        public String toString() {
+            return string;
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,18 +68,22 @@ public class EditComputerActivity extends BaseActivity implements AdapterView.On
         mEtComputerDescription = findViewById(R.id.computerDescription);
 
         // Computer types Spinner element
-        Spinner spinner = (Spinner) findViewById(R.id.computer_types_spinner);
-        spinner.setOnItemSelectedListener(this);
+        Spinner spinnerType = (Spinner) findViewById(R.id.computer_types_spinner);
+        spinnerType.setOnItemSelectedListener(this);
         String[] myResArray = getResources().getStringArray(R.array.computer_types);
         List<String> computer_types = Arrays.asList(myResArray);
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, computer_types);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(dataAdapter);
+        spinnerType.setAdapter(dataAdapter);
+
+        // Computer types Spinner element
+        Spinner spinnerRoom = (Spinner) findViewById(R.id.rooms_spinner);
+        spinnerRoom.setOnItemSelectedListener(this);
 
         mEtComputerLabel.requestFocus();
         Button saveBtn = findViewById(R.id.createAccountButton);
         saveBtn.setOnClickListener(view -> {
-            saveChanges(mEtComputerLabel.getText().toString());
+            saveChanges(mEtComputerLabel.getText().toString(), mEtComputerDescription.getText().toString(),(int) spinnerType.getSelectedItemId(), (StringWithTag) spinnerRoom.getSelectedItem());
             onBackPressed();
             mToast.show();
         });
@@ -84,14 +107,39 @@ public class EditComputerActivity extends BaseActivity implements AdapterView.On
                 if (computerEntity != null) {
                     mComputer = computerEntity;
                     mEtComputerLabel.setText(mComputer.getLabel());
-                    spinner.setSelection(mComputer.getType());
+                    spinnerType.setSelection(mComputer.getType());
                     mEtComputerDescription.setText((mComputer.getDescription()));
                 }
             });
         }
 
+        RoomListViewModel.Factory roomFactory = new RoomListViewModel.Factory(getApplication());
+        mRoomViewModel = ViewModelProviders.of(this, roomFactory).get(RoomListViewModel.class);
+        mRoomViewModel.getRooms().observe(this, roomEntities -> {
+            if (roomEntities != null) {
+                int selected = 0;
+                mRooms = roomEntities;
 
+                List<StringWithTag> itemList = new ArrayList<StringWithTag>();
+                itemList.add(new StringWithTag("",0));
 
+                for (int i = 0; i < mRooms.size(); i++) {
+                    itemList.add(new StringWithTag(mRooms.get(i).getLabel(), mRooms.get(i).getId()));
+                    if (mEditMode) {
+                        if (mRooms.get(i).getId() == (int) (long) mComputer.getRoomId()) {
+                            selected = itemList.size() - 1;
+                        }
+                    }
+                }
+
+                ArrayAdapter<StringWithTag> dataRoomAdapter = new ArrayAdapter<StringWithTag>(this, android.R.layout.simple_spinner_item, itemList);
+                dataRoomAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                spinnerRoom.setAdapter(dataRoomAdapter);
+                if (mEditMode) {
+                    spinnerRoom.setSelection(selected);
+                }
+            }
+        });
     }
 
     @Override
@@ -110,13 +158,16 @@ public class EditComputerActivity extends BaseActivity implements AdapterView.On
         // TODO Auto-generated method stub
     }
 
-    private void saveChanges(String computerLabel) {
+    private void saveChanges(String computerLabel, String description, int type, StringWithTag room) {
         if (mEditMode) {
-            if(!"".equals(computerLabel)) {
-                mComputer.setLabel(computerLabel);
-                mViewModel.updateComputer(mComputer);
-            }
+            mComputer.setLabel(computerLabel);
+            mComputer.setType(type);
+            mComputer.setDescription(description);
+            mComputer.setRoomId(room.tag);
+            mViewModel.updateComputer(mComputer);
+
         } else {
+            // TODO FIX ADD COMPUTER
             ComputerEntity newComputer = new ComputerEntity(computerLabel, 1, "description", 1);
             mViewModel.createComputer(newComputer);
         }

@@ -86,7 +86,7 @@ public class ComputerEntity implements Computer {
     public Long getRoomId() {
         return roomId;
     }
-    public void setRoomId(Long roomId){ this.roomId = roomId;}
+    public void setRoomId(long roomId){ this.roomId = roomId;}
 
     @Override
     public boolean equals(Object obj) {

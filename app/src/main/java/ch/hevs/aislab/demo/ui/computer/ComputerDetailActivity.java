@@ -9,6 +9,9 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.Arrays;
+import java.util.List;
+
 import ch.hevs.aislab.demo.R;
 import ch.hevs.aislab.demo.database.entity.ComputerEntity;
 import ch.hevs.aislab.demo.ui.BaseActivity;
@@ -27,6 +30,7 @@ public class ComputerDetailActivity  extends BaseActivity {
     private TextView computerDescription;
     private TextView computerType;
     private ComputerViewModel mViewModel;
+    private List<String> types_list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +46,9 @@ public class ComputerDetailActivity  extends BaseActivity {
         //computerLabel = findViewById(R.id.computerLabel);
         computerDescription = findViewById(R.id.computerDescription);
         computerType = findViewById(R.id.computerType);
+
+        String[] typeResource = getResources().getStringArray(R.array.computer_types);
+        types_list = Arrays.asList(typeResource);
 
         ComputerViewModel.Factory factory = new ComputerViewModel.Factory(getApplication(), computerId);
         mViewModel = ViewModelProviders.of(this, factory).get(ComputerViewModel.class);
@@ -91,7 +98,7 @@ public class ComputerDetailActivity  extends BaseActivity {
             Log.i(TAG, "Activity populated.");
             //computerLabel.setText(mComputer.getLabel());
             computerDescription.setText(mComputer.getDescription());
-            computerType.setText(mComputer.getTypeString());
+            computerType.setText(types_list.get(mComputer.getType()));
         }
     }
 }

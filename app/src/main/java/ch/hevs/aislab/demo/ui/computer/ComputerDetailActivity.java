@@ -16,14 +16,12 @@ import ch.hevs.aislab.demo.R;
 import ch.hevs.aislab.demo.database.entity.ComputerEntity;
 import ch.hevs.aislab.demo.ui.BaseActivity;
 import ch.hevs.aislab.demo.ui.room.RoomDetailActivity;
-import ch.hevs.aislab.demo.ui.room.RoomsActivity;
 import ch.hevs.aislab.demo.viewmodel.computer.ComputerViewModel;
-import ch.hevs.aislab.demo.viewmodel.room.RoomViewModel;
 
 public class ComputerDetailActivity  extends BaseActivity {
 
     private static final String TAG = "ComputerDetailActivity";
-    private static final int EDIT_ACCOUNT = 1;
+    private static final int EDIT_COMPUTER = 1;
 
     private ComputerEntity mComputer;
     //private TextView computerLabel;
@@ -70,7 +68,7 @@ public class ComputerDetailActivity  extends BaseActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
-        menu.add(0, EDIT_ACCOUNT, Menu.NONE, getString(R.string.title_activity_edit_account))
+        menu.add(0, EDIT_COMPUTER, Menu.NONE, getString(R.string.title_activity_edit_account))
                 .setIcon(R.drawable.ic_edit_white_24dp)
                 .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
         return true;
@@ -78,9 +76,9 @@ public class ComputerDetailActivity  extends BaseActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == EDIT_ACCOUNT) {
+        if (item.getItemId() == EDIT_COMPUTER) {
             Intent intent = new Intent(this, EditComputerActivity.class);
-            intent.putExtra("id", mComputer.getId());
+            intent.putExtra("computerId", mComputer.getId());
             startActivity(intent);
         }
         return super.onOptionsItemSelected(item);

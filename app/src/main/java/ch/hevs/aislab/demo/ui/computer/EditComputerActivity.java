@@ -47,6 +47,16 @@ public class EditComputerActivity extends BaseActivity implements AdapterView.On
 
         mEtComputerLabel = findViewById(R.id.computerLabel);
         mEtComputerDescription = findViewById(R.id.computerDescription);
+
+        // Computer types Spinner element
+        Spinner spinner = (Spinner) findViewById(R.id.computer_types_spinner);
+        spinner.setOnItemSelectedListener(this);
+        String[] myResArray = getResources().getStringArray(R.array.computer_types);
+        List<String> computer_types = Arrays.asList(myResArray);
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, computer_types);
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(dataAdapter);
+
         mEtComputerLabel.requestFocus();
         Button saveBtn = findViewById(R.id.createAccountButton);
         saveBtn.setOnClickListener(view -> {
@@ -74,19 +84,14 @@ public class EditComputerActivity extends BaseActivity implements AdapterView.On
                 if (computerEntity != null) {
                     mComputer = computerEntity;
                     mEtComputerLabel.setText(mComputer.getLabel());
+                    spinner.setSelection(mComputer.getType());
                     mEtComputerDescription.setText((mComputer.getDescription()));
                 }
             });
         }
 
-        // Computer types Spinner element
-        Spinner spinner = (Spinner) findViewById(R.id.computer_types_spinner);
-        spinner.setOnItemSelectedListener(this);
-        String[] myResArray = getResources().getStringArray(R.array.computer_types);
-        List<String> computer_types = Arrays.asList(myResArray);
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, computer_types);
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(dataAdapter);
+
+
     }
 
     @Override

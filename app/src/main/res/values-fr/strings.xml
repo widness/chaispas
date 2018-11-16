@@ -32,6 +32,8 @@
   <string name="edit_student">Editer l\'étudient</string>
   <string name="create_student">Etudient Crée</string>
   <string name="delete_student">Etudient supprimé</string>
+  <string name="student_edited">Etudiant édité</string>
+
 
   <string name="student_card_title">Détails</string>
   <string name="student_card_firstname">Prénom</string>

@@ -31,6 +31,8 @@
     <string name="edit_student">Edit Student</string>
     <string name="create_student">Student created</string>
     <string name="delete_student">Student Deleted</string>
+    <string name="student_edited">Student edited</string>
+
 
     <string name="student_card_title">Details</string>
     <string name="student_card_firstname">First name</string>

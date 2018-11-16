@@ -47,7 +47,6 @@ public class RoomsActivity extends BaseActivity {
 
         RecyclerView recyclerView = findViewById(R.id.accountsRecyclerView);
 
-        // use a linear layout manager
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
@@ -112,9 +111,7 @@ public class RoomsActivity extends BaseActivity {
             drawerLayout.closeDrawer(GravityCompat.START);
             return false;
         }
-        /*
-        The activity has to be finished manually in order to guarantee the navigation hierarchy working.
-        */
+
         finish();
         return super.onNavigationItemSelected(item);
     }
@@ -125,14 +122,14 @@ public class RoomsActivity extends BaseActivity {
         LayoutInflater inflater = LayoutInflater.from(this);
         final View view = inflater.inflate(R.layout.row_delete_item, null);
         final AlertDialog alertDialog = new AlertDialog.Builder(this).create();
-        alertDialog.setTitle(getString(R.string.title_activity_delete_account));
+        alertDialog.setTitle(getString(R.string.delete_room));
         alertDialog.setCancelable(false);
 
         final TextView deleteMessage = view.findViewById(R.id.tv_delete_item);
-        deleteMessage.setText(String.format(getString(R.string.account_delete_msg), room.getLabel()));
+        deleteMessage.setText(String.format(getString(R.string.room_delete_msg), room.getLabel()));
 
         alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, getString(R.string.action_accept), (dialog, which) -> {
-            Toast toast = Toast.makeText(this, getString(R.string.account_deleted), Toast.LENGTH_LONG);
+            Toast toast = Toast.makeText(this, getString(R.string.delete_room), Toast.LENGTH_LONG);
             mViewModel.deleteRoom(room);
             toast.show();
         });

@@ -115,9 +115,7 @@ public class ComputersActivity extends BaseActivity {
             drawerLayout.closeDrawer(GravityCompat.START);
             return false;
         }
-        /*
-        The activity has to be finished manually in order to guarantee the navigation hierarchy working.
-        */
+
         finish();
         return super.onNavigationItemSelected(item);
     }
@@ -132,7 +130,7 @@ public class ComputersActivity extends BaseActivity {
         alertDialog.setCancelable(false);
 
         final TextView deleteMessage = view.findViewById(R.id.tv_delete_item);
-        deleteMessage.setText(getString(R.string.delete_msg));
+        deleteMessage.setText(String.format(getString(R.string.computer_delete_msg), computer.getLabel()));
 
         alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, getString(R.string.action_accept), (dialog, which) -> {
             Toast toast = Toast.makeText(this, getString(R.string.delete_computer), Toast.LENGTH_LONG);

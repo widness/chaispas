@@ -14,6 +14,7 @@
   <string name="edit_room">Editer la classe</string>
   <string name="create_room">Classe Crée</string>
   <string name="delete_room">Classe supprimé</string>
+  <string name="room_delete_msg">Veux-tu suppprimer la classe %1$s?</string>
 
   <string name="room_card_title">Détails</string>
   <string name="room_card_id">Nom</string>
@@ -46,6 +47,7 @@
   <string name="edit_computer">Editer l\'ordinateur</string>
   <string name="create_computer">Ordinateur Crée</string>
   <string name="delete_computer">Ordinateur supprimé</string>
+  <string name="computer_delete_msg">Veux-tu suppprimer l\'ordinateur %1$s?</string>
 
   <string name="computer_card_title">Détails</string>
   <string name="computer_card_type">Type</string>

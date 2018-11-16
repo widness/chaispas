@@ -14,7 +14,6 @@ import java.util.List;
 import ch.hevs.aislab.demo.BaseApp;
 import ch.hevs.aislab.demo.database.async.computer.DeleteComputer;
 import ch.hevs.aislab.demo.database.entity.ComputerEntity;
-import ch.hevs.aislab.demo.database.entity.StudentEntity;
 import ch.hevs.aislab.demo.database.repository.ComputerRepository;
 import ch.hevs.aislab.demo.util.OnAsyncEventListener;
 
@@ -26,7 +25,7 @@ public class ComputerListViewModel extends AndroidViewModel {
     // MediatorLiveData can observe other LiveData objects and react on their emissions.
     private final MediatorLiveData<List<ComputerEntity>> mObservableComputers;
 
-    public ComputerListViewModel(@NonNull Application application, final Long roomId, ComputerRepository computerRepository) {
+    public ComputerListViewModel(@NonNull Application application, final Long computerId, ComputerRepository computerRepository) {
         super(application);
 
         mRepository = computerRepository;
@@ -37,10 +36,10 @@ public class ComputerListViewModel extends AndroidViewModel {
 
         LiveData<List<ComputerEntity>> computers;
 
-        if(roomId == 0) {
+        if(computerId == 0) {
             computers = mRepository.getComputers();
         }else {
-            computers = mRepository.getComputersForARoom(roomId);
+            computers = mRepository.getComputersForARoom(computerId);
         }
 
         // observe the changes of the account entity from the database and forward them
@@ -48,32 +47,32 @@ public class ComputerListViewModel extends AndroidViewModel {
     }
 
     /**
-     * A creator is used to inject the account id into the ViewModel
+     * A creator is used to inject the computer id into the ViewModel
      */
     public static class Factory extends ViewModelProvider.NewInstanceFactory {
 
         @NonNull
         private final Application mApplication;
 
-        private final Long mRoomId;
+        private final Long mComputerId;
 
         private final ComputerRepository mRepository;
 
-        public Factory(@NonNull Application application, Long roomId) {
+        public Factory(@NonNull Application application, Long computerId) {
             mApplication = application;
-            mRoomId = roomId;
+            mComputerId = computerId;
             mRepository = ((BaseApp) application).getComputerRepository();
         }
 
         @Override
         public <T extends ViewModel> T create(Class<T> modelClass) {
             //noinspection unchecked
-            return (T) new ComputerListViewModel(mApplication, mRoomId, mRepository);
+            return (T) new ComputerListViewModel(mApplication, mComputerId, mRepository);
         }
     }
 
     /**
-     * Expose the LiveData AccountEntity query so the UI can observe it.
+     * Expose the LiveData ComputerEntity query so the UI can observe it.
      */
     public LiveData<List<ComputerEntity>> getComputers() {
         return mObservableComputers;

@@ -39,6 +39,7 @@
 
     <!-- Computer -->
     <string name="computers">Computers</string>
+    <string name="computers_room">Computers for a room</string>
     <string name="computer_label">Computer label</string>
     <string name="computer_type">Computer type</string>
     <string name="computer_description">Computer description</string>
@@ -79,6 +80,11 @@
     <string name="action_update">Save Changes</string>
     <string name="action_edit">Edit</string>
     <string name="action_delete">Delete</string>
+    <string name="delete_msg">Do you really want to delete ?</string>
+
+
+
+
     <string name="toggle_admin" translatable="false">Admin</string>
     <string name="action_transaction">Execute</string>
     <string name="action_accept">Execute</string>
@@ -109,7 +115,6 @@
     <string name="pref_about_text">This application was developed to provide a possibility to demonstrate how the newly released Android Architecture Components could be implemented in an application.</string>
     <string name="action_reset">Reset</string>
     <string name="logout_msg">Do you really want to close the app?</string>
-    <string name="delete_msg">Do you really want to delete?</string>
     <string name="reset_msg">Do you really want to reset the database?</string>
     <string name="action_demo_data">Reset Demo Data</string>
     <string name="demo_data_initiated">Demo data initiated</string>

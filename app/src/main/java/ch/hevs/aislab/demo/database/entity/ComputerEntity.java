@@ -4,13 +4,6 @@ import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
-
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import ch.hevs.aislab.demo.R;
 import ch.hevs.aislab.demo.model.Computer;
 
 @Entity(tableName = "computers",
@@ -26,7 +19,6 @@ import ch.hevs.aislab.demo.model.Computer;
                         value = {"roomId"}
                 )}
 )
-
 public class ComputerEntity implements Computer {
 
     @PrimaryKey(autoGenerate = true)

@@ -10,11 +10,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
 import ch.hevs.aislab.demo.R;
 import ch.hevs.aislab.demo.database.entity.ComputerEntity;
 import ch.hevs.aislab.demo.database.entity.RoomEntity;
@@ -68,7 +66,7 @@ public class EditComputerActivity extends BaseActivity implements AdapterView.On
         mEtComputerDescription = findViewById(R.id.computerDescription);
 
         // Computer types Spinner element
-        Spinner spinnerType = (Spinner) findViewById(R.id.computer_types_spinner);
+        Spinner spinnerType = findViewById(R.id.computer_types_spinner);
         spinnerType.setOnItemSelectedListener(this);
         String[] myResArray = getResources().getStringArray(R.array.computer_types);
         List<String> computer_types = Arrays.asList(myResArray);
@@ -77,7 +75,7 @@ public class EditComputerActivity extends BaseActivity implements AdapterView.On
         spinnerType.setAdapter(dataAdapter);
 
         // Computer types Spinner element
-        Spinner spinnerRoom = (Spinner) findViewById(R.id.rooms_spinner);
+        Spinner spinnerRoom = findViewById(R.id.rooms_spinner);
         spinnerRoom.setOnItemSelectedListener(this);
 
         mEtComputerLabel.requestFocus();
@@ -144,15 +142,7 @@ public class EditComputerActivity extends BaseActivity implements AdapterView.On
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
         computerType = position;
-
-        // On selecting a spinner item
-        String item = parent.getItemAtPosition(position).toString();
-
-        // Showing selected spinner item
-        Toast toast = Toast.makeText(this, String.valueOf(position), Toast.LENGTH_LONG);
-        toast.show();
     }
     public void onNothingSelected(AdapterView<?> arg0) {
         // TODO Auto-generated method stub

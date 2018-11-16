@@ -17,10 +17,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import ch.hevs.aislab.demo.R;
 import ch.hevs.aislab.demo.adapter.RecyclerAdapter;
 import ch.hevs.aislab.demo.database.entity.ComputerEntity;
@@ -41,14 +39,14 @@ public class ComputersActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         getLayoutInflater().inflate(R.layout.activity_lists, frameLayout);
 
-        setTitle("Computers");
+        setTitle(getString(R.string.computers));
         navigationView.setCheckedItem(position);
 
         Long roomId = getIntent().getLongExtra("roomId", 0L);
         String roomLabel = getIntent().getStringExtra("roomLabel");
 
         if(roomId != 0){
-            setTitle("Computers for room " + roomLabel);
+            setTitle(getString(R.string.computers_room) + " " + roomLabel);
         }
 
         RecyclerView recyclerView = findViewById(R.id.accountsRecyclerView);
@@ -126,19 +124,19 @@ public class ComputersActivity extends BaseActivity {
 
     private void createDeleteDialog(final int position) {
 
-        final ComputerEntity room = mComputers.get(position);
+        final ComputerEntity computer = mComputers.get(position);
         LayoutInflater inflater = LayoutInflater.from(this);
         final View view = inflater.inflate(R.layout.row_delete_item, null);
         final AlertDialog alertDialog = new AlertDialog.Builder(this).create();
-        alertDialog.setTitle(getString(R.string.title_activity_delete_account));
+        alertDialog.setTitle(getString(R.string.action_delete));
         alertDialog.setCancelable(false);
 
         final TextView deleteMessage = view.findViewById(R.id.tv_delete_item);
-        deleteMessage.setText(String.format(getString(R.string.account_delete_msg), room.getLabel()));
+        deleteMessage.setText(getString(R.string.delete_msg));
 
         alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, getString(R.string.action_accept), (dialog, which) -> {
-            Toast toast = Toast.makeText(this, getString(R.string.account_deleted), Toast.LENGTH_LONG);
-            mViewModel.deleteComputer(room);
+            Toast toast = Toast.makeText(this, getString(R.string.delete_computer), Toast.LENGTH_LONG);
+            mViewModel.deleteComputer(computer);
             toast.show();
         });
 

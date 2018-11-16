@@ -1,9 +1,7 @@
 package ch.hevs.aislab.demo.database.repository;
 
 import android.arch.lifecycle.LiveData;
-
 import java.util.List;
-
 import ch.hevs.aislab.demo.database.AppDatabase;
 import ch.hevs.aislab.demo.database.entity.ComputerEntity;
 

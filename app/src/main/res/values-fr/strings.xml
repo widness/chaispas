@@ -28,6 +28,7 @@
 
   <!-- Student -->
   <string name="students">Etudients</string>
+  <string name="students_room">Etudiant de la classe</string>
   <string name="student_lastname">Prénom</string>
   <string name="student_firstName">Nom</string>
   <string name="edit_student">Editer l\'étudient</string>

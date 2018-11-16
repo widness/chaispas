@@ -4,10 +4,6 @@ import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
-
-import java.util.Date;
-
-import ch.hevs.aislab.demo.model.Room;
 import ch.hevs.aislab.demo.model.Student;
 
 @Entity(tableName = "students",
@@ -23,7 +19,6 @@ import ch.hevs.aislab.demo.model.Student;
                         value = {"roomId"}
                 )}
 )
-
 public class StudentEntity implements Student {
     @PrimaryKey(autoGenerate = true)
     private Long id;
@@ -44,7 +39,6 @@ public class StudentEntity implements Student {
         roomId = this.getRoomId();
     }
 
-    // TODO: fill return
     @Override
     public Long getId() { return id; }
     public void setId(Long studentId) { this.id = studentId; }
@@ -74,5 +68,4 @@ public class StudentEntity implements Student {
         StudentEntity o = (StudentEntity) obj;
         return o.getId().equals(this.getId());
     }
-
 }

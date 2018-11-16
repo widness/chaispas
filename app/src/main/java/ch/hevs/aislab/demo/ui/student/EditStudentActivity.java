@@ -72,8 +72,8 @@ public class EditStudentActivity extends BaseActivity{
             mToast.show();
         });
 
-        Long accountId = getIntent().getLongExtra("id", 0L);
-        if (accountId == 0L) {
+        Long studentId = getIntent().getLongExtra("id", 0L);
+        if (studentId == 0L) {
             setTitle(getString(R.string.students));
             mToast = Toast.makeText(this, getString(R.string.create_student), Toast.LENGTH_LONG);
             mEditMode = false;
@@ -84,12 +84,12 @@ public class EditStudentActivity extends BaseActivity{
             mEditMode = true;
         }
 
-        StudentViewModel.Factory factory = new StudentViewModel.Factory(getApplication(), accountId);
+        StudentViewModel.Factory factory = new StudentViewModel.Factory(getApplication(), studentId);
         mViewModel = ViewModelProviders.of(this, factory).get(StudentViewModel.class);
         if (mEditMode) {
-            mViewModel.getStudent().observe(this, accountEntity -> {
-                if (accountEntity != null) {
-                    mStudent = accountEntity;
+            mViewModel.getStudent().observe(this, studentEntity -> {
+                if (studentEntity != null) {
+                    mStudent = studentEntity;
                     mEtStudentFirstName.setText(mStudent.getFirstName());
                     mEtStudentLastName.setText(mStudent.getLastName());
                 }

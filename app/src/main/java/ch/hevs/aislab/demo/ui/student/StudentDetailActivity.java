@@ -8,7 +8,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.TextView;
-
 import ch.hevs.aislab.demo.R;
 import ch.hevs.aislab.demo.database.entity.StudentEntity;
 import ch.hevs.aislab.demo.ui.BaseActivity;
@@ -18,7 +17,7 @@ import ch.hevs.aislab.demo.viewmodel.student.StudentViewModel;
 public class StudentDetailActivity  extends BaseActivity {
 
     private static final String TAG = "StudentDetailActivity";
-    private static final int EDIT_ACCOUNT = 1;
+    private static final int EDIT_STUDENT = 1;
 
     private TextView studentFirstName;
     private TextView studentLastName;
@@ -40,8 +39,7 @@ public class StudentDetailActivity  extends BaseActivity {
         studentFirstName = findViewById(R.id.studentFirstName);
         studentLastName = findViewById(R.id.studentLastName);
 
-        StudentViewModel.Factory factory = new StudentViewModel.Factory(
-                getApplication(), studentId);
+        StudentViewModel.Factory factory = new StudentViewModel.Factory(getApplication(), studentId);
         mViewModel = ViewModelProviders.of(this, factory).get(StudentViewModel.class);
         mViewModel.getStudent().observe(this, studentEntity -> {
             if (studentEntity != null) {
@@ -61,7 +59,7 @@ public class StudentDetailActivity  extends BaseActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
-        menu.add(0, EDIT_ACCOUNT, Menu.NONE, getString(R.string.title_activity_edit_account))
+        menu.add(0, EDIT_STUDENT, Menu.NONE, getString(R.string.edit_student))
                 .setIcon(R.drawable.ic_edit_white_24dp)
                 .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
         return true;
@@ -69,7 +67,7 @@ public class StudentDetailActivity  extends BaseActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == EDIT_ACCOUNT) {
+        if (item.getItemId() == EDIT_STUDENT) {
             Intent intent = new Intent(this, EditStudentActivity.class);
             intent.putExtra("id", mStudent.getId());
             startActivity(intent);

@@ -8,15 +8,12 @@ import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProvider;
 import android.support.annotation.NonNull;
 import android.util.Log;
-
 import ch.hevs.aislab.demo.BaseApp;
 import ch.hevs.aislab.demo.database.async.Student.CreateStudent;
 import ch.hevs.aislab.demo.database.async.Student.UpdateStudent;
 import ch.hevs.aislab.demo.database.entity.StudentEntity;
-import ch.hevs.aislab.demo.database.repository.RoomRepository;
 import ch.hevs.aislab.demo.database.repository.StudentRepository;
 import ch.hevs.aislab.demo.util.OnAsyncEventListener;
-import ch.hevs.aislab.demo.viewmodel.room.RoomViewModel;
 
 public class StudentViewModel extends AndroidViewModel {
 
@@ -27,8 +24,7 @@ public class StudentViewModel extends AndroidViewModel {
     // MediatorLiveData can observe other LiveData objects and react on their emissions.
     private final MediatorLiveData<StudentEntity> mObservableStudent;
 
-    public StudentViewModel(@NonNull Application application,
-                         final Long studentId, StudentRepository studentRepository) {
+    public StudentViewModel(@NonNull Application application, final Long studentId, StudentRepository studentRepository) {
         super(application);
 
         mRepository = studentRepository;
@@ -44,7 +40,7 @@ public class StudentViewModel extends AndroidViewModel {
     }
 
     /**
-     * A creator is used to inject the account id into the ViewModel
+     * A creator is used to inject the student id into the ViewModel
      */
     public static class Factory extends ViewModelProvider.NewInstanceFactory {
 
@@ -69,7 +65,7 @@ public class StudentViewModel extends AndroidViewModel {
     }
 
     /**
-     * Expose the LiveData AccountEntity query so the UI can observe it.
+     * Expose the LiveData StudentEntity query so the UI can observe it.
      */
     public LiveData<StudentEntity> getStudent() {
         return mObservableStudent;

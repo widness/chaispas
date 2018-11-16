@@ -27,6 +27,7 @@
 
     <!-- Student -->
     <string name="students">Students</string>
+    <string name="students_room">Student for room</string>
     <string name="student_lastname">Last Name</string>
     <string name="student_firstName">First Name</string>
     <string name="edit_student">Edit Student</string>

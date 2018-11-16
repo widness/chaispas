@@ -9,7 +9,7 @@
   <!-- Room -->
   <string name="rooms">Classes</string>
   <string name="id">id</string>
-  <string name="places">Places</string>
+  <string name="places">Places: </string>
   <string name="room_name">Nom de la classe</string>
   <string name="room_nbOf">Nombre de place</string>
   <string name="edit_room">Editer la classe</string>
@@ -17,7 +17,7 @@
   <string name="delete_room">Classe supprimé</string>
   <string name="room_delete_msg">Veux-tu suppprimer la classe %1$s?</string>
 
-  <string name="room_card_title">Classes: %1$s?</string>
+  <string name="room_card_title">Classe: </string>
   <string name="room_card_id">Nom</string>
   <string name="room_card_nb_place">Places totale</string>
   <string name="room_card_student">Nombre d\'étudient</string>

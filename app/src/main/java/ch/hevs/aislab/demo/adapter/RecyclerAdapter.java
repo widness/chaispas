@@ -72,9 +72,9 @@ public class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerAdapter.Vie
         T item = mData.get(position);
 
         if (item.getClass().equals(RoomEntity.class)) {
-            holder.itemTitle.setText(((RoomEntity) item).getLabel());
+            holder.itemTitle.setText(context.getString(R.string.room_card_title) + " " + ((RoomEntity) item).getLabel());
             String nbOfPlaces = Integer.toString(((RoomEntity) item).getNbOfPlaces());
-            holder.itemDetail.setText(nbOfPlaces);
+            holder.itemDetail.setText(context.getString(R.string.places) + " " + nbOfPlaces);
             holder.itemImage.setImageDrawable(context.getDrawable(R.drawable.ic_room));
         } else if (item.getClass().equals(StudentEntity.class)) {
             holder.itemTitle.setText(((StudentEntity) item).getLastName());

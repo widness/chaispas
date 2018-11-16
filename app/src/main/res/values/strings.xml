@@ -9,7 +9,7 @@
     <!-- Room -->
     <string name="rooms">Rooms</string>
     <string name="id">id</string>
-    <string name="places">Places</string>
+    <string name="places">Places: </string>
     <string name="room_name">Room Name</string>
     <string name="room_nbOf">Number of place</string>
     <string name="edit_room">Edit Room</string>
@@ -17,7 +17,7 @@
     <string name="delete_room">Room deleted</string>
     <string name="room_delete_msg">Do you want to delete the room %1$s?</string>
 
-    <string name="room_card_title">Rooms: %1$s?</string>
+    <string name="room_card_title">Room: </string>
     <string name="room_card_id">Name</string>
     <string name="room_card_nb_place">Total places</string>
     <string name="room_card_student">Number of students</string>

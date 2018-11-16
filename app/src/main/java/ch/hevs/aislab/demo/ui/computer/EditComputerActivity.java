@@ -20,7 +20,7 @@ import ch.hevs.aislab.demo.ui.BaseActivity;
 import ch.hevs.aislab.demo.viewmodel.computer.ComputerViewModel;
 import ch.hevs.aislab.demo.viewmodel.room.RoomListViewModel;
 
-public class EditComputerActivity extends BaseActivity implements AdapterView.OnItemSelectedListener{
+public class EditComputerActivity extends BaseActivity{
 
     private final String TAG = "EditComputerActivity";
 
@@ -67,7 +67,6 @@ public class EditComputerActivity extends BaseActivity implements AdapterView.On
 
         // Computer types Spinner element
         Spinner spinnerType = findViewById(R.id.computer_types_spinner);
-        spinnerType.setOnItemSelectedListener(this);
         String[] myResArray = getResources().getStringArray(R.array.computer_types);
         List<String> computer_types = Arrays.asList(myResArray);
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, computer_types);
@@ -76,7 +75,6 @@ public class EditComputerActivity extends BaseActivity implements AdapterView.On
 
         // Computer types Spinner element
         Spinner spinnerRoom = findViewById(R.id.rooms_spinner);
-        spinnerRoom.setOnItemSelectedListener(this);
 
         mEtComputerLabel.requestFocus();
         Button saveBtn = findViewById(R.id.createAccountButton);
@@ -138,14 +136,6 @@ public class EditComputerActivity extends BaseActivity implements AdapterView.On
                 }
             }
         });
-    }
-
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        computerType = position;
-    }
-    public void onNothingSelected(AdapterView<?> arg0) {
-        // TODO Auto-generated method stub
     }
 
     private void saveChanges(String computerLabel, String description, int type, StringWithTag room) {

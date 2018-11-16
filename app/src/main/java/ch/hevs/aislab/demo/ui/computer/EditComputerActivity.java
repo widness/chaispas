@@ -167,8 +167,7 @@ public class EditComputerActivity extends BaseActivity implements AdapterView.On
             mViewModel.updateComputer(mComputer);
 
         } else {
-            // TODO FIX ADD COMPUTER
-            ComputerEntity newComputer = new ComputerEntity(computerLabel, 1, "description", 1);
+            ComputerEntity newComputer = new ComputerEntity(computerLabel, type, description, room.tag);
             mViewModel.createComputer(newComputer);
         }
     }

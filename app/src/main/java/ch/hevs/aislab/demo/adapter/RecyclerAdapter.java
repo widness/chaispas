@@ -134,10 +134,7 @@ public class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerAdapter.Vie
         }
     }
 
-        public class ItemInfo { // TODO: Get from model
-        protected String itemTitle;
-        protected String itemDetail;
-        protected int itemImage;
+        public class ItemInfo {
         protected String id;
 
         public String getId() {

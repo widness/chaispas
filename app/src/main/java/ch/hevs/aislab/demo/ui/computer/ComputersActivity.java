@@ -17,10 +17,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import ch.hevs.aislab.demo.R;
 import ch.hevs.aislab.demo.adapter.RecyclerAdapter;
 import ch.hevs.aislab.demo.database.entity.ComputerEntity;
@@ -41,8 +39,15 @@ public class ComputersActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         getLayoutInflater().inflate(R.layout.activity_lists, frameLayout);
 
-        setTitle("Computers");
+        setTitle(getString(R.string.computers));
         navigationView.setCheckedItem(position);
+
+        Long roomId = getIntent().getLongExtra("roomId", 0L);
+        String roomLabel = getIntent().getStringExtra("roomLabel");
+
+        if(roomId != 0){
+            setTitle(getString(R.string.computers_room) + " " + roomLabel);
+        }
 
         RecyclerView recyclerView = findViewById(R.id.accountsRecyclerView);
 
@@ -87,16 +92,12 @@ public class ComputersActivity extends BaseActivity {
         FloatingActionButton fab = findViewById(R.id.floatingActionButton);
         fab.setOnClickListener(view -> {
                     Intent intent = new Intent(ComputersActivity.this, EditComputerActivity.class);
-                    intent.setFlags(
-                            Intent.FLAG_ACTIVITY_NO_ANIMATION |
-                                    Intent.FLAG_ACTIVITY_NO_HISTORY
-                    );
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION | Intent.FLAG_ACTIVITY_NO_HISTORY);
                     startActivity(intent);
                 }
         );
 
-        ComputerListViewModel.Factory factory = new ComputerListViewModel.Factory(
-                getApplication());
+        ComputerListViewModel.Factory factory = new ComputerListViewModel.Factory(getApplication(), roomId);
         mViewModel = ViewModelProviders.of(this, factory).get(ComputerListViewModel.class);
         mViewModel.getComputers().observe(this, roomEntities -> {
             if (roomEntities != null) {
@@ -114,28 +115,26 @@ public class ComputersActivity extends BaseActivity {
             drawerLayout.closeDrawer(GravityCompat.START);
             return false;
         }
-        /*
-        The activity has to be finished manually in order to guarantee the navigation hierarchy working.
-        */
+
         finish();
         return super.onNavigationItemSelected(item);
     }
 
     private void createDeleteDialog(final int position) {
 
-        final ComputerEntity room = mComputers.get(position);
+        final ComputerEntity computer = mComputers.get(position);
         LayoutInflater inflater = LayoutInflater.from(this);
         final View view = inflater.inflate(R.layout.row_delete_item, null);
         final AlertDialog alertDialog = new AlertDialog.Builder(this).create();
-        alertDialog.setTitle(getString(R.string.title_activity_delete_account));
+        alertDialog.setTitle(getString(R.string.action_delete));
         alertDialog.setCancelable(false);
 
         final TextView deleteMessage = view.findViewById(R.id.tv_delete_item);
-        deleteMessage.setText(String.format(getString(R.string.account_delete_msg), room.getLabel()));
+        deleteMessage.setText(String.format(getString(R.string.computer_delete_msg), computer.getLabel()));
 
         alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, getString(R.string.action_accept), (dialog, which) -> {
-            Toast toast = Toast.makeText(this, getString(R.string.account_deleted), Toast.LENGTH_LONG);
-            mViewModel.deleteComputer(room);
+            Toast toast = Toast.makeText(this, getString(R.string.delete_computer), Toast.LENGTH_LONG);
+            mViewModel.deleteComputer(computer);
             toast.show();
         });
 

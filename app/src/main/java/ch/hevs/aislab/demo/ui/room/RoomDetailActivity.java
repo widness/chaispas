@@ -22,6 +22,8 @@ import java.text.NumberFormat;
 import ch.hevs.aislab.demo.R;
 import ch.hevs.aislab.demo.database.entity.RoomEntity;
 import ch.hevs.aislab.demo.ui.BaseActivity;
+import ch.hevs.aislab.demo.ui.computer.ComputersActivity;
+import ch.hevs.aislab.demo.ui.student.StudentsActivity;
 import ch.hevs.aislab.demo.viewmodel.room.RoomViewModel;
 
 public class RoomDetailActivity  extends BaseActivity {
@@ -84,11 +86,23 @@ public class RoomDetailActivity  extends BaseActivity {
     }
 
     private void initiateView() {
-        Button depositBtn = findViewById(R.id.depositButton);
-        depositBtn.setOnClickListener(view -> generateDialog(R.string.action_deposit));
+        Button computersBtn = findViewById(R.id.computersButton);
+        computersBtn.setOnClickListener(view -> {
+            Intent intent = new Intent(this, ComputersActivity.class);
+            intent.putExtra("roomId", mRoom.getId());
+            intent.putExtra("roomLabel", mRoom.getLabel());
 
-        Button withdrawBtn = findViewById(R.id.withdrawButton);
-        withdrawBtn.setOnClickListener(view -> generateDialog(R.string.action_withdraw));
+            startActivity(intent);
+        });
+
+        Button studentsBtn = findViewById(R.id.studentsButton);
+        studentsBtn.setOnClickListener(view -> {
+            Intent intent = new Intent(this, StudentsActivity.class);
+            intent.putExtra("roomId", mRoom.getId());
+            intent.putExtra("roomLabel", mRoom.getLabel());
+
+            startActivity(intent);
+        });
     }
 
     private void updateContent() {

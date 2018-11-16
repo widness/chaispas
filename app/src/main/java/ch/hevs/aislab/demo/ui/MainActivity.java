@@ -21,11 +21,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         getLayoutInflater().inflate(R.layout.activity_main, frameLayout);
 
-        Button mClickButton1 = (Button)findViewById(R.id.room_button);
+        Button mClickButton1 = findViewById(R.id.room_button);
         mClickButton1.setOnClickListener(this);
-        Button mClickButton2 = (Button)findViewById(R.id.computers_button);
+        Button mClickButton2 = findViewById(R.id.computers_button);
         mClickButton2.setOnClickListener(this);
-        Button mClickButton3 = (Button)findViewById(R.id.students_button);
+        Button mClickButton3 = findViewById(R.id.students_button);
         mClickButton3.setOnClickListener(this);
 
         setTitle(getString(R.string.home));

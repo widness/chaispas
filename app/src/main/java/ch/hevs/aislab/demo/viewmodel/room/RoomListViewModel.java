@@ -40,7 +40,7 @@ public class RoomListViewModel extends AndroidViewModel {
     }
 
     /**
-     * A creator is used to inject the account id into the ViewModel
+     * A creator is used to inject the room id into the ViewModel
      */
     public static class Factory extends ViewModelProvider.NewInstanceFactory {
 
@@ -62,7 +62,7 @@ public class RoomListViewModel extends AndroidViewModel {
     }
 
     /**
-     * Expose the LiveData AccountEntity query so the UI can observe it.
+     * Expose the LiveData RoomEntity query so the UI can observe it.
      */
     public LiveData<List<RoomEntity>> getRooms() {
         return mObservableRooms;

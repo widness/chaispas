@@ -4,9 +4,6 @@ import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
-
-import java.util.HashMap;
-import java.util.Map;
 import ch.hevs.aislab.demo.model.Computer;
 
 @Entity(tableName = "computers",
@@ -22,7 +19,6 @@ import ch.hevs.aislab.demo.model.Computer;
                         value = {"roomId"}
                 )}
 )
-
 public class ComputerEntity implements Computer {
 
     @PrimaryKey(autoGenerate = true)
@@ -61,21 +57,10 @@ public class ComputerEntity implements Computer {
     }
     public void setLabel(String label) { this.label = label; }
 
-
     @Override
     public int getType() {
         return type;
     }
-    public String getTypeString() {
-        Map<Integer, String> types_map = new HashMap<Integer, String>() {{
-            put(1, "Notebook");
-            put(2, "Desktop");
-            put(3, "All in one");
-        }};
-
-        return types_map.get(type);
-    }
-
     public void setType(int type) {
         this.type = type;
     }
@@ -93,7 +78,7 @@ public class ComputerEntity implements Computer {
     public Long getRoomId() {
         return roomId;
     }
-    public void setRoomId(Long roomId){ this.roomId = roomId;}
+    public void setRoomId(long roomId){ this.roomId = roomId;}
 
     @Override
     public boolean equals(Object obj) {

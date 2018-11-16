@@ -1,9 +1,7 @@
 package ch.hevs.aislab.demo.database.repository;
 
 import android.arch.lifecycle.LiveData;
-
 import java.util.List;
-
 import ch.hevs.aislab.demo.database.AppDatabase;
 import ch.hevs.aislab.demo.database.entity.ComputerEntity;
 
@@ -34,6 +32,9 @@ public class ComputerRepository {
     public LiveData<List<ComputerEntity>> getComputers() {
         return mDatabase.computerDao().getAll();
     }
+
+    public LiveData<List<ComputerEntity>> getComputersForARoom(final Long roomId) { return mDatabase.computerDao().getAllForARoom(roomId); }
+
 
     public void insert(final ComputerEntity computer) {
         mDatabase.computerDao().insert(computer);

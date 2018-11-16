@@ -25,51 +25,60 @@ public class ComputerListViewModel extends AndroidViewModel {
     // MediatorLiveData can observe other LiveData objects and react on their emissions.
     private final MediatorLiveData<List<ComputerEntity>> mObservableComputers;
 
-    public ComputerListViewModel(@NonNull Application application, ComputerRepository computeurRepository) {
+    public ComputerListViewModel(@NonNull Application application, final Long computerId, ComputerRepository computerRepository) {
         super(application);
 
-        mRepository = computeurRepository;
+        mRepository = computerRepository;
 
         mObservableComputers = new MediatorLiveData<>();
         // set by default null, until we get data from the database.
         mObservableComputers.setValue(null);
 
-        LiveData<List<ComputerEntity>> computeurs = mRepository.getComputers();
+        LiveData<List<ComputerEntity>> computers;
+
+        if(computerId == 0) {
+            computers = mRepository.getComputers();
+        }else {
+            computers = mRepository.getComputersForARoom(computerId);
+        }
 
         // observe the changes of the account entity from the database and forward them
-        mObservableComputers.addSource(computeurs, mObservableComputers::setValue);
+        mObservableComputers.addSource(computers, mObservableComputers::setValue);
     }
 
     /**
-     * A creator is used to inject the account id into the ViewModel
+     * A creator is used to inject the computer id into the ViewModel
      */
     public static class Factory extends ViewModelProvider.NewInstanceFactory {
 
         @NonNull
         private final Application mApplication;
 
+        private final Long mComputerId;
+
         private final ComputerRepository mRepository;
 
-        public Factory(@NonNull Application application) {
+        public Factory(@NonNull Application application, Long computerId) {
             mApplication = application;
+            mComputerId = computerId;
             mRepository = ((BaseApp) application).getComputerRepository();
         }
 
         @Override
         public <T extends ViewModel> T create(Class<T> modelClass) {
             //noinspection unchecked
-            return (T) new ComputerListViewModel(mApplication, mRepository);
+            return (T) new ComputerListViewModel(mApplication, mComputerId, mRepository);
         }
     }
 
     /**
-     * Expose the LiveData AccountEntity query so the UI can observe it.
+     * Expose the LiveData ComputerEntity query so the UI can observe it.
      */
     public LiveData<List<ComputerEntity>> getComputers() {
         return mObservableComputers;
     }
 
-    public void deleteComputer(ComputerEntity computeur) {
+    public void deleteComputer(ComputerEntity computer) {
         new DeleteComputer(getApplication(), new OnAsyncEventListener() {
             @Override
             public void onSuccess() {
@@ -80,6 +89,6 @@ public class ComputerListViewModel extends AndroidViewModel {
             public void onFailure(Exception e) {
                 Log.d(TAG, "deleteComputer: failure", e);
             }
-        }).execute(computeur);
+        }).execute(computer);
     }
 }

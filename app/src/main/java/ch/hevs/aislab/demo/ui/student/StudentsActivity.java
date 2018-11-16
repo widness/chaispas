@@ -2,7 +2,6 @@ package ch.hevs.aislab.demo.ui.student;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -17,10 +16,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import ch.hevs.aislab.demo.R;
 import ch.hevs.aislab.demo.adapter.RecyclerAdapter;
 import ch.hevs.aislab.demo.database.entity.StudentEntity;
@@ -41,9 +38,17 @@ public class StudentsActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         getLayoutInflater().inflate(R.layout.activity_lists, frameLayout);
 
-        setTitle("Students");
+        setTitle(getString(R.string.students));
         navigationView.setCheckedItem(position);
 
+        Long roomId = getIntent().getLongExtra("roomId", 0L);
+        String roomLabel = getIntent().getStringExtra("roomLabel");
+
+        if(roomId != 0){
+            setTitle(getString(R.string.students_room) + " " + roomLabel);
+            setTitle("Students for room " + roomLabel);
+        }
+        
         RecyclerView recyclerView = findViewById(R.id.accountsRecyclerView);
 
         // use a linear layout manager
@@ -84,25 +89,20 @@ public class StudentsActivity extends BaseActivity {
 
         FloatingActionButton fab = findViewById(R.id.floatingActionButton);
         fab.setOnClickListener(view -> {
-                    Intent intent = new Intent(StudentsActivity.this, EditStudentActivity.class);
-                    intent.setFlags(
-                            Intent.FLAG_ACTIVITY_NO_ANIMATION |
-                                    Intent.FLAG_ACTIVITY_NO_HISTORY
-                    );
-                    startActivity(intent);
-                }
+                Intent intent = new Intent(StudentsActivity.this, EditStudentActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION | Intent.FLAG_ACTIVITY_NO_HISTORY);
+                startActivity(intent);
+            }
         );
 
-        StudentListViewModel.Factory factory = new StudentListViewModel.Factory(
-                getApplication());
+        StudentListViewModel.Factory factory = new StudentListViewModel.Factory(getApplication(), roomId);
         mViewModel = ViewModelProviders.of(this, factory).get(StudentListViewModel.class);
-        mViewModel.getStudents().observe(this, roomEntities -> {
-            if (roomEntities != null) {
-                mStudents = roomEntities;
+        mViewModel.getStudents().observe(this, studentEntities -> {
+            if (studentEntities != null) {
+                mStudents = studentEntities;
                 mAdapter.setData(mStudents);
             }
         });
-
         recyclerView.setAdapter(mAdapter);
     }
 
@@ -125,14 +125,14 @@ public class StudentsActivity extends BaseActivity {
         LayoutInflater inflater = LayoutInflater.from(this);
         final View view = inflater.inflate(R.layout.row_delete_item, null);
         final AlertDialog alertDialog = new AlertDialog.Builder(this).create();
-        alertDialog.setTitle(getString(R.string.title_activity_delete_account));
+        alertDialog.setTitle(getString(R.string.action_delete));
         alertDialog.setCancelable(false);
 
         final TextView deleteMessage = view.findViewById(R.id.tv_delete_item);
-        deleteMessage.setText(String.format(getString(R.string.account_delete_msg), student.getFirstName()));
+        deleteMessage.setText(getString(R.string.delete_msg));
 
         alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, getString(R.string.action_accept), (dialog, which) -> {
-            Toast toast = Toast.makeText(this, getString(R.string.account_deleted), Toast.LENGTH_LONG);
+            Toast toast = Toast.makeText(this, getString(R.string.delete_student), Toast.LENGTH_LONG);
             mViewModel.deleteStudent(student);
             toast.show();
         });

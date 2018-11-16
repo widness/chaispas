@@ -1,69 +1,70 @@
 <resources>
 
-    <!-- App -->
-    <string name="app_name">ChaisPas</string>
-    <string name="app_company">AppNCO</string>
-    <string name="home">Home</string>
-    <string name="impressum" translatable="false">ChaisPas</string>
+  <!-- App -->
+  <string name="app_name">ChaisPas</string>
+  <string name="app_company">AppNCO</string>
+  <string name="home">Home</string>
+  <string name="impressum" translatable="false">ChaisPas</string>
 
-    <!-- Room -->
-    <string name="rooms">Rooms</string>
-    <string name="id">id</string>
-    <string name="places">Places: </string>
-    <string name="room_name">Room Name</string>
-    <string name="room_nbOf">Number of place</string>
-    <string name="edit_room">Edit Room</string>
-    <string name="create_room">Room created</string>
-    <string name="delete_room">Room deleted</string>
-    <string name="room_delete_msg">Do you want to delete the room %1$s?</string>
+  <!-- Room -->
+  <string name="rooms">Classes</string>
+  <string name="id">id</string>
+  <string name="places">Places: </string>
+  <string name="room_name">Nom de la classe</string>
+  <string name="room_nbOf">Nombre de place</string>
+  <string name="edit_room">Editer la classe</string>
+  <string name="create_room">Classe Crée</string>
+  <string name="delete_room">Classe supprimé</string>
+  <string name="room_delete_msg">Veux-tu suppprimer la classe %1$s?</string>
 
-    <string name="room_card_title">Room: </string>
-    <string name="room_card_id">Name</string>
-    <string name="room_card_nb_place">Total places</string>
-    <string name="room_card_student">Number of students</string>
-    <string name="room_card_computer">Number of computers</string>
-    <string name="room_card_view_computer_button">View computers</string>
-    <string name="room_card_view_student_button">View students</string>
-
-    <!-- Student -->
-    <string name="students">Students</string>
-    <string name="students_room">Student for room</string>
-    <string name="student_lastname">Last Name</string>
-    <string name="student_firstName">First Name</string>
-    <string name="edit_student">Edit Student</string>
-    <string name="create_student">Student created</string>
-    <string name="delete_student">Student Deleted</string>
-    <string name="student_edited">Student edited</string>
+  <string name="room_card_title">Classe: </string>
+  <string name="room_card_id">Nom</string>
+  <string name="room_card_nb_place">Places totale</string>
+  <string name="room_card_student">Nombre d\'étudient</string>
+  <string name="room_card_computer">Nombre d\'ordinateur</string>
+  <string name="room_card_view_computer_button">Voir les ordinateurs</string>
+  <string name="room_card_view_student_button">Voir les étudients</string>
 
 
-    <string name="student_card_title">Details</string>
-    <string name="student_card_firstname">First name</string>
-    <string name="student_card_lastname">Last name</string>
-    <string name="student_card_view_room_button">View room</string>
+  <!-- Student -->
+  <string name="students">Etudients</string>
+  <string name="students_room">Etudiant de la classe</string>
+  <string name="student_lastname">Prénom</string>
+  <string name="student_firstName">Nom</string>
+  <string name="edit_student">Editer l\'étudient</string>
+  <string name="create_student">Etudient Crée</string>
+  <string name="delete_student">Etudient supprimé</string>
+  <string name="student_edited">Etudiant édité</string>
 
-    <!-- Computer -->
-    <string name="computers">Computers</string>
-    <string name="computers_room">Computers for a room</string>
-    <string name="computer_label">Computer label</string>
-    <string name="computer_type">Computer type</string>
-    <string name="computer_description">Computer description</string>
-    <string name="edit_computer">Edit Computer</string>
-    <string name="create_computer">Computer created</string>
-    <string name="delete_computer">Computer deleted</string>
-    <string name="computer_delete_msg">Do you want to delete the computer %1$s?</string>
 
-    <string name="computer_card_title">Details</string>
-    <string name="computer_card_type">Type</string>
-    <string name="computer_card_description">Description</string>
-    <string name="computer_card_view_room_button">View room</string>
+  <string name="student_card_title">Détails</string>
+  <string name="student_card_firstname">Prénom</string>
+  <string name="student_card_lastname">Nom</string>
+  <string name="student_card_view_room_button">Voir la classe</string>
 
-    <!-- Settings -->
-    <string name="action_settings">Language</string>
-    <string name="pref_header_about">About</string>
-    <string name="action_language">Language</string>
-    <string name="change_language">Change</string>
+  <!-- Computer -->
+  <string name="computers">Ordinateur</string>
+  <string name="computers_room">Ordinateur dans une salle</string>
+  <string name="computer_label">Label de l\'ordinateur</string>
+  <string name="computer_type">Type de l\'ordinateur</string>
+  <string name="computer_description">Description de l\'ordinateur</string>
+  <string name="edit_computer">Editer l\'ordinateur</string>
+  <string name="create_computer">Ordinateur Crée</string>
+  <string name="delete_computer">Ordinateur supprimé</string>
+  <string name="computer_delete_msg">Veux-tu suppprimer l\'ordinateur %1$s?</string>
 
-    <!-- Other -->
+  <string name="computer_card_title">Détails</string>
+  <string name="computer_card_type">Type</string>
+  <string name="computer_card_description">Description</string>
+  <string name="computer_card_view_room_button">Voir la classe</string>
+
+  <!-- Settings -->
+  <string name="action_settings">Langue</string>
+  <string name="pref_header_about">About</string>
+  <string name="action_language">Langue</string>
+  <string name="change_language">Changer</string>
+
+  <!-- Other -->
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
@@ -76,8 +77,6 @@
     <string name="action_edit">Edit</string>
     <string name="action_delete">Delete</string>
     <string name="delete_msg">Do you really want to delete ?</string>
-
-
 
 
     <string name="toggle_admin" translatable="false">Admin</string>

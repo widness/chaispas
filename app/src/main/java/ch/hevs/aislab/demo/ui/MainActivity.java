@@ -2,8 +2,6 @@ package ch.hevs.aislab.demo.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.view.GravityCompat;
-import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.Button;
 
@@ -62,22 +60,5 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         super.onResume();
         setTitle(getString(R.string.home));
         navigationView.setCheckedItem(R.id.nav_none);
-    }
-
-    @Override
-    public void onBackPressed() {
-        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
-            drawerLayout.closeDrawer(GravityCompat.START);
-            return;
-        }
-        final AlertDialog alertDialog = new AlertDialog.Builder(this).create();
-        alertDialog.setCancelable(false);
-        alertDialog.setMessage(getString(R.string.logout_msg));
-        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "yes", (dialog, which) -> {
-            finish();
-            System.exit(0);
-        }); // TODO: Not a dismiss
-        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, getString(R.string.action_cancel), (dialog, which) -> alertDialog.dismiss());
-        alertDialog.show();
     }
 }

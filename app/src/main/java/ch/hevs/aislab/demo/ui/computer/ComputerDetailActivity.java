@@ -64,7 +64,7 @@ public class ComputerDetailActivity  extends BaseActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
-        menu.add(0, EDIT_COMPUTER, Menu.NONE, getString(R.string.title_activity_edit_account))
+        menu.add(0, EDIT_COMPUTER, Menu.NONE, getString(R.string.edit_computer))
                 .setIcon(R.drawable.ic_edit_white_24dp)
                 .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
         return true;

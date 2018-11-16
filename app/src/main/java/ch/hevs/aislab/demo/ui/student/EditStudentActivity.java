@@ -104,7 +104,6 @@ public class EditStudentActivity extends BaseActivity{
                 mRooms = roomEntities;
 
                 List<StringWithTag> itemList = new ArrayList<StringWithTag>();
-                itemList.add(new StringWithTag("",0));
 
                 for (int i = 0; i < mRooms.size(); i++) {
                     itemList.add(new StringWithTag(mRooms.get(i).getLabel(), mRooms.get(i).getId()));

@@ -1,23 +1,13 @@
 package ch.hevs.aislab.demo.ui.room;
 
 import android.arch.lifecycle.ViewModelProviders;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import junit.framework.Test;
-
-import java.text.NumberFormat;
 
 import ch.hevs.aislab.demo.R;
 import ch.hevs.aislab.demo.database.entity.RoomEntity;
@@ -69,7 +59,7 @@ public class RoomDetailActivity  extends BaseActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
-        menu.add(0, EDIT_ACCOUNT, Menu.NONE, getString(R.string.title_activity_edit_account))
+        menu.add(0, EDIT_ACCOUNT, Menu.NONE, getString(R.string.edit_room))
                 .setIcon(R.drawable.ic_edit_white_24dp)
                 .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
         return true;
@@ -114,32 +104,5 @@ public class RoomDetailActivity  extends BaseActivity {
             roomStudent.setText(String.valueOf(mRoom.getNbStudents()));
             roomComputer.setText(String.valueOf(mRoom.getNbComputers()));
         }
-    }
-
-    private void generateDialog(final int action) {
-        // TODO: Link to the Computer or student list
-        LayoutInflater inflater = LayoutInflater.from(this);
-        final View view = inflater.inflate(R.layout.account_actions, null);
-        final AlertDialog alertDialog = new AlertDialog.Builder(this).create();
-        alertDialog.setTitle(getString(action));
-        alertDialog.setCancelable(false);
-
-
-        final EditText roomMovement = view.findViewById(R.id.account_movement);
-
-        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, getString(R.string.action_accept), new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                Double amount = Double.parseDouble(roomMovement.getText().toString());
-                Toast toast = Toast.makeText(RoomDetailActivity.this, getString(R.string.error_withdraw), Toast.LENGTH_LONG);
-
-                mViewModel.updateRoom(mRoom);
-            }
-        });
-
-        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, getString(R.string.action_cancel),
-                (dialog, which) -> alertDialog.dismiss());
-        alertDialog.setView(view);
-        alertDialog.show();
     }
 }

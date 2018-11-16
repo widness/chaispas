@@ -35,7 +35,7 @@
         </activity>
         <activity
             android:name=".ui.room.EditRoomActivity"
-            android:label="@string/title_activity_edit_account"
+            android:label="@string/edit_room"
             android:parentActivityName=".ui.room.RoomsActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
@@ -63,7 +63,7 @@
         </activity>
         <activity
             android:name=".ui.computer.EditComputerActivity"
-            android:label="@string/title_activity_edit_account"
+            android:label="@string/edit_computer"
             android:parentActivityName=".ui.computer.ComputersActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
@@ -91,7 +91,7 @@
         </activity>
         <activity
             android:name=".ui.student.EditStudentActivity"
-            android:label="@string/title_activity_edit_account"
+            android:label="@string/edit_student"
             android:parentActivityName=".ui.student.StudentsActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data

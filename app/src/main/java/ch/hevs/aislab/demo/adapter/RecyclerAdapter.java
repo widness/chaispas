@@ -25,6 +25,7 @@ public class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerAdapter.Vie
 
     private Context context;
     private List<T> mData;
+
     // private List<T> mData;
     private RecyclerViewItemClickListener mListener;
 
@@ -79,7 +80,31 @@ public class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerAdapter.Vie
         } else if (item.getClass().equals(StudentEntity.class)) {
             holder.itemTitle.setText(((StudentEntity) item).getLastName());
             holder.itemDetail.setText(((StudentEntity) item).getFirstName());
-            holder.itemImage.setImageDrawable(context.getDrawable(R.drawable.ic_student_round));
+
+            /**
+             * Choose student img
+             * ! Not save in the database
+             */
+            int studentImgCounter = (int)(Math.random() * 4) + 1;
+
+            switch (studentImgCounter) {
+                case 1: {
+                    holder.itemImage.setImageDrawable(context.getDrawable(R.drawable.student_2));
+                    break;
+                }
+                case 2: {
+                    holder.itemImage.setImageDrawable(context.getDrawable(R.drawable.student_3));
+                    break;
+                }
+                case 3: {
+                    holder.itemImage.setImageDrawable(context.getDrawable(R.drawable.student_4));
+                    break;
+                }
+                default: {
+                    holder.itemImage.setImageDrawable(context.getDrawable(R.drawable.student_1));
+                }
+            }
+
         } else if (item.getClass().equals(ComputerEntity.class)) {
             holder.itemTitle.setText(((ComputerEntity) item).getLabel());
             holder.itemDetail.setText(((ComputerEntity) item).getDescription());

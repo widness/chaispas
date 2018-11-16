@@ -108,7 +108,20 @@ public class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerAdapter.Vie
         } else if (item.getClass().equals(ComputerEntity.class)) {
             holder.itemTitle.setText(((ComputerEntity) item).getLabel());
             holder.itemDetail.setText(((ComputerEntity) item).getDescription());
-            holder.itemImage.setImageDrawable(context.getDrawable(R.drawable.ic_computer_round));
+
+            /**
+             * Choose computer img
+             */
+
+            switch (((ComputerEntity) item).getType()) {
+                case 0: {
+                    holder.itemImage.setImageDrawable(context.getDrawable(R.drawable.computer_2));
+                    break;
+                }
+                default: {
+                    holder.itemImage.setImageDrawable(context.getDrawable(R.drawable.computer_1));
+                }
+            }
         }
     }
 

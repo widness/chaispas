@@ -9,6 +9,7 @@
   <!-- Room -->
   <string name="rooms">Classes</string>
   <string name="id">id</string>
+  <string name="places">Places</string>
   <string name="room_name">Nom de la classe</string>
   <string name="room_nbOf">Nombre de place</string>
   <string name="edit_room">Editer la classe</string>
@@ -16,7 +17,7 @@
   <string name="delete_room">Classe supprimé</string>
   <string name="room_delete_msg">Veux-tu suppprimer la classe %1$s?</string>
 
-  <string name="room_card_title">Détails</string>
+  <string name="room_card_title">Classes: %1$s?</string>
   <string name="room_card_id">Nom</string>
   <string name="room_card_nb_place">Places totale</string>
   <string name="room_card_student">Nombre d\'étudient</string>
@@ -67,24 +68,12 @@
     <string name="title_activity_client">Client</string>
     <string name="title_activity_accounts">Accounts</string>
 
-    <string-array name="pref_language_list_titles">
-        <item>English</item>
-        <item>German</item>
-    </string-array>
-
-    <string-array name="pref_language_list_values" translatable="false">
-        <item>en</item>
-        <item>de</item>
-    </string-array>
-
     <string name="action_confirme">Yes</string>
     <string name="action_create">Create</string>
     <string name="action_update">Save Changes</string>
     <string name="action_edit">Edit</string>
     <string name="action_delete">Delete</string>
     <string name="delete_msg">Do you really want to delete ?</string>
-
-
 
 
     <string name="toggle_admin" translatable="false">Admin</string>

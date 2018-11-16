@@ -9,14 +9,15 @@
     <!-- Room -->
     <string name="rooms">Rooms</string>
     <string name="id">id</string>
-    <string name="room_name">Roome Name</string>
+    <string name="places">Places</string>
+    <string name="room_name">Room Name</string>
     <string name="room_nbOf">Number of place</string>
     <string name="edit_room">Edit Room</string>
     <string name="create_room">Room created</string>
     <string name="delete_room">Room deleted</string>
     <string name="room_delete_msg">Do you want to delete the room %1$s?</string>
 
-    <string name="room_card_title">Details</string>
+    <string name="room_card_title">Rooms: %1$s?</string>
     <string name="room_card_id">Name</string>
     <string name="room_card_nb_place">Total places</string>
     <string name="room_card_student">Number of students</string>
@@ -65,16 +66,6 @@
 
     <string name="title_activity_client">Client</string>
     <string name="title_activity_accounts">Accounts</string>
-
-    <string-array name="pref_language_list_titles">
-        <item>English</item>
-        <item>German</item>
-    </string-array>
-
-    <string-array name="pref_language_list_values" translatable="false">
-        <item>en</item>
-        <item>de</item>
-    </string-array>
 
     <string name="action_confirme">Yes</string>
     <string name="action_create">Create</string>

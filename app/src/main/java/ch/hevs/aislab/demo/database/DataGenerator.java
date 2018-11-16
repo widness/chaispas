@@ -2,7 +2,6 @@ package ch.hevs.aislab.demo.database;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import ch.hevs.aislab.demo.database.entity.ComputerEntity;
 import ch.hevs.aislab.demo.database.entity.RoomEntity;
 import ch.hevs.aislab.demo.database.entity.StudentEntity;
@@ -34,11 +33,9 @@ public class DataGenerator {
     public static List<ComputerEntity> generateComputers() {
         List<ComputerEntity> computers = new ArrayList<>();
 
-        ComputerEntity computer1 =
-                new ComputerEntity("Computer de la mord", 1, "Magnifique, juste magnifique", 2);
+        ComputerEntity computer1 = new ComputerEntity("Computer de la mord", 1, "Magnifique, juste magnifique", 2);
 
-        ComputerEntity computer2 =
-                new ComputerEntity("Pc nul", 1, "nul, juste nul", 2);
+        ComputerEntity computer2 = new ComputerEntity("Pc nul", 1, "nul, juste nul", 2);
 
         computers.add(computer1);
         computers.add(computer2);
